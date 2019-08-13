@@ -16,7 +16,10 @@ MongoClient.connect(url, { useNewUrlParser: true }, (err, db) => {
 let sha1 = require("sha1");
 
 // stripe
-// to be added...
+// I may add stuff in here
+app.post("/save-stripe-token", (req, res) => {
+  res.send(JSON.stringify({ success: true }));
+});
 
 // multer
 let multer = require("multer");
@@ -24,7 +27,7 @@ let upload = multer({ dest: __dirname + "/uploads/" });
 reloadMagic(app);
 
 // variables
-// sessions = {sessionId: usernameId}
+// sessions = {sessionId: emailId}
 let sessions;
 
 app.use("/", express.static("build")); // Needed for the HTML and JS files
@@ -38,30 +41,28 @@ app.post("/signup", upload.none(), (req, res) => {
   console.log("**** I'm in the signup endpoint");
   console.log("this is the body", req.body);
 
-  let username = req.body.username;
+  let email = req.body.email;
   let password = req.body.password;
 
-  dbo
-    .collection("users")
-    .findOne({ username: username }, (err, expectedUsername) => {
-      console.log("expectedUsername", expectedUsername);
-      if (err) {
-        res.send(JSON.stringify({ success: false }));
-        return;
-      }
-      if (expectedUsername === undefined || expectedUsername === null) {
-        dbo
-          .collection("users")
-          .insertOne({ username: username, password: sha1(password) });
-        res.send(JSON.stringify({ success: true }));
-        return;
-      }
-      if (expectedUsername !== undefined) {
-        res.send(JSON.stringify({ success: false }));
-        return;
-      }
+  dbo.collection("users").findOne({ email: email }, (err, expectedemail) => {
+    console.log("expectedemail", expectedemail);
+    if (err) {
       res.send(JSON.stringify({ success: false }));
-    });
+      return;
+    }
+    if (expectedemail === undefined || expectedemail === null) {
+      dbo
+        .collection("users")
+        .insertOne({ email: email, password: sha1(password) });
+      res.send(JSON.stringify({ success: true }));
+      return;
+    }
+    if (expectedemail !== undefined) {
+      res.send(JSON.stringify({ success: false }));
+      return;
+    }
+    res.send(JSON.stringify({ success: false }));
+  });
 });
 
 // generate cookie
@@ -74,11 +75,11 @@ app.post("/login", upload.none(), (req, res) => {
   console.log("**** I'm in the login endpoint");
   console.log("this is the parsed body", req.body);
 
-  let username = req.body.username;
+  let email = req.body.email;
   let enteredPassword = req.body.password;
 
-  dbo.collection("users").findOne({ username: username }, (err, user) => {
-    console.log("username", username);
+  dbo.collection("users").findOne({ email: email }, (err, user) => {
+    console.log("email", email);
     console.log("enteredPassword", req.body.password);
     console.log("users");
     if (err) {
@@ -100,10 +101,7 @@ app.post("/login", upload.none(), (req, res) => {
       // this needs to be verified by a coach
       let userId = dbo
         .collection("users")
-        .findOne(
-          { _id },
-          { username: username, password: sha1(enteredPassword) }
-        );
+        .findOne({ _id }, { email: email, password: sha1(enteredPassword) });
       console.log("userId", userId);
       sessions[sessionId] = userId;
       res.send(JSON.stringify({ success: true }));
@@ -156,7 +154,7 @@ app.post("/logout", upload.none(), (req, res) => {
 // add to cart
 //TBD...
 // app.get('/add-to-cart', (req, res)=>{})
-//app.post('/orders/:id', (req, res)=>{})
+// app.post('/orders/:id', (req, res)=>{})
 
 // app.get retrieves information and send it back after
 // items - populate the database
