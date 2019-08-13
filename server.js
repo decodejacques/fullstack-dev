@@ -42,6 +42,7 @@ app.post("/signup", upload.none(), (req, res) => {
   console.log("this is the body", req.body);
 
   let email = req.body.email;
+  let username = req.body.username;
   let password = req.body.password;
 
   dbo.collection("users").findOne({ email: email }, (err, expectedemail) => {
@@ -51,9 +52,11 @@ app.post("/signup", upload.none(), (req, res) => {
       return;
     }
     if (expectedemail === undefined || expectedemail === null) {
-      dbo
-        .collection("users")
-        .insertOne({ email: email, password: sha1(password) });
+      dbo.collection("users").insertOne({
+        email: email,
+        username: username,
+        password: sha1(password)
+      });
       res.send(JSON.stringify({ success: true }));
       return;
     }

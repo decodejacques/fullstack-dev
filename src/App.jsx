@@ -1,44 +1,52 @@
 import React, { Component } from "react";
-import StripeCheckout from "react-stripe-checkout";
 import { BrowserRouter, Route, Link } from "react-router-dom";
+import Cart from "./Cart.jsx";
+
+let renderSignupLoginPage = () => {
+  return <div>signup and login forms go here</div>;
+};
+
+let renderAllItems = () => {
+  return <div>render all items here</div>;
+};
+let renderItemDetails = dataRouter => {
+  return <div>render item details here</div>;
+};
+let renderNewItem = () => {
+  return <div>New item form should be displayed here</div>;
+};
+let renderCart = () => {
+  return (
+    <div>
+      <Cart />
+    </div>
+  );
+};
 
 class App extends Component {
-  onToken = token => {
-    fetch("/save-stripe-token", {
-      method: "POST",
-      body: JSON.stringify(token)
-    }).then(response => {
-      response.json().then(data => {
-        // alert(`Thank you for your purchase! ${data.email}`);
-        // add username/email below
-        alert(`Thank you for your purchase!`);
-      });
-    });
-  };
-
-  renderAllItems = () => {};
-  renderItemDetails = dataRouter => {};
-  renderNewItem = () => {};
-  renderCart = () => {};
-
-  render() {
+  render = () => {
     return (
       <div>
         <BrowserRouter>
           <div>
-            <Route exact={true} path="/items" render={renderAllItems} />
-            <Route exact={true} path="/items/:id" render={renderItemDetails} />
+            <Route
+              exact={true}
+              path="/signup-login"
+              render={renderSignupLoginPage}
+            />
+            <Route exact={true} path="/all-items" render={renderAllItems} />
+            <Route
+              exact={true}
+              path="/all-items/:id"
+              render={renderItemDetails}
+            />
             <Route exact={true} path="/new-item" render={renderNewItem} />
             <Route exact={true} path="/cart" render={renderCart} />
           </div>
         </BrowserRouter>
-        <StripeCheckout
-          token={this.onToken}
-          stripeKey="pk_test_O9HT5wBse32v6Ev3y8xDbYnQ00SpdfFqSl"
-        />
       </div>
     );
-  }
+  };
 }
 
 export default App;
