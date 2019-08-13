@@ -11,7 +11,7 @@ class UnconnectedCart extends Component {
       response.json().then(data => {
         // alert(`Thank you for your purchase! ${data.email}`);
         // add username/email below
-        alert(`Thank you for your purchase!`);
+        alert(`Thank you for your purchase! ${this.state.username}`);
       });
     });
   };
@@ -27,5 +27,11 @@ class UnconnectedCart extends Component {
     );
   };
 }
-let Cart = connect()(UnconnectedCart);
+
+let mapStateToProps = state => {
+  return {
+    username: state.username
+  };
+};
+let Cart = connect(mapStateToProps)(UnconnectedCart);
 export default Cart;

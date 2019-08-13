@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import Cart from "./Cart.jsx";
 
-let renderSignupLoginPage = () => {
-  return <div>signup and login forms go here</div>;
+let renderSignupPage = () => {
+  return <div>signup form goes here</div>;
+};
+let renderLoginPage = () => {
+  return <div>login form goes here</div>;
 };
 
 let renderAllItems = () => {
