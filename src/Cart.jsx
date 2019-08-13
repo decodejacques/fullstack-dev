@@ -18,11 +18,24 @@ class UnconnectedCart extends Component {
 
   render = () => {
     return (
-      <div>
-        <StripeCheckout
-          token={this.onToken}
-          stripeKey="pk_test_O9HT5wBse32v6Ev3y8xDbYnQ00SpdfFqSl"
-        />
+      <div className="cart">
+        <div className="shopping-bag">
+          <h1>Shopping Bag</h1>
+        </div>
+
+        <div className="checkout">
+          <h1>
+            Checkout
+            <div id="stripeButton">
+              <StripeCheckout
+                // {<button className="btn btn-primary">checkout now!
+                // </button>}
+                token={this.onToken}
+                stripeKey="pk_test_O9HT5wBse32v6Ev3y8xDbYnQ00SpdfFqSl"
+              />
+            </div>
+          </h1>
+        </div>
       </div>
     );
   };
