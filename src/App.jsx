@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import Cart from "./Cart.jsx";
 import NewItem from "./NewItem.jsx";
+import Items from "./Items.jsx";
 
 let renderSignupPage = () => {
   return <div>signup form goes here</div>;
@@ -11,7 +12,11 @@ let renderLoginPage = () => {
 };
 
 let renderAllItems = () => {
-  return <div>render all items here</div>;
+  return (
+    <div>
+      <Items />
+    </div>
+  );
 };
 let renderItemDetails = dataRouter => {
   return <div>render item details here</div>;

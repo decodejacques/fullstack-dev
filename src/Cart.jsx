@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import { connect } from "react-redux";
+import "./main.css";
 
 class UnconnectedCart extends Component {
   onToken = token => {
@@ -21,6 +22,7 @@ class UnconnectedCart extends Component {
       <div className="cart">
         <div className="shopping-bag">
           <h1>Shopping Bag</h1>
+          {/* more stuff to come */}
         </div>
 
         <div className="checkout">
