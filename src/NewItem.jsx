@@ -25,14 +25,14 @@ class newItemForm extends Component {
   }
 
   // way to structure the item to send to the backend
-  itemToSend = {
-    itemName: newItemName,
-    description: newItemDesc,
-    price: newItemPrice,
-    //userID below will come as a props from the App.js
-    //sellerId: this.state.userId,
-    itemUrl: newItemUrl
-  };
+  // itemToSend = {
+  //   itemName: newItemName,
+  //   description: newItemDesc,
+  //   price: newItemPrice,
+  //   //userID below will come as a props from the App.js
+  //   //sellerId: this.state.userId,
+  //   itemUrl: newItemUrl
+  // };
 
   handleItemNameChange(event) {
     this.setState({ inputItemName: event.target.value });
@@ -57,7 +57,7 @@ class newItemForm extends Component {
       .then(response => this.setState({ inputItemUrl: response }));
   }
 
-  handleSUbmit = () => {
+  handleSubmit = () => {
     fetch("/new-item", {
       method: "POST",
       body: JSON.stringify(itemToSend)

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import Cart from "./Cart.jsx";
+import NewItem from "./NewItem.jsx";
 
 let renderSignupPage = () => {
   return <div>signup form goes here</div>;
@@ -16,7 +17,12 @@ let renderItemDetails = dataRouter => {
   return <div>render item details here</div>;
 };
 let renderNewItem = () => {
-  return <div>New item form should be displayed here</div>;
+  return (
+    <div>
+      New item form should be displayed here
+      <NewItem />
+    </div>
+  );
 };
 let renderCart = () => {
   return (
