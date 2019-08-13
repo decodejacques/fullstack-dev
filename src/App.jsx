@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route, Link, Route, NavLink } from "react-router-dom";
 import Cart from "./Cart.jsx";
 import NewItem from "./NewItem.jsx";
 import Items from "./Items.jsx";
+import Signup from "./pages/Signup.jsx";
+import Login from "./pages/Login.jsx";
+import "./App.css";
 
 let renderSignupPage = () => {
   return <div>signup form goes here</div>;
@@ -43,8 +46,19 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <div>
-            <Route exact={true} path="/signup" render={renderSignupPage} />
-            <Route exact={true} path="/login" render={renderLoginPage} />
+            <Router>
+              <div className="App">
+                <div className="App_Aside" />
+                <div className="App_Form">
+                  <Route
+                    exact={true}
+                    path="/signup"
+                    render={renderSignupPage}
+                  />
+                  <Route exact={true} path="/login" render={renderLoginPage} />
+                </div>
+              </div>
+            </Router>
             <Route exact={true} path="/all-items" render={renderAllItems} />
             <Route
               exact={true}
