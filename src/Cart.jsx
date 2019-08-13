@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import StripeCheckout from "react-stripe-checkout";
+import { connect } from "react-redux";
 
-class Cart extends Component {
+class UnconnectedCart extends Component {
   onToken = token => {
     fetch("/save-stripe-token", {
       method: "POST",
@@ -26,5 +27,5 @@ class Cart extends Component {
     );
   };
 }
-
+let Cart = connect()(UnconnectedCart);
 export default Cart;

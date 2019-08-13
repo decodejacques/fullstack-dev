@@ -29,11 +29,8 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <div>
-            <Route
-              exact={true}
-              path="/signup-login"
-              render={renderSignupLoginPage}
-            />
+            <Route exact={true} path="/signup" render={renderSignupPage} />
+            <Route exact={true} path="/login" render={renderLoginPage} />
             <Route exact={true} path="/all-items" render={renderAllItems} />
             <Route
               exact={true}
