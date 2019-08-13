@@ -69,12 +69,12 @@ class UnconnectedLogin extends Component {
                 value={this.state.password}
                 onChange={this.handlePasswordChange}
               />
-              <div className="FormField">
-                <button className="FormField_Button">Log In</button>
-                <Link to="/signup" className="FormField_Link">
-                  Don't have an account yet? Click here to sign up
-                </Link>
-              </div>
+            </div>
+            <div className="FormField">
+              <button className="FormField_Button">Log In</button>
+              <Link to="/signup" className="FormField_Link">
+                Don't have an account yet? Click here to sign up
+              </Link>
             </div>
           </form>
         </div>
@@ -82,5 +82,5 @@ class UnconnectedLogin extends Component {
     }
   };
 }
-let Signup = connect()(UnconnectedLogin);
-export default Signup;
+let Login = connect()(UnconnectedLogin);
+export default Login;

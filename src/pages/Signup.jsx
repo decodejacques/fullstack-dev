@@ -1,7 +1,9 @@
+//Import the libraries
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-class UnconnectedSignUpForm extends Component {
+//Create class for the Signup
+class UnconnectedSignUp extends Component {
   constructor(props) {
     super(props);
 
@@ -11,18 +13,24 @@ class UnconnectedSignUpForm extends Component {
       username: ""
     };
   }
+  //Handler for the email
   emailChangeHandler = event => {
     console.log(event.target.value);
     this.setState({ email: event.target.value });
   };
+  //Handler for the password
   passwordChangeHandler = event => {
     console.log(event.target.value);
     this.setState({ password: event.target.value });
   };
+  //Handler for the username
   usernameChangeHandler = event => {
     console.log(event.target.value);
     this.setState({ username: event.target.value });
   };
+  //This will create a new form that will have add
+  // The username, the email and the password to the body
+  // of the response for the backend
   submitHandler = async event => {
     event.preventDefault();
     console.log("The form was submitted with the following body");
@@ -99,5 +107,5 @@ class UnconnectedSignUpForm extends Component {
     );
   };
 }
-let SignUpForm = connect()(UnconnectedSignUpForm);
-export default SignUpForm;
+let SignUp = connect()(UnconnectedSignUp);
+export default SignUp;
