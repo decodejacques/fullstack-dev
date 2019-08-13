@@ -32,7 +32,7 @@ let sessions;
 
 app.use("/", express.static("build")); // Needed for the HTML and JS files
 app.use("/uploads", express.static("uploads")); // Needed for local assets
-
+app.use("/images", express.static("images"));
 // Your endpoints go after this line
 //app.post create/update a resource and send it back after
 

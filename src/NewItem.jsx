@@ -34,15 +34,15 @@ class newItemForm extends Component {
   //   itemUrl: newItemUrl
   // };
 
-  handleItemNameChange(event) {
+  handleItemName(event) {
     this.setState({ inputItemName: event.target.value });
   }
 
-  handleItemDescChange(event) {
+  handleItemDesc(event) {
     this.setState({ inputItemDesc: event.target.value });
   }
 
-  handleItemPriceChange(event) {
+  handleItemPrice(event) {
     this.setState({ inputItemPrice: event.target.value });
   }
   handleItemUrl(event) {
@@ -75,10 +75,10 @@ class newItemForm extends Component {
   render() {
     return (
       <div>
-        <div class="card createlistingcard">
+        <div className="cardcreatelistingcard">
           Create a listing for your item
           <div className="createAListingForm">
-            <form onSubmit={this.handleSUbmit}>
+            <form onSubmit={this.handleSubmit}>
               <div className="textspacing">
                 Name your listing:
                 <input
