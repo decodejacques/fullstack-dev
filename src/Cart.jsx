@@ -11,7 +11,7 @@ class UnconnectedCart extends Component {
       response.json().then(data => {
         // alert(`Thank you for your purchase! ${data.email}`);
         // add username/email below
-        alert(`Thank you for your purchase! ${this.state.username}`);
+        alert(`Thank you for your purchase ${this.state.username}! `);
       });
     });
   };
