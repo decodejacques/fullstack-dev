@@ -23,12 +23,12 @@ let multer = require("multer");
 let upload = multer({ dest: __dirname + "/uploads/" });
 reloadMagic(app);
 
-app.use("/", express.static("build")); // Needed for the HTML and JS files
-app.use("/uploads", express.static("uploads")); // Needed for local assets
-
 // variables
 // sessions = {sessionId: usernameId}
 let sessions;
+
+app.use("/", express.static("build")); // Needed for the HTML and JS files
+app.use("/uploads", express.static("uploads")); // Needed for local assets
 
 // Your endpoints go after this line
 //app.post create/update a resource and send it back after
