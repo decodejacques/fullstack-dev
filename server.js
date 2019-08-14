@@ -100,14 +100,13 @@ app.post("/login", upload.none(), (req, res) => {
       let sessionId = generateId();
       console.log("generated id", sessionId);
       res.cookie("sid", sessionId);
-
-      // this needs to be verified by a coach
-      let userId = dbo
-        .collection("users")
-        .findOne({ _id }, { email: email, password: sha1(enteredPassword) });
-      console.log("userId", userId);
-      sessions[sessionId] = userId;
-      res.send(JSON.stringify({ success: true }));
+      sessions[sessionId] = user.email;
+      console.log("sessions", sessions);
+      res.send(
+        JSON.stringify({
+          success: true
+        })
+      );
       return;
     }
     res.send(JSON.stringify({ success: false }));

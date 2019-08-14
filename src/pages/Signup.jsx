@@ -40,16 +40,23 @@ class UnconnectedSignUp extends Component {
     data.append("email", this.state.email);
     data.append("username", this.state.username);
     data.append("password", this.state.password);
-    let response = await fetch("/signup");
-    let responseBody = await response.text();
-    let parsed = JSON.parse(responseBody);
-    console.log("parsed", parsed);
-    if (parsed.success === false) {
-      return alert("This username is alreay taken");
-    }
-    this.props.dispatch({
-      type: "login-success"
+    let response = await fetch("/signup", {
+      method: "POST",
+      body: data,
+      credentials: "include"
     });
+    let responseBody = await response.text();
+    let body = JSON.parse(responseBody);
+    console.log("body.success", body.success);
+    if (body.success === false) {
+      alert("This username is alreay taken");
+      return;
+    }
+
+    this.props.dispatch({
+      type: "signup-success"
+    });
+    return;
   };
   render = () => {
     return (

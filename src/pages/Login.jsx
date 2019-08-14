@@ -18,7 +18,7 @@ class UnconnectedLogin extends Component {
     console.log("new password", event.target.value);
     this.setState({ password: event.target.value });
   };
-  handleSubmit = async event => {
+  submitHandler = async event => {
     event.preventDefault();
     console.log("login form submitted");
     let data = new FormData();
@@ -33,10 +33,13 @@ class UnconnectedLogin extends Component {
     console.log("responseBody from login: ", responseBody);
     let body = JSON.parse(responseBody);
     if (body.success) {
-      this.setState({ username: name });
+      console.log("logIn successful");
+      this.setState({ email: email });
+      return;
     }
   };
   render = () => {
+    console.log("I am in the loggin endpoint");
     return (
       <div className="App">
         <div className="App__Aside">
@@ -45,7 +48,7 @@ class UnconnectedLogin extends Component {
               <div className="FormCenter">
                 <div>
                   <NavLink
-                    to="/Login"
+                    to="/login"
                     activeClassName="FormTitle__Link--Active"
                     className="FormTitle__Link"
                   >
