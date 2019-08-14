@@ -42,7 +42,21 @@ app.use("/images", express.static("images"));
 //app.post create/update a resource and send it back after
 
 // search item
-app.post("/search-item", (req, res) => {});
+app.post("/search-item", (req, res) => {
+  console.log("item = req.body.name", req.body.name);
+  dbo
+    .collection("items")
+    .findOne({ name: req.body.name })
+    .toArray((err, item) => {
+      if (err) {
+        console.log("error", err);
+        res.send("fail");
+        return;
+      }
+      console.log("item", item);
+      res.send(JSON.stringify(item));
+    });
+});
 
 // filter items
 app.post("/filter-items", (req, res) => {});
@@ -181,7 +195,7 @@ app.post("/logout", upload.none(), (req, res) => {
 // app.get retrieves information and send it back after
 // items - populate the database
 app.get("/items", (req, res) => {
-  console.log("request to all items");
+  // console.log("request to all items");
   dbo
     .collection("items")
     .find({})

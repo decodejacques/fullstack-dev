@@ -7,8 +7,8 @@ import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
 import "./App.css";
 
-let renderItemDetails = dataRouter => {
-  return <div>render item details here</div>;
+let renderItemDetails = routerData => {
+  return <GridItem id={routerData.params.id} />;
 };
 
 class App extends Component {

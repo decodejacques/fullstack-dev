@@ -14,12 +14,18 @@ let reducer = (state, action) => {
   if (action.type === "signup-success") {
     return { signedIn: true };
   }
+  if (action.type === "set-items") {
+    return { items: action.items };
+  }
+  if (action.type === "search-item") {
+    return { itemFound: action.itemFound };
+  }
   return state;
 };
 
 const store = createStore(
   reducer,
-  { username: "", loggedIn: false, signedIn: false },
+  { username: "", loggedIn: false, signedIn: false, items: [] },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
