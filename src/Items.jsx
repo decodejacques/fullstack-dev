@@ -39,13 +39,13 @@ class UnconnectedItems extends Component {
     setInterval(updateItems, 500);
   };
 
-  renderGridItem = item => {
-    return (
-      <Link to={"/all-items" + item.id}>
-        <GridItem item={item} />
-      </Link>
-    );
-  };
+  //   renderGridItem = item => {
+  //     return (
+  //       <Link to={"/all-items" + item.id}>
+  //         <GridItem item={item} />
+  //       </Link>
+  //     );
+  //   };
 
   //   handleSubmit = () => {};
   gotoCart = () => {
@@ -112,23 +112,13 @@ class UnconnectedItems extends Component {
   render = () => {
     console.log("rendering items");
     let displayedItems = this.props.items;
-    if (this.props.itemFound !== undefined) {
-      displayedItems = this.props.items.filter(item => {
-        return item.name === this.props.itemFound;
-      });
-    }
+    // if (this.props.itemFound !== undefined) {
+    //   displayedItems = this.props.items.filter(item => {
+    //     return item.name === this.props.itemFound;
+    //   });
+    //   console.log("displayedItems", displayedItems);
+    // }
 
-    // console.log("this.props.items.description", this.props.items.description);
-    // let itemsToElement = e => {
-    //   return (
-    //     <div>
-    //       <div>{e.name}</div>
-    //       <img src={e.filePath} />
-    //       <div>{e.description}</div>
-    //       <div>{e.cost + "$"}</div>
-    //     </div>
-    //   );
-    // };
     return (
       <div>
         Search bar
@@ -169,10 +159,11 @@ class UnconnectedItems extends Component {
           {displayedItems.map(item => {
             return (
               <div>
-                <div>{item.name}</div>
                 <img src={item.filePath} />
-                <div>{item.description}</div>
+                <h3>{item.name}</h3>
+                <h4>{item.description}</h4>
                 <div>{item.cost + "$"}</div>
+                <div>{"In Stock: " + item.available_quantity}</div>
               </div>
             );
           })}
