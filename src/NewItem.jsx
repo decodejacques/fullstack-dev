@@ -13,55 +13,41 @@ class newItemForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputName: "",
-      inputDesc: "",
+      inputItemName: "",
+      inputItemDesc: "",
       inputUrl: "",
-      inputPrice: "",
-      itemName: "",
-      itemDesc: "",
-      itemPrice: "",
-      itemId: "",
-      itemUrl: ""
+      inputItemPrice: ""
     };
   }
 
-  // way to structure the item to send to the backend
-  // itemToSend = {
-  //   itemName: newItemName,
-  //   description: newItemDesc,
-  //   price: newItemPrice,
-  //   //userID below will come as a props from the App.js
-  //   //sellerId: this.state.userId,
-  //   itemUrl: newItemUrl
-  // };
-
-  handleItemName(event) {
+  handleItemName = event => {
     this.setState({ inputItemName: event.target.value });
-  }
+  };
 
-  handleItemDesc(event) {
+  handleItemDesc = event => {
     this.setState({ inputItemDesc: event.target.value });
-  }
+  };
 
-  handleItemPrice(event) {
+  handleItemPrice = event => {
     this.setState({ inputItemPrice: event.target.value });
-  }
-  handleItemUrl(event) {
+  };
+  handleItemUrl = event => {
     this.setState({ inputItemUrl: event.target.value });
-  }
+  };
 
-  uploadFile(x) {
-    var filename = x.name;
-    var fileExtension = filename.split(".").pop();
-    fetch("/upics?ext=" + fileExtension, { method: "POST", body: x })
-      .then(response => response.text())
-      .then(response => this.setState({ inputItemUrl: response }));
-  }
+  uploadFile = e => {
+    this.setState({ inputItemImage: e });
+  };
 
   handleSubmit = () => {
+    let formData = new FormData();
+    formData.append("name", this.state.inputItemName);
+    formData.append("description", this.state.inputItemDesc);
+    formData.append("cost", this.state.inputItemPrice);
+    formData.append("itemImage", this.state.inputItemImage);
     fetch("/new-item", {
       method: "POST",
-      body: JSON.stringify(itemToSend)
+      body: formData
     })
       .then(response => response.text())
       .then(response => {
@@ -69,7 +55,6 @@ class newItemForm extends Component {
         this.setState({ itemId: itemId });
         this.props.getItemId(itemId);
         // receives the itemID from the backend
-        this.props.history.push("/listingSubmitted/" + itemId);
       });
   };
 
@@ -105,7 +90,7 @@ class newItemForm extends Component {
                 <input
                   type="text"
                   name="mytext"
-                  value={this.state.inputPrice}
+                  value={this.state.inputItemPrice}
                   placeholder="Item price"
                   onChange={this.handleItemPrice}
                 />
