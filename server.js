@@ -26,6 +26,10 @@ let multer = require("multer");
 let upload = multer({ dest: __dirname + "/uploads/" });
 reloadMagic(app);
 
+//cookie
+let cookieParser = require("cookie-parser");
+app.use(cookieParser());
+
 // variables
 // sessions = {sessionId: emailId}
 let sessions = {};
@@ -35,6 +39,12 @@ app.use("/uploads", express.static("uploads")); // Needed for local assets
 app.use("/images", express.static("images"));
 // Your endpoints go after this line
 //app.post create/update a resource and send it back after
+
+// search item
+app.post("/search-item", (req, res) => {});
+
+// filter items
+app.post("/filter-items", (req, res) => {});
 
 // signup
 app.post("/signup", upload.none(), (req, res) => {
@@ -146,11 +156,18 @@ app.post("/new-item", upload.single("itemImage"), (req, res) => {
 // logout
 app.post("/logout", upload.none(), (req, res) => {
   console.log("logout");
+  console.log("sessions", sessions);
   let sessionId = req.cookies.sid;
   console.log("sessionId", sessionId);
 
   delete sessions[sessionId];
   console.log("sessions", sessions);
+  res.send(
+    JSON.stringify({
+      success: true
+    })
+  );
+  return;
 });
 
 // add to cart
