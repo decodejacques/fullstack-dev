@@ -169,11 +169,12 @@ body {
 }
 
 .createAListingForm {
-  width: 40%;
-
+  width: 35%;
+  height: 70%;
   background: #eee;
   padding: 30px;
   border-radius: 10px;
+  background: rgba(238, 238, 238, 0.7);
 }
 
 input[type="text"] {
