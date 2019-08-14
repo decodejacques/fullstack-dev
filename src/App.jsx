@@ -20,7 +20,7 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/cart" component={Cart} />
           <Route path="/new-item" component={NewItem} />
-          <Route path="/all-items" component={Items} />
+          <Route path="/items" component={Items} />
           <Route path="/items/:id" render={renderItemDetails} />
         </Router>
       </div>
