@@ -84,6 +84,7 @@ class newItemForm extends Component {
                 Name your listing:
                 <input
                   type="text"
+                  name="mytext"
                   value={this.state.inputName}
                   placeholder="Item name"
                   onChange={this.handleItemName}
@@ -93,6 +94,7 @@ class newItemForm extends Component {
                 Write a description here
                 <input
                   type="text"
+                  name="mytext"
                   value={this.state.inputDesc}
                   placeholder="Item description"
                   onChange={this.handleItemDesc}
@@ -102,6 +104,7 @@ class newItemForm extends Component {
                 How much would you like to sell it for?
                 <input
                   type="text"
+                  name="mytext"
                   value={this.state.inputPrice}
                   placeholder="Item price"
                   onChange={this.handleItemPrice}
