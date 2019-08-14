@@ -7,45 +7,8 @@ import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
 import "./App.css";
 
-let renderSignupPage = () => {
-  return (
-    <div>
-      <Signup />
-    </div>
-  );
-};
-let renderLoginPage = () => {
-  return (
-    <div>
-      <Login />
-    </div>
-  );
-};
-
-let renderAllItems = () => {
-  return (
-    <div>
-      <Items />
-    </div>
-  );
-};
 let renderItemDetails = dataRouter => {
   return <div>render item details here</div>;
-};
-let renderNewItem = () => {
-  return (
-    <div>
-      New item form should be displayed here
-      <NewItem />
-    </div>
-  );
-};
-let renderCart = () => {
-  return (
-    <div>
-      <Cart />
-    </div>
-  );
 };
 
 class App extends Component {
@@ -54,9 +17,11 @@ class App extends Component {
       <div>
         <Router>
           <Route path="/signup" component={Signup} />
-          <Route path="/Login" component={Login} />
-
+          <Route path="/login" component={Login} />
+          <Route path="/cart" component={Cart} />
           <Route path="/new-item" component={NewItem} />
+          <Route path="/all-items" component={Items} />
+          <Route path="/items/:id" render={renderItemDetails} />
         </Router>
       </div>
     );
