@@ -53,16 +53,10 @@ class App extends Component {
     return (
       <div>
         <Router>
-          <div className="App">
-            <div className="App__Aside" />
-            <div className="App__Form">
-              <div className="FormTitle" />
+          <Route path="/signup" component={Signup} />
+          <Route path="/Login" component={Login} />
 
-              <Route path="/signup" component={Signup} />
-              <Route path="/Login" component={Login} />
-              <Route path="/Newitem" component={NewItem} />
-            </div>
-          </div>
+          <Route path="/new-item" component={NewItem} />
         </Router>
       </div>
     );

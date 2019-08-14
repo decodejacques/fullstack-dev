@@ -6,8 +6,8 @@
 
 .App__Aside {
   width: 50%;
-  background-color: #ffffff;
-  background-image: url("/images/store.jpg");
+  background-color: hsl(0, 0%, 100%);
+
   background-size: cover, auto;
 }
 
