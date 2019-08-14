@@ -2,6 +2,7 @@
 
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
+import "./main.css";
 
 //you will create a listing on this page
 // it send the information about the item to the backend, so that backend can store it
