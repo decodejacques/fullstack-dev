@@ -1,9 +1,10 @@
 //Import the libraries
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 //Create class for the Signup
-class UnconnectedSignUp extends Component {
+class UnconnectedSignup extends Component {
   constructor(props) {
     super(props);
 
@@ -34,20 +35,28 @@ class UnconnectedSignUp extends Component {
   submitHandler = async event => {
     event.preventDefault();
     console.log("The form was submitted with the following body");
-    console.log(this.state);
+    console.log("this.state", this.state);
     let data = new FormData();
     data.append("email", this.state.email);
     data.append("username", this.state.username);
     data.append("password", this.state.password);
-    let response = await fetch("/signup");
+    let response = await fetch("/signup", {
+      method: "POST",
+      body: data,
+      credentials: "include"
+    });
     let responseBody = await response.text();
-    let parsed = JSON.parse(responseBody);
-    console.log("parsed", parsed);
-    if (parsed.success === false) {
-      return alert("This username is alreay taken");
+    let body = JSON.parse(responseBody);
+    console.log("body.success", body.success);
+    if (body.success === false) {
+      alert("This username is alreay taken");
+      return;
     }
+    // <Link to={"/login-page"} className="FormField_Link">
+    //   {/* Already a member? Click here ! */}
+    // </Link>;
     this.props.dispatch({
-      type: "login-success"
+      type: "signup-successful"
     });
   };
   render = () => {
@@ -90,16 +99,14 @@ class UnconnectedSignUp extends Component {
                 id="email"
                 className="formField_Input"
                 placeholder="Your e-mail here"
-                name="emai"
+                name="email"
                 value={this.state.email}
                 onChange={this.emailChangeHandler}
               />
             </div>
             <div className="FormField">
-              <button className="FormField_Button">Sign up</button>
-              <Link to="/sign-in" className="FormField_Link">
-                Already a member? Click here !
-              </Link>
+              {/* <button className="FormField_Button">Sign up</button> */}
+              <input type="submit" value="Sign up" />
             </div>
           </div>
         </form>
@@ -107,5 +114,5 @@ class UnconnectedSignUp extends Component {
     );
   };
 }
-let SignUp = connect()(UnconnectedSignUp);
-export default SignUp;
+let Signup = connect()(UnconnectedSignup);
+export default Signup;

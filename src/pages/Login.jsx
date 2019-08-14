@@ -24,7 +24,7 @@ class UnconnectedLogin extends Component {
     let data = new FormData();
     data.append("email", this.state.email);
     data.append("password", this.state.password);
-    let response = await fetch("/Login", {
+    let response = await fetch("/login", {
       method: "POST",
       body: data,
       credentials: "include"
@@ -33,12 +33,18 @@ class UnconnectedLogin extends Component {
     console.log("responseBody from login: ", responseBody);
     let body = JSON.parse(responseBody);
     if (body.success) {
-      this.setState({ username: name });
+      this.props.dispatch({
+        type: "login-successful",
+        email: this.state.email
+      });
+      return;
     }
   };
   render = () => {
-    if (this.state.email === undefined) {
-      return (
+    console.log("this.state.email", this.state.email);
+
+    return (
+      <div>
         <div className="FormCenter">
           <form onSubmit={this.submitHandler}>
             <div className="FormField">
@@ -52,7 +58,7 @@ class UnconnectedLogin extends Component {
                 placeholder="Your email here"
                 name="email"
                 value={this.state.email}
-                onCHange={this.handleEmailChange}
+                onChange={this.handleEmailChange}
               />
             </div>
 
@@ -71,16 +77,18 @@ class UnconnectedLogin extends Component {
               />
             </div>
             <div className="FormField">
-              <button className="FormField_Button">Log In</button>
-              <Link to="/signup" className="FormField_Link">
-                Don't have an account yet? Click here to sign up
-              </Link>
+              {/* <button className="FormField_Button">Log In</button>
+                <Link to={"/all-items"} className="FormField_Link">
+                  Don't have an account yet? Click here to sign up
+                </Link> */}
+              <input type="submit" value="Login" />
             </div>
           </form>
         </div>
-      );
-    }
+      </div>
+    );
   };
 }
+
 let Login = connect()(UnconnectedLogin);
 export default Login;

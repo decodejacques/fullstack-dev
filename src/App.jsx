@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Link, Route, NavLink } from "react-router-dom";
+import { BrowserRouter, Route, Link, Router, NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 import Cart from "./Cart.jsx";
 import NewItem from "./NewItem.jsx";
 import Items from "./Items.jsx";
-import Signup from "./pages/Signup.jsx";
-import Login from "./pages/Login.jsx";
-import "./App.css";
+import SignupForm from "./pages/Signup.jsx";
+import LoginForm from "./pages/Login.jsx";
+import "./main.css";
 
 let renderSignupPage = () => {
   return <div>signup form goes here</div>;
@@ -40,25 +41,56 @@ let renderCart = () => {
   );
 };
 
-class App extends Component {
+class UnconnectedApp extends Component {
   render = () => {
+    console.log("this.props.signedIn", this.props.signedIn);
+    if (this.props.signedIn) {
+      return (
+        <div>
+          <BrowserRouter>
+            <div className="App">
+              <div className="App_Aside">
+                <div className="App_Form">
+                  <Route
+                    exact={true}
+                    path="/login-page"
+                    //   render={renderLoginPage}
+                    component={LoginForm}
+                  />
+                </div>
+              </div>
+            </div>
+          </BrowserRouter>
+          {/* <LoginForm /> */}
+        </div>
+      );
+    }
+
+    if (this.props.loggedIn) {
+      return (
+        <div>
+          <Items />
+        </div>
+      );
+    }
+
     return (
       <div>
         <BrowserRouter>
           <div>
-            <Router>
-              <div className="App">
-                <div className="App_Aside" />
+            <div className="App">
+              <div className="App_Aside">
                 <div className="App_Form">
                   <Route
                     exact={true}
-                    path="/signup"
-                    render={renderSignupPage}
+                    path="/signup-page"
+                    component={SignupForm}
+                    //   render={renderSignupPage}
                   />
-                  <Route exact={true} path="/login" render={renderLoginPage} />
                 </div>
               </div>
-            </Router>
+            </div>
+
             <Route exact={true} path="/all-items" render={renderAllItems} />
             <Route
               exact={true}
@@ -73,5 +105,14 @@ class App extends Component {
     );
   };
 }
+
+let mapStateToProps = state => {
+  return {
+    signedIn: state.signedIn,
+    loggedIn: state.loggedIn
+  };
+};
+
+let App = connect(mapStateToProps)(UnconnectedApp);
 
 export default App;
