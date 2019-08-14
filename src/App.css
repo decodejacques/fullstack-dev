@@ -6,9 +6,7 @@
 
 .App__Aside {
   width: 50%;
-  background-color: hsl(0, 0%, 100%);
-
-  background-size: cover, auto;
+  background-color: #66dac7;
 }
 
 .App__Form {
