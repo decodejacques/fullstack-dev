@@ -24,7 +24,7 @@ class UnconnectedLogin extends Component {
     let data = new FormData();
     data.append("email", this.state.email);
     data.append("password", this.state.password);
-    let response = await fetch("/Login", {
+    let response = await fetch("/login", {
       method: "POST",
       body: data,
       credentials: "include"
