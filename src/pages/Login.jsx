@@ -35,6 +35,7 @@ class UnconnectedLogin extends Component {
     if (body.success) {
       console.log("logIn successful");
       this.setState({ email: email });
+      this.props.history.push("/all-items");
       return;
     }
   };

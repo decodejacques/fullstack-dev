@@ -28,7 +28,7 @@ reloadMagic(app);
 
 // variables
 // sessions = {sessionId: emailId}
-let sessions;
+let sessions = {};
 
 app.use("/", express.static("build")); // Needed for the HTML and JS files
 app.use("/uploads", express.static("uploads")); // Needed for local assets

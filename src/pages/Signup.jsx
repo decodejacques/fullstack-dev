@@ -56,6 +56,7 @@ class UnconnectedSignUp extends Component {
     this.props.dispatch({
       type: "signup-success"
     });
+    this.props.history.push("/login");
     return;
   };
   render = () => {
