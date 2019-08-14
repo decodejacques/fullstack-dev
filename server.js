@@ -35,6 +35,7 @@ app.use(cookieParser());
 let sessions = {};
 
 app.use("/", express.static("build")); // Needed for the HTML and JS files
+
 app.use("/uploads", express.static("uploads")); // Needed for local assets
 app.use("/images", express.static("images"));
 // Your endpoints go after this line
@@ -110,6 +111,7 @@ app.post("/login", upload.none(), (req, res) => {
       let sessionId = generateId();
       console.log("generated id", sessionId);
       res.cookie("sid", sessionId);
+
       sessions[sessionId] = user.email;
       console.log("sessions", sessions);
       res.send(
@@ -126,6 +128,7 @@ app.post("/login", upload.none(), (req, res) => {
 // new-item
 app.post("/new-item", upload.single("itemImage"), (req, res) => {
   console.log("request to /new-item body", req.body);
+  console.log(req.file);
   let filePath;
   let name = req.body.name;
   let cost = req.body.cost;
