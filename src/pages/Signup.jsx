@@ -56,29 +56,27 @@ class UnconnectedSignUp extends Component {
       <div className="App">
         <div className="App__Aside" />
         <div className="App__Form">
-          <div className="FormTitle" />
-          <div>
-            <div>
-              <NavLink
-                to="/Login"
-                activeClassName="FormTitle__Link--Active"
-                className="FormTitle__Link"
-              >
-                Log In
-              </NavLink>{" "}
-              or{" "}
-              <NavLink
-                exact
-                to="/signup"
-                activeClassName="FormTitle__Link--Active"
-                className="FormTitle__Link"
-              >
-                Sign Up
-              </NavLink>
-            </div>
+          <div className="FormTitle">
             <div className="FormCenter">
-              <div className="App__Aside" />
-              <form onSubmit={this.submitHandler} className="FormFields">
+              <div>
+                <NavLink
+                  to="/Login"
+                  activeClassName="FormTitle__Link--Active"
+                  className="FormTitle__Link"
+                >
+                  Log In
+                </NavLink>{" "}
+                or{" "}
+                <NavLink
+                  exact
+                  to="/signup"
+                  activeClassName="FormTitle__Link--Active"
+                  className="FormTitle__Link"
+                >
+                  Sign Up
+                </NavLink>
+              </div>
+              <form onSubmit={this.submitHandler}>
                 <div className="FormField">
                   <label className="FormField__Label" htmlFor="name">
                     Enter your username
@@ -92,40 +90,41 @@ class UnconnectedSignUp extends Component {
                     value={this.state.username}
                     onChange={this.usernameChangeHandler}
                   />
-                  <div className="FormField">
-                    <label className="FormField__Label" htmlFor="password">
-                      Enter your password
-                    </label>
-                    <input
-                      type="password"
-                      id="password:"
-                      className="FormField__Input"
-                      placeholder="Your password here"
-                      name="password"
-                      value={this.state.password}
-                      onChange={this.passwordChangeHandler}
-                    />
-                  </div>
-                  <div className="FormField">
-                    <label className="Formfield_Label" htmlFor="email">
-                      Enter your E-mail address
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      className="formField_Input"
-                      placeholder="Your e-mail here"
-                      name="emai"
-                      value={this.state.email}
-                      onChange={this.emailChangeHandler}
-                    />
-                  </div>
-                  <div className="FormField">
-                    <button className="FormField_Button">Sign up</button>
-                    <Link to="/sign-in" className="FormField_Link">
-                      Already a member? Click here !
-                    </Link>
-                  </div>
+                </div>
+
+                <div className="FormField">
+                  <label className="FormField__Label" htmlFor="email">
+                    Enter your E-mail address
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    className="FormField__Input"
+                    placeholder="Your e-mail here"
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.emailChangeHandler}
+                  />
+                </div>
+                <div className="FormField">
+                  <label className="FormField__Label" htmlFor="password">
+                    Enter your password
+                  </label>
+                  <input
+                    type="password"
+                    id="password:"
+                    className="FormField__Input"
+                    placeholder="Your password here"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.passwordChangeHandler}
+                  />
+                </div>
+                <div className="FormField">
+                  <button className="FormField__Button">Sign up</button>
+                  <Link to="/login" className="FormField__Link">
+                    Already a member? Click here !
+                  </Link>
                 </div>
               </form>
             </div>
