@@ -21,7 +21,7 @@ class App extends Component {
           <Route path="/cart" component={Cart} />
           <Route path="/new-item" component={NewItem} />
           <Route path="/all-items" component={Items} />
-          <Route path="/items/:id" render={renderItemDetails} />
+          <Route path="/all-items/:id" render={renderItemDetails} />
         </Router>
       </div>
     );
