@@ -34,7 +34,7 @@ class UnconnectedLogin extends Component {
     let body = JSON.parse(responseBody);
     if (body.success) {
       console.log("logIn successful");
-      this.setState({ email: body.email });
+      this.setState({ email: this.state.email });
       this.props.dispatch({
         type: "login-successful",
         email: this.state.email

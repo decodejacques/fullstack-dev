@@ -8,7 +8,8 @@ class UnconnectedItemDetails extends Component {
     super(props);
     this.state = {
       quantity: 0,
-      itemId: ""
+      itemId: "",
+      displayCheckout: false
     };
   }
 
@@ -19,7 +20,8 @@ class UnconnectedItemDetails extends Component {
       {
         ...this.state,
         quantity: (this.state.quantity += 1),
-        itemId: this.props.id
+        itemId: this.props.id,
+        displayCheckout: !this.state.displayCheckout
       },
       async () => {
         let data = new FormData();
@@ -43,9 +45,13 @@ class UnconnectedItemDetails extends Component {
       }
     );
   };
-  //   gotoCart = () => {
-  //     this.props.history.push("/cart");
-  //   };
+  handleCheckout = () => {
+    <Link to="/cart" />;
+  };
+  gotoCart = () => {
+    // this.props.history.push("/cart");
+    //    <Link to="/cart" />;
+  };
   //   gotoHomepage = () => {
   //     // this.props.history.push("/all-items");
   //     <Link to="/all-items" />;
@@ -63,6 +69,9 @@ class UnconnectedItemDetails extends Component {
         <div>
           {/* <button onClick={this.gotoHomepage}>Home</button>
           <button onClick={this.gotoCart}>Cart</button> */}
+          <button className="CartButton" onClick={this.gotoCart}>
+            Cart
+          </button>
         </div>
         <div>
           {displayItem.map(item => {
@@ -83,13 +92,19 @@ class UnconnectedItemDetails extends Component {
         </div>
         <div />
         <button onClick={this.addToCart}>add to cart</button>
+        <div style={{ display: this.state.displayCheckout ? "block" : "none" }}>
+          <button onClick={this.handleCheckout}>
+            checkout
+            <Link to="/cart" />
+          </button>
+        </div>
       </div>
     );
   };
 }
 
 let mapStateToProps = state => {
-  return { items: state.items };
+  return { items: state.items, email: state.email };
 };
 let ItemDetails = connect(mapStateToProps)(UnconnectedItemDetails);
 
