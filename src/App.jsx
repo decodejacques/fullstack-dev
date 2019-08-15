@@ -40,15 +40,17 @@ class App extends Component {
   render = () => {
     return (
       <div>
-        <Router>
-          <Navigation />
-          <Route path="/signup" component={Signup} />
-          <Route path="/login" component={Login} />
-          <Route path="/cart" component={Cart} />
-          <Route path="/new-item" component={NewItem} />
-          <Route path="/all-items" component={Items} />
-          <Route path="/item/:id" render={renderItemDetails} />
-        </Router>
+        <div>
+          <Router>
+            <Navigation />
+            <Route path="/cart" component={Cart} />
+            <Route path="/new-item" component={NewItem} />
+            <Route path="/all-items" component={Items} />
+            <Route path="/item/:id" render={renderItemDetails} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/login" component={Login} />
+          </Router>
+        </div>
       </div>
     );
   };
