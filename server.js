@@ -26,6 +26,10 @@ let multer = require("multer");
 let upload = multer({ dest: __dirname + "/uploads/" });
 reloadMagic(app);
 
+//cookie
+let cookieParser = require("cookie-parser");
+app.use(cookieParser());
+
 // variables
 // sessions = {sessionId: emailId}
 let sessions = {};
@@ -36,6 +40,26 @@ app.use("/uploads", express.static("uploads")); // Needed for local assets
 app.use("/images", express.static("images"));
 // Your endpoints go after this line
 //app.post create/update a resource and send it back after
+
+// search item
+app.post("/search-item", (req, res) => {
+  console.log("item = req.body.name", req.body.name);
+  dbo
+    .collection("items")
+    .findOne({ name: req.body.name })
+    .toArray((err, item) => {
+      if (err) {
+        console.log("error", err);
+        res.send("fail");
+        return;
+      }
+      console.log("item", item);
+      res.send(JSON.stringify(item));
+    });
+});
+
+// filter items
+app.post("/filter-items", (req, res) => {});
 
 // signup
 app.post("/signup", upload.none(), (req, res) => {
@@ -149,11 +173,18 @@ app.post("/new-item", upload.single("itemImage"), (req, res) => {
 // logout
 app.post("/logout", upload.none(), (req, res) => {
   console.log("logout");
+  console.log("sessions", sessions);
   let sessionId = req.cookies.sid;
   console.log("sessionId", sessionId);
 
   delete sessions[sessionId];
   console.log("sessions", sessions);
+  res.send(
+    JSON.stringify({
+      success: true
+    })
+  );
+  return;
 });
 
 // add to cart
@@ -164,7 +195,7 @@ app.post("/logout", upload.none(), (req, res) => {
 // app.get retrieves information and send it back after
 // items - populate the database
 app.get("/items", (req, res) => {
-  console.log("request to all items");
+  // console.log("request to all items");
   dbo
     .collection("items")
     .find({})
@@ -174,8 +205,56 @@ app.get("/items", (req, res) => {
         res.send("fail");
         return;
       }
-      console.log("items", items);
+      // console.log("items", items);
       res.send(JSON.stringify(items));
+    });
+});
+
+// cart
+app.post("/add-to-cart", upload.none(), (req, res) => {
+  let sessionId = req.cookies.sid;
+  let currentUser = sessions[sessionId];
+  console.log("req.body", req.body);
+  console.log("ITEM QUANTITY", req.body.quantity);
+  dbo
+    .collection("items")
+    .findOne({ _id: ObjectID(req.body.itemId) }, (err, item) => {
+      if (err) {
+        console.log("error", err);
+        res.send("fail");
+        return;
+      }
+
+      console.log("item", item);
+
+      dbo.collection("cart").insertOne({
+        id: req.body.itemId,
+        email: currentUser,
+        name: item.name,
+        quantity: req.body.quantity
+      });
+      res.send(
+        JSON.stringify({
+          success: true
+        })
+      );
+    });
+});
+
+app.get("/cart-items", (req, res) => {
+  let email = req.body.email;
+  console.log("req.body.email", req.body.email);
+  dbo
+    .collection("cart")
+    .findOne({ email: email })
+    .toArray((err, cartItems) => {
+      if (err) {
+        console.log("error", err);
+        res.send("fail");
+        return;
+      }
+      console.log("cartItems", cartItems);
+      res.send(JSON.stringify(cartItems));
     });
 });
 

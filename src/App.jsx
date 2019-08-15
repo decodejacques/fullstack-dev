@@ -6,9 +6,15 @@ import Items from "./Items.jsx";
 import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
 import "./App.css";
+import ItemDetails from "./ItemDetails.jsx";
 
-let renderItemDetails = dataRouter => {
-  return <div>render item details here</div>;
+let renderItemDetails = routerData => {
+  return (
+    <div>
+      <ItemDetails id={routerData.match.params.id} />
+      {/* <Items id={routerData.match.params.id} /> */}
+    </div>
+  );
 };
 
 class App extends Component {
@@ -21,7 +27,7 @@ class App extends Component {
           <Route path="/cart" component={Cart} />
           <Route path="/new-item" component={NewItem} />
           <Route path="/all-items" component={Items} />
-          <Route path="/all-items/:id" render={renderItemDetails} />
+          <Route path="/item/:id" render={renderItemDetails} />
         </Router>
       </div>
     );
