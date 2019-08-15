@@ -3,6 +3,8 @@
   text-align: center;
   position: absolute;
   top: 200px;
+  display: flex;
+  background-color: white;
 }
 
 .filterArea {
@@ -76,4 +78,59 @@ nav {
   transform: scaleX(1);
   -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
   transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+}
+.NavUl {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: white;
+}
+
+.NavLi {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.ItemsField {
+  position: fixed;
+  bottom: 0px;
+  top: 100px;
+  left: 400px;
+  list-style-type: none;
+  text-align: center;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 40px;
+  margin: 20px;
+  grid-column-gap: 100px;
+  grid-row-gap: 110px;
+}
+.ItemsFields {
+  border: 10px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+  margin: 50px;
+}
+.ItemName {
+  font-style: italic;
+  font-weight: bold;
+  font-family: "Nunito", sans-serif;
+}
+.ItemDescription {
+  font-weight: 100;
+}
+.itemPrice {
+  font-weight: 150;
+}
+.ItemDescriptionLink {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
 }
