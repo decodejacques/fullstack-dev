@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./main.css";
+import "./Item.css";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import ItemDetails from "./ItemDetails.jsx";
@@ -109,11 +109,14 @@ class UnconnectedItems extends Component {
     }
 
     return (
-      <div>
+      <div className="Wrapper">
+        {/* NavBar includes : SearchBar, Logout/Login(if not connected)
+         , cart and User Display */}
         <header className="HeaderNavBar">
           <div className="SearchBar">
             Search bar
             <input
+              className="InputSearchBar"
               type="text"
               onChange={this.handleOnChangeSearch}
               placeholder="Search item"
@@ -126,6 +129,11 @@ class UnconnectedItems extends Component {
           <button className="LogoutButton" onClick={this.logout}>
             Logout
           </button>
+
+          <div className="UserDisplay">user: {this.props.email}</div>
+        </header>
+        {/* Filter goes here  */}
+        <div className="FilterArea">
           <button className="FilterButton" onClick={this.displayFilters}>
             {this.state.displayFilters ? "less filters" : "more filters"}
           </button>
@@ -155,9 +163,10 @@ class UnconnectedItems extends Component {
               value={this.state.filterInStock}
             />
           </div>
-          <div className="UserDisplay">user: {this.props.email}</div>
-        </header>
+        </div>
+
         {/* <div>{this.props.items.map(renderGridItems)}</div> */}
+        {/* This is where the items are displayed */}
         <div className="ItemsField">
           {displayedItems.map(item => {
             return (
