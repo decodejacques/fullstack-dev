@@ -62,15 +62,6 @@ class UnconnectedItems extends Component {
     });
     console.log("this.state.displayFilters", this.state.displayFilters);
   };
-<<<<<<< HEAD
-  renderItem = item => {
-    return (
-      <Link to={"all-items" + item.id}>
-        <GridItem item={item} />
-      </Link>
-    );
-  };
-=======
 
   handleOnChangeSearch = event => {
     event.preventDefault();
@@ -94,7 +85,6 @@ class UnconnectedItems extends Component {
     event.preventDefault();
   };
 
->>>>>>> b4f00daca8e5692bcbcf973f2d6bdf9405a9ab85
   render = () => {
     console.log("rendering items");
     let displayedItems = this.props.items;
