@@ -61,6 +61,7 @@ class UnconnectedItemDetails extends Component {
           <button onClick={this.gotoCart}>Cart</button> */}
         </div>
         Item details coming soon...
+        <div></div>
         {/* <img src={this.props.item.filePath} height="200px" width="200px" />
         <h3>{this.props.item.name}</h3>
         <h4>{this.props.item.description}</h4>
@@ -75,7 +76,7 @@ class UnconnectedItemDetails extends Component {
 }
 
 let mapStateToProps = state => {
-  return { items: state.items };
+  return { item: state.item};
 };
 let ItemDetails = connect(mapStateToProps)(UnconnectedItemDetails);
 

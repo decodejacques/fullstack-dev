@@ -58,9 +58,6 @@ app.post("/search-item", (req, res) => {
     });
 });
 
-// filter items
-app.post("/filter-items", (req, res) => {});
-
 // signup
 app.post("/signup", upload.none(), (req, res) => {
   console.log("**** I'm in the signup endpoint");
@@ -167,9 +164,6 @@ app.post("/new-item", upload.single("itemImage"), (req, res) => {
   );
 });
 
-// display-items
-// app.post("/items", (req, res) => {});
-
 // logout
 app.post("/logout", upload.none(), (req, res) => {
   console.log("logout");
@@ -186,11 +180,6 @@ app.post("/logout", upload.none(), (req, res) => {
   );
   return;
 });
-
-// add to cart
-//TBD...
-// app.get('/add-to-cart', (req, res)=>{})
-// app.post('/orders/:id', (req, res)=>{})
 
 // app.get retrieves information and send it back after
 // items - populate the database
@@ -209,6 +198,20 @@ app.get("/items", (req, res) => {
       res.send(JSON.stringify(items));
     });
 });
+
+// display item details
+// app.get("/item-details", (req, res) => {
+//   let itemId = req.body.itemId;
+//   dbo.collection("items").findOne({ _id: ObjectID(itemId) }, (err, item) => {
+//     if (err) {
+//       console.log("error", err);
+//       res.send("fail");
+//       return;
+//     }
+//     console.log("item", item);
+//     res.send(JSON.stringify(item));
+//   });
+// });
 
 // cart
 app.post("/add-to-cart", upload.none(), (req, res) => {
