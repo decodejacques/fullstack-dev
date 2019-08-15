@@ -57,6 +57,7 @@ body {
 .App__Aside {
   width: 50%;
   background-color: #66dac7;
+  z-index: 105;
 }
 
 .App__Form {
@@ -64,6 +65,7 @@ body {
   background-color: #2e4158;
   padding: 25px 40px;
   overflow: auto;
+  z-index: 105;
 }
 
 .FormCenter {
