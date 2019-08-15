@@ -54,21 +54,34 @@ class UnconnectedItemDetails extends Component {
   render = () => {
     console.log("this.state", this.state);
     console.log("this.props.id", this.props.id);
+    console.log("this.props.items", this.props.items);
+    let displayItem = this.props.items.filter(item => {
+      return item._id === this.props.id;
+    });
     return (
       <div>
         <div>
           {/* <button onClick={this.gotoHomepage}>Home</button>
           <button onClick={this.gotoCart}>Cart</button> */}
         </div>
-        Item details coming soon...
-        <div />
-        {/* <img src={this.props.item.filePath} height="200px" width="200px" />
-        <h3>{this.props.item.name}</h3>
-        <h4>{this.props.item.description}</h4>
         <div>
-          {this.props.item.cost + "$ "}
-          <button onClick={this.addToCart}>add to cart</button>
-    </div>*/}
+          {displayItem.map(item => {
+            return (
+              <div>
+                <img
+                  className="ItemPicture"
+                  src={item.filePath}
+                  height="200px"
+                  width="200px"
+                />
+                <div>{item.name}</div>
+                <div>{item.description}</div>
+                <div>{item.cost + "$"}</div>
+              </div>
+            );
+          })}
+        </div>
+        <div />
         <button onClick={this.addToCart}>add to cart</button>
       </div>
     );
@@ -76,7 +89,7 @@ class UnconnectedItemDetails extends Component {
 }
 
 let mapStateToProps = state => {
-  return { item: state.item };
+  return { items: state.items };
 };
 let ItemDetails = connect(mapStateToProps)(UnconnectedItemDetails);
 

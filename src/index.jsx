@@ -31,7 +31,7 @@ let reducer = (state, action) => {
 
 const store = createStore(
   reducer,
-  { username: "", loggedIn: false, signedIn: false, items: [], email: "" },
+  { username: "", loggedIn: false, signedIn: false, items: [], email: "", item: {} },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

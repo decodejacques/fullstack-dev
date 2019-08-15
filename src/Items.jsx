@@ -16,7 +16,8 @@ class UnconnectedItems extends Component {
       itemName: "",
       email: "",
       itemFound: "",
-      quantity: 0
+      quantity: 0,
+      item: {}
     };
   }
   componentDidMount = () => {
@@ -154,9 +155,6 @@ class UnconnectedItems extends Component {
             />
           </div>
         </div>
-
-        {/* <div>{this.props.items.map(renderGridItems)}</div> */}
-        {/* This is where the items are displayed */}
         <div className="ItemsField">
           {displayedItems.map(item => {
             return (

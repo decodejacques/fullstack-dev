@@ -59,7 +59,7 @@ app.post("/search-item", (req, res) => {
 });
 
 // signup
-app.post("/signup", upload.none(), (req, res) => {
+app.post("fi/signup", upload.none(), (req, res) => {
   console.log("**** I'm in the signup endpoint");
   console.log("this is the body", req.body);
 
