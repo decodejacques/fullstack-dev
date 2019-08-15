@@ -11,11 +11,17 @@ import reloadMagic from "./reload-magic-client.js"; // automatic reload
 reloadMagic(); // automatic reload
 
 let reducer = (state, action) => {
-  if (action.type === "signup-success") {
+  if (action.type === "signup-successful") {
     return { signedIn: true };
+  }
+  if (action.type === "login-successful") {
+    return { loggedIn: true, email: action.email };
   }
   if (action.type === "set-items") {
     return { items: action.items };
+  }
+  if (action.type === "set-item") {
+    return { item: action.item };
   }
   if (action.type === "search-item") {
     return { itemFound: action.itemFound };
@@ -25,7 +31,7 @@ let reducer = (state, action) => {
 
 const store = createStore(
   reducer,
-  { username: "", loggedIn: false, signedIn: false, items: [] },
+  { username: "", loggedIn: false, signedIn: false, items: [], email: "" },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

@@ -2,17 +2,7 @@ import React, { Component } from "react";
 import "./main.css";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-
-// class UnconnectedGridItem extends Component {
-//   render = () => {
-//     return (
-//       <div /*style={{ border: solid }}*/>
-//         {this.props.items.description}
-//         {this.props.items.cost}
-//       </div>
-//     );
-//   };
-// }
+import ItemDetails from "./ItemDetails.jsx";
 
 class UnconnectedItems extends Component {
   constructor(props) {
@@ -23,7 +13,10 @@ class UnconnectedItems extends Component {
       displayFilters: false,
       filterCost: "",
       filterInStock: "",
-      itemName: ""
+      itemName: "",
+      email: "",
+      itemFound: "",
+      quantity: 0
     };
   }
   componentDidMount = () => {
@@ -72,29 +65,11 @@ class UnconnectedItems extends Component {
 
   handleOnChangeSearch = event => {
     event.preventDefault();
-    this.props.dispatch({
-      type: "search-item",
-      itemFound: event.target.value
-    });
-    // console.log("change item search");
-    // console.log("event.target.value", event.target.value);
-    // this.setState({
-    //   itemName: event.target.value
+    this.setState({ ...this.state, itemFound: event.target.value });
+    // this.props.dispatch({
+    //   type: "search-item",
+    //   itemFound: event.target.value
     // });
-
-    // console.log("this.state.itemName", this.state.itemName);
-    // let data = new FormData();
-    // data.append("name", this.state.itemName);
-    // let response = await fetch("/search-item", {
-    //   method: "POST",
-    //   body: data,
-    //   credentials: "include"
-    // });
-    // let responseBody = await response.text();
-    // let body = JSON.parse(responseBody);
-    // // if (body.success) {
-    // //   this.setState({ itemName: "" });
-    // // }
   };
   submitFilters = event => {
     // fetch this '/filter-items'
@@ -112,9 +87,9 @@ class UnconnectedItems extends Component {
   render = () => {
     console.log("rendering items");
     let displayedItems = this.props.items;
-    // if (this.props.itemFound !== undefined) {
-    //   displayedItems = this.props.items.filter(item => {
-    //     return item.name === this.props.itemFound;
+    // if (this.state.itemFound !== undefined || this.state.itemFound !== "") {
+    //   displayedItems = displayedItems.filter(item => {
+    //     return item.name === this.state.itemFound;
     //   });
     //   console.log("displayedItems", displayedItems);
     // }
@@ -159,11 +134,14 @@ class UnconnectedItems extends Component {
           {displayedItems.map(item => {
             return (
               <div>
-                <img src={item.filePath} />
+                <img src={item.filePath} height="200px" width="200px" />
                 <h3>{item.name}</h3>
                 <h4>{item.description}</h4>
-                <div>{item.cost + "$"}</div>
-                <div>{"In Stock: " + item.available_quantity}</div>
+                <div>
+                  {item.cost + "$ "}
+                  <Link to={"/item/" + item._id}>Item Details</Link>
+                </div>
+                <div />
               </div>
             );
           })}
