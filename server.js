@@ -211,35 +211,34 @@ app.get("/items", (req, res) => {
 });
 
 // cart
-app.post("/add-to-cart", (req, res) => {
+app.post("/add-to-cart", upload.none(), (req, res) => {
   let sessionId = req.cookies.sid;
   let currentUser = sessions[sessionId];
   console.log("req.body", req.body);
   console.log("ITEM QUANTITY", req.body.quantity);
-  let item = dbo
+  dbo
     .collection("items")
-    .findOne({ _id: ObjectId(JSON.stringify(req.body.itemId)) })
-    .toArray((err, item) => {
+    .findOne({ _id: ObjectID(req.body.itemId) }, (err, item) => {
       if (err) {
         console.log("error", err);
         res.send("fail");
         return;
       }
-      console.log("item", item);
-      res.send(JSON.stringify(item));
-    });
 
-  dbo.collection("cart").insertOne({
-    id: req.body.itemId,
-    email: currentUser,
-    name: item[name],
-    quantity: req.body.quantity
-  });
-  res.send(
-    JSON.stringify({
-      success: true
-    })
-  );
+      console.log("item", item);
+
+      dbo.collection("cart").insertOne({
+        id: req.body.itemId,
+        email: currentUser,
+        name: item.name,
+        quantity: req.body.quantity
+      });
+      res.send(
+        JSON.stringify({
+          success: true
+        })
+      );
+    });
 });
 
 app.get("/cart-items", (req, res) => {

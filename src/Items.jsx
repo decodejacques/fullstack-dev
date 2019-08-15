@@ -9,7 +9,7 @@ class UnconnectedItems extends Component {
     super(props);
     this.state = {
       searchItem: "",
-      items: [],
+      items: this.props.items,
       displayFilters: false,
       filterCost: "",
       filterInStock: "",
@@ -26,7 +26,7 @@ class UnconnectedItems extends Component {
       let responseBody = await response.text();
       //   console.log("responseBody", responseBody);
       let parsed = JSON.parse(responseBody);
-      //   console.log("parsed", parsed);
+      console.log("parsed", parsed);
       this.props.dispatch({ type: "set-items", items: parsed });
     };
     setInterval(updateItems, 500);
@@ -65,6 +65,7 @@ class UnconnectedItems extends Component {
 
   handleOnChangeSearch = event => {
     event.preventDefault();
+    console.log("searched item", event.target.value);
     this.setState({ ...this.state, itemFound: event.target.value });
     // this.props.dispatch({
     //   type: "search-item",
@@ -87,12 +88,15 @@ class UnconnectedItems extends Component {
   render = () => {
     console.log("rendering items");
     let displayedItems = this.props.items;
-    // if (this.state.itemFound !== undefined || this.state.itemFound !== "") {
-    //   displayedItems = displayedItems.filter(item => {
-    //     return item.name === this.state.itemFound;
-    //   });
-    //   console.log("displayedItems", displayedItems);
-    // }
+    console.log("this.props.items", this.props.items);
+    console.log("this.state.itemFound", this.state.itemFound);
+    if (this.state.itemFound !== "") {
+      console.log("I am filtering");
+      displayedItems = displayedItems.filter(item => {
+        return item.name === this.state.itemFound;
+      });
+      console.log("displayedItems", displayedItems);
+    }
 
     return (
       <div>
@@ -108,7 +112,6 @@ class UnconnectedItems extends Component {
           {this.state.displayFilters ? "less filters" : "more filters"}
         </button>
         <div style={{ display: this.state.displayFilters ? "block" : "none" }}>
-          <div>Cost</div>
           min cost:
           <input
             type="text"
@@ -139,7 +142,9 @@ class UnconnectedItems extends Component {
                 <h4>{item.description}</h4>
                 <div>
                   {item.cost + "$ "}
-                  <Link to={"/item/" + item._id}>Item Details</Link>
+                  <button>
+                    <Link to={"/item/" + item._id}>Item Details</Link>
+                  </button>
                 </div>
                 <div />
               </div>

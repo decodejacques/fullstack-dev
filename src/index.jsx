@@ -12,19 +12,19 @@ reloadMagic(); // automatic reload
 
 let reducer = (state, action) => {
   if (action.type === "signup-successful") {
-    return { signedIn: true };
+    return { ...state, signedIn: true };
   }
   if (action.type === "login-successful") {
-    return { loggedIn: true, email: action.email };
+    return { ...state, loggedIn: true, email: action.email };
   }
   if (action.type === "set-items") {
-    return { items: action.items };
+    return { ...state, items: action.items };
   }
   if (action.type === "set-item") {
-    return { item: action.item };
+    return { ...state, item: action.item };
   }
   if (action.type === "search-item") {
-    return { itemFound: action.itemFound };
+    return { ...state, itemFound: action.itemFound };
   }
   return state;
 };
