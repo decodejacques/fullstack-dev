@@ -24,6 +24,13 @@ class UnconnectedItems extends Component {
     console.log("clicked logout");
     let response = await fetch("/logout", { method: "POST" });
   };
+  renderItem = item => {
+    return (
+      <Link to={"all-items" + item.id}>
+        <GridItem item={item} />
+      </Link>
+    );
+  };
   render = () => {
     console.log("rendering items");
 

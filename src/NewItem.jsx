@@ -16,7 +16,8 @@ class newItemForm extends Component {
       inputItemName: "",
       inputItemDesc: "",
       inputUrl: "",
-      inputItemPrice: ""
+      inputItemPrice: "",
+      inputItemQuantity: ""
     };
   }
 
@@ -38,6 +39,9 @@ class newItemForm extends Component {
   uploadFile = e => {
     this.setState({ inputItemImage: e });
   };
+  handleItemQuantity = event => {
+    this.setState({ inputItemQuantity: event.target.value });
+  };
 
   handleSubmit = () => {
     let formData = new FormData();
@@ -45,6 +49,7 @@ class newItemForm extends Component {
     formData.append("description", this.state.inputItemDesc);
     formData.append("cost", this.state.inputItemPrice);
     formData.append("itemImage", this.state.inputItemImage);
+    formData.append("available_quantity", this.state.inputItemQuantity);
     fetch("/new-item", {
       method: "POST",
       body: formData
@@ -62,8 +67,8 @@ class newItemForm extends Component {
     return (
       <div>
         <div className="cardcreatelistingcard">
-          Create a listing for your item
           <div className="createAListingForm">
+            <h2>Create a listing for your item</h2>
             <form onSubmit={this.handleSubmit}>
               <div className="textspacing">
                 Name your listing:
@@ -93,6 +98,16 @@ class newItemForm extends Component {
                   value={this.state.inputItemPrice}
                   placeholder="Item price"
                   onChange={this.handleItemPrice}
+                />
+              </div>
+              <div className="textSpacing">
+                How many do you have in stock?
+                <input
+                  type="text"
+                  name="mytext"
+                  value={this.state.inputItemQuantity}
+                  placeholder="Item quantity"
+                  onChange={this.handleItemQuantity}
                 />
               </div>
               <div className="textspacing">
