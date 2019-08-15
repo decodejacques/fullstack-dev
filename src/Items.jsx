@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./main.css";
+import "./Item.css";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import ItemDetails from "./ItemDetails.jsx";
@@ -62,6 +62,15 @@ class UnconnectedItems extends Component {
     });
     console.log("this.state.displayFilters", this.state.displayFilters);
   };
+<<<<<<< HEAD
+  renderItem = item => {
+    return (
+      <Link to={"all-items" + item.id}>
+        <GridItem item={item} />
+      </Link>
+    );
+  };
+=======
 
   handleOnChangeSearch = event => {
     event.preventDefault();
@@ -85,6 +94,7 @@ class UnconnectedItems extends Component {
     event.preventDefault();
   };
 
+>>>>>>> b4f00daca8e5692bcbcf973f2d6bdf9405a9ab85
   render = () => {
     console.log("rendering items");
     let displayedItems = this.props.items;
@@ -99,53 +109,81 @@ class UnconnectedItems extends Component {
     }
 
     return (
-      <div>
-        Search bar
-        <input
-          type="text"
-          onChange={this.handleOnChangeSearch}
-          placeholder="Search item"
-        />
-        <button onClick={this.gotoCart}>Cart</button>
-        <button onClick={this.logout}>Logout</button>
-        <button onClick={this.displayFilters}>
-          {this.state.displayFilters ? "less filters" : "more filters"}
-        </button>
-        <div style={{ display: this.state.displayFilters ? "block" : "none" }}>
-          min cost:
-          <input
-            type="text"
-            onChange={this.minCostOnChange}
-            value={this.state.filterCost}
-          />
-          max cost:
-          <input
-            type="text"
-            onChange={this.maxCostOnChange}
-            value={this.state.filterCost}
-          />
-          In stock{" "}
-          <input
-            type="checkbox"
-            onChange={this.inStockOnChange}
-            value={this.state.filterInStock}
-          />
+      <div className="Wrapper">
+        {/* NavBar includes : SearchBar, Logout/Login(if not connected)
+         , cart and User Display */}
+        <header className="HeaderNavBar">
+          <div className="SearchBar">
+            Search bar
+            <input
+              className="InputSearchBar"
+              type="text"
+              onChange={this.handleOnChangeSearch}
+              placeholder="Search item"
+            />
+          </div>
+
+          <button className="CartButton" onClick={this.gotoCart}>
+            Cart
+          </button>
+          <button className="LogoutButton" onClick={this.logout}>
+            Logout
+          </button>
+
+          <div className="UserDisplay">user: {this.props.email}</div>
+        </header>
+        {/* Filter goes here  */}
+        <div className="FilterArea">
+          <button className="FilterButton" onClick={this.displayFilters}>
+            {this.state.displayFilters ? "less filters" : "more filters"}
+          </button>
+          <div
+            className="FiltersArea"
+            style={{ display: this.state.displayFilters ? "block" : "none" }}
+          >
+            min cost:
+            <input
+              className="MinCostForm"
+              type="text"
+              onChange={this.minCostOnChange}
+              value={this.state.filterCost}
+            />
+            max cost:
+            <input
+              className="MaxCostForm"
+              type="text"
+              onChange={this.maxCostOnChange}
+              value={this.state.filterCost}
+            />
+            In stock{" "}
+            <input
+              className="InStockCheckBox"
+              type="checkbox"
+              onChange={this.inStockOnChange}
+              value={this.state.filterInStock}
+            />
+          </div>
         </div>
-        <div>user: {this.props.email}</div>
+
         {/* <div>{this.props.items.map(renderGridItems)}</div> */}
-        <div>
+        {/* This is where the items are displayed */}
+        <div className="ItemsField">
           {displayedItems.map(item => {
             return (
-              <div>
-                <img src={item.filePath} height="200px" width="200px" />
-                <h3>{item.name}</h3>
-                <h4>{item.description}</h4>
-                <div>
-                  {item.cost + "$ "}
-                  <button>
-                    <Link to={"/item/" + item._id}>Item Details</Link>
-                  </button>
-                </div>
+              <div className="ItemFields">
+                <img
+                  className="ItemPicture"
+                  src={item.filePath}
+                  height="200px"
+                  width="200px"
+                />
+                <div className="ItemName">{item.name}</div>
+                <div className="ItemDescription">{item.description}</div>
+                <div className="ItemPrice">{item.cost + "$ "} </div>
+                <button className="ItemDescriptionLink">
+                  <Link to={"/item/" + item._id}>Item Details</Link>
+                </button>
+
                 <div />
               </div>
             );
