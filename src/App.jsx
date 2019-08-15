@@ -8,6 +8,24 @@ import Login from "./pages/Login.jsx";
 import "./App.css";
 import ItemDetails from "./ItemDetails.jsx";
 
+const Navigation = props => (
+  <nav>
+    <div class="myNavbar">
+      <NavLink to="/all-items" className="hvr-bounce-to-right">
+        Home
+      </NavLink>
+
+      <NavLink className="hvr-bounce-to-right" to="/cart">
+        Cart
+      </NavLink>
+
+      <NavLink to="/new-item" className="hvr-bounce-to-right">
+        Sell an item
+      </NavLink>
+    </div>
+  </nav>
+);
+
 let renderItemDetails = routerData => {
   return (
     <div>
@@ -22,6 +40,7 @@ class App extends Component {
     return (
       <div>
         <Router>
+          <Navigation />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/cart" component={Cart} />
