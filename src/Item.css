@@ -129,6 +129,7 @@ button.hvr-bounce-to-right {
   text-decoration: none;
 }
 .ItemsField {
+  z-index: 104;
   position: absolute;
   height: auto;
   top: 200px;
@@ -141,6 +142,7 @@ button.hvr-bounce-to-right {
   margin: 20px;
   grid-column-gap: 100px;
   grid-row-gap: 110px;
+  background-color: white;
 }
 .ItemsFields {
   border: 10px solid rgba(0, 0, 0, 0.8);
@@ -148,6 +150,7 @@ button.hvr-bounce-to-right {
   font-size: 30px;
   text-align: center;
   margin: 50px;
+  z-index: 104;
 }
 .ItemName {
   font-style: italic;
