@@ -4,7 +4,7 @@
   z-index: 100;
   text-align: center;
   position: relative;
-  top: 150px;
+  top: 100px;
   display: flex;
   justify-content: center;
   background-color: white;
@@ -18,10 +18,10 @@
   left: 30%;
 }
 
-.filterArea {
-  z-index: 100;
-  position: absolute;
-  top: 200px;
+.secondWrapper {
+  justify-content: center;
+  position: relative;
+  text-align: center;
 }
 
 video {
@@ -114,6 +114,76 @@ button.hvr-bounce-to-right {
   -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
   transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
 }
+.filterArea {
+  display: flex;
+  justify-content: center;
+  top: 65px;
+}
+.UserDisplay {
+  display: flex;
+  justify-content: center;
+
+  position: relative;
+  flex-wrap: wrap;
+}
+.FilterButton {
+  justify-content: center;
+  position: relative;
+}
+.SearchBar {
+  position: relative;
+  justify-content: center;
+  margin-right: 40px;
+}
+
+.InputSearchBar {
+  display: inline-block;
+  position: relative;
+  height: 35px;
+  width: 35px;
+  box-sizing: border-box;
+  margin: 0px 8px 7px 0px;
+  padding: 7px 9px 0px 9px;
+  border: 3px solid #ffffff;
+  border-radius: 25px;
+  transition: all 200ms ease;
+  cursor: text;
+}
+
+.InputSearchBar:after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 20px;
+  right: -5px;
+  top: 21px;
+  background: #ffffff;
+  border-radius: 3px;
+  transform: rotate(-45deg);
+  transition: all 200ms ease;
+}
+
+.InputSearchBar.active,
+.InputSearchBar:hover {
+  width: 200px;
+  margin-right: 0px;
+}
+
+.InputSearchBar:after {
+  height: 0px;
+}
+
+input {
+  width: 100%;
+  border: none;
+  box-sizing: border-box;
+  font-family: Helvetica;
+  font-size: 15px;
+  color: inherit;
+  background: transparent;
+  outline-width: 0px;
+}
+
 .NavUl {
   list-style-type: none;
   margin: 0;
