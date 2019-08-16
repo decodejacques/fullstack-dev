@@ -11,7 +11,7 @@ import ItemDetails from "./ItemDetails.jsx";
 
 const Navigation = props => (
   <nav>
-    <div class="myNavbar">
+    <div className="myNavbar">
       <NavLink to="/all-items" className="hvr-bounce-to-right">
         Home
       </NavLink>

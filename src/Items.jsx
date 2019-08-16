@@ -107,7 +107,7 @@ class UnconnectedItems extends Component {
           width="1400"
           height="690"
           controls="controls"
-          autoplay="true"
+          autoPlay={true}
         />
         <div className="Wrapper">
           {/* NavBar includes : SearchBar, Logout/Login(if not connected)

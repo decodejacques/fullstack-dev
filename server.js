@@ -144,7 +144,7 @@ app.post("/new-item", upload.single("itemImage"), (req, res) => {
   let name = req.body.name;
   let cost = req.body.cost;
   let description = req.body.description;
-  let available_quantity = req.body.available_quantity;
+  let available_quantity = parseInt(req.body.available_quantity);
 
   if (req.file !== undefined) {
     filePath = "/uploads/" + req.file.filename;
@@ -221,8 +221,10 @@ app.post("/add-to-cart", upload.none(), (req, res) => {
   let sessionId = req.cookies.sid;
   let currentUser = sessions[sessionId];
   let quantity = parseInt(req.body.quantity);
-  console.log("req.body", req.body);
-  console.log("ITEM QUANTITY", req.body.quantity);
+  console.log("ITEM.ID", req.body.itemId);
+  // console.log("- quantity", -quantity);
+  // console.log("req.body", req.body);
+  // console.log("ITEM QUANTITY", req.body.quantity);
   dbo
     .collection("items")
     .findOne({ _id: ObjectID(req.body.itemId) }, (err, item) => {
@@ -231,19 +233,18 @@ app.post("/add-to-cart", upload.none(), (req, res) => {
         res.send("fail");
         return;
       }
-
-      console.log("item", item);
-
+      //     console.log("item", item);
       dbo
         .collection("cart")
         .findOne(
-          { itemId: req.body.itemId, email: currentUser },
+          { itemId: ObjectID(req.body.itemId), email: currentUser },
           (err, cartItem) => {
             if (err) {
               console.log("error", err);
               res.send("fail");
               return;
             }
+            console.log("item._id", item._id);
             if (cartItem === null) {
               dbo.collection("cart").insertOne({
                 // itemId: req.body.itemId,
@@ -281,40 +282,77 @@ app.post("/add-to-cart", upload.none(), (req, res) => {
 });
 
 // delete cart and create history cart
-app.post("/delete-cart", upload.none(), (req, res) => {
+// rename the endpoint  /checkout
+app.post("/checkout", upload.none(), (req, res) => {
   let sessionId = req.cookies.sid;
   let currentUser = sessions[sessionId];
-  dbo.collection("cart").find({ email: currentUser }, (err, cartHistory) => {
-    if (err) {
-      console.log("error", err);
-      res.send("fail");
-      return;
-    }
-    dbo.collection("cart-history").insertMany(
-      dbo
-        .collection("cart")
-        .find({
-          email: currentUser
-        })
-        .toArray()
-    );
+  // update available quantities
+  //   dbo
+  //     .collection("cart")
+  //     .find({ email: currentUser }).toArray(
+  //       (err, cartItems) => {
 
-    dbo.collection("cart").deleteMany({ email: currentUser }, (err, result) => {
+  //       if (err) {
+  //         console.log("error", err);
+  //         res.send("fail");
+  //         return;
+  //       }
+
+  // // update quantity in items collection
+  //   cartItems.map(cartItem => {
+  //     let quantityToRestore = cartItem.quantity;
+
+  //   dbo.collection("items").updateOne(
+  //     { _id: ObjectID(cartItems.itemId) },
+  //     {
+  //       $inc: {
+  //         available_quantity: -quantityToRestore
+  //       }
+  //     }
+  //   )
+  //       })
+
+  dbo
+    .collection("cart")
+    .find({ email: currentUser })
+    .toArray((err, cartItems) => {
       if (err) {
         console.log("error", err);
         res.send("fail");
         return;
       }
-      res.send(
-        JSON.stringify({
-          success: true
-        })
-      );
-      return;
+      console.log({ cartItems });
+
+      // update quantity in items collection
+      cartItems.map(cartItem => {
+        let quantityToRestore = cartItem.quantity;
+        console.log("cartItem.quantity", cartItem.quantity);
+        dbo.collection("items").updateOne(
+          { _id: ObjectID(cartItems.itemId) },
+          {
+            $inc: {
+              quantity: -quantityToRestore
+            }
+          }
+        );
+      });
     });
+
+  // delete cart
+  dbo.collection("cart").deleteMany({ email: currentUser }, (err, result) => {
+    if (err) {
+      console.log("error", err);
+      res.send("fail");
+      return;
+    }
+    res.send(
+      JSON.stringify({
+        success: true
+      })
+    );
+    return;
   });
 });
-// });
 
 // reviews
 // likes

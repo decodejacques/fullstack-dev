@@ -13,6 +13,11 @@ class UnconnectedItemDetails extends Component {
     };
   }
 
+  // fetch the quantity in the cart and update the quantity in the state
+  //   componentDidMount = ()=>{
+
+  //   }
+
   addToCart = async () => {
     console.log("add to cart: id ", this.props.id);
 
@@ -28,7 +33,7 @@ class UnconnectedItemDetails extends Component {
         console.log("add to cart: id ", this.props.id);
         // data.append("itemId", this.props.id);
         data.append("itemId", this.state.itemId);
-        data.append("quantity", this.state.quantity);
+        data.append("quantity", 1);
         let response = await fetch("/add-to-cart", {
           method: "POST",
           body: data,
@@ -59,9 +64,6 @@ class UnconnectedItemDetails extends Component {
       <div>
         <div>
           {displayItem.map(item => {
-            // let itemDetails = this.props.cart.filter(cartItem => {
-            //   return item._id === cartItem.itemId;
-            // })[0];
             return (
               <div>
                 <img
