@@ -101,6 +101,7 @@ class UnconnectedItems extends Component {
 
     return (
       <div>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <video
           src="images/ast_days_of_summer.mp4"
           width="1400"
