@@ -100,7 +100,7 @@ class UnconnectedItems extends Component {
     }
 
     return (
-      <div>
+      <div className="mainDiv">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <video
           loop
