@@ -286,31 +286,6 @@ app.post("/add-to-cart", upload.none(), (req, res) => {
 app.post("/checkout", upload.none(), (req, res) => {
   let sessionId = req.cookies.sid;
   let currentUser = sessions[sessionId];
-  // update available quantities
-  //   dbo
-  //     .collection("cart")
-  //     .find({ email: currentUser }).toArray(
-  //       (err, cartItems) => {
-
-  //       if (err) {
-  //         console.log("error", err);
-  //         res.send("fail");
-  //         return;
-  //       }
-
-  // // update quantity in items collection
-  //   cartItems.map(cartItem => {
-  //     let quantityToRestore = cartItem.quantity;
-
-  //   dbo.collection("items").updateOne(
-  //     { _id: ObjectID(cartItems.itemId) },
-  //     {
-  //       $inc: {
-  //         available_quantity: -quantityToRestore
-  //       }
-  //     }
-  //   )
-  //       })
 
   dbo
     .collection("cart")
