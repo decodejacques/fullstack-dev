@@ -294,7 +294,7 @@ app.post("/delete-cart", upload.none(), (req, res) => {
       dbo
         .collection("cart")
         .find({
-          /*email: currentUser*/
+          email: currentUser
         })
         .toArray()
     );

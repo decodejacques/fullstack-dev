@@ -37,7 +37,7 @@ class UnconnectedItemDetails extends Component {
         let responseBody = await response.text();
         let body = JSON.parse(responseBody);
         if (body.success) {
-          alert("item added to cart successfully");
+          //   alert("item added to cart successfully");
           return;
         }
         alert("Oops an error occured");
@@ -59,6 +59,9 @@ class UnconnectedItemDetails extends Component {
       <div>
         <div>
           {displayItem.map(item => {
+            // let itemDetails = this.props.cart.filter(cartItem => {
+            //   return item._id === cartItem.itemId;
+            // })[0];
             return (
               <div>
                 <img
@@ -70,13 +73,24 @@ class UnconnectedItemDetails extends Component {
                 <div>{item.name}</div>
                 <div>{item.description}</div>
                 <div>{item.cost + "$"}</div>
+                <div
+                  style={{
+                    display: this.state.quantity >= 1 ? "block" : "none"
+                  }}
+                >
+                  <div>
+                    {this.state.quantity > 1
+                      ? this.state.quantity + " items in cart"
+                      : this.state.quantity + " item in cart"}
+                  </div>
+                </div>
               </div>
             );
           })}
         </div>
         <div />
         <button onClick={this.addToCart}>add to cart</button>
-        <div style={{ display: this.state.displayCheckout ? "block" : "none" }}>
+        <div style={{ display: this.state.quantity >= 1 ? "block" : "none" }}>
           <button onClick={this.handleCheckout}>
             checkout
             <Link to="/cart" />
@@ -88,7 +102,7 @@ class UnconnectedItemDetails extends Component {
 }
 
 let mapStateToProps = state => {
-  return { items: state.items, email: state.email };
+  return { items: state.items, email: state.email, cart: state.cart };
 };
 let ItemDetails = connect(mapStateToProps)(UnconnectedItemDetails);
 
