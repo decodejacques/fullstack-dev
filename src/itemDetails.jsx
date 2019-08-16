@@ -54,7 +54,6 @@ class UnconnectedItemDetails extends Component {
   };
 
   render = () => {
-    console.log("this.state", this.state);
     console.log("this.props.id", this.props.id);
     console.log("this.props.items", this.props.items);
     let displayItem = this.props.items.filter(item => {

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./Item.css";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import ItemDetails from "./ItemDetails.jsx";
 
 class UnconnectedItems extends Component {
   constructor(props) {

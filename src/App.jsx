@@ -12,7 +12,7 @@ import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
 import "./Item.css";
 import { connect } from "react-redux";
-import ItemDetails from "./ItemDetails.jsx";
+import ItemDetails from "./itemDetails.jsx";
 ​
 class UnconnectedNavigation extends Component {
   logout = async () => {
@@ -54,7 +54,6 @@ let renderItemDetails = routerData => {
   return (
     <div>
       <ItemDetails id={routerData.match.params.id} />
-      {/* <Items id={routerData.match.params.id} /> */}
     </div>
   );
 };
