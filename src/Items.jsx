@@ -94,7 +94,7 @@ class UnconnectedItems extends Component {
     if (this.state.itemFound !== "") {
       console.log("I am filtering");
       displayedItems = displayedItems.filter(item => {
-        return item.name === this.state.itemFound;
+        return item.name.includes(this.state.itemFound);
       });
       console.log("displayedItems", displayedItems);
     }
@@ -168,8 +168,8 @@ class UnconnectedItems extends Component {
                   <img
                     className="ItemPicture"
                     src={item.filePath}
-                    height="250px"
-                    width="250px"
+                    height="290px"
+                    width="260px"
                   />
                   <div className="ItemName">{item.name}</div>
                   <div className="ItemDescription">{item.description}</div>
