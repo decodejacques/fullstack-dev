@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./main.css";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 class UnconnectedItemDetails extends Component {
   constructor(props) {
@@ -38,7 +38,6 @@ class UnconnectedItemDetails extends Component {
         let body = JSON.parse(responseBody);
         if (body.success) {
           alert("item added to cart successfully");
-
           return;
         }
         alert("Oops an error occured");
@@ -46,16 +45,8 @@ class UnconnectedItemDetails extends Component {
     );
   };
   handleCheckout = () => {
-    <Link to="/cart" />;
+    <NavLink to="/cart" />;
   };
-  gotoCart = () => {
-    // this.props.history.push("/cart");
-    //    <Link to="/cart" />;
-  };
-  //   gotoHomepage = () => {
-  //     // this.props.history.push("/all-items");
-  //     <Link to="/all-items" />;
-  //   };
 
   render = () => {
     console.log("this.state", this.state);
@@ -66,13 +57,6 @@ class UnconnectedItemDetails extends Component {
     });
     return (
       <div>
-        <div>
-          {/* <button onClick={this.gotoHomepage}>Home</button>
-          <button onClick={this.gotoCart}>Cart</button> */}
-          <button className="CartButton" onClick={this.gotoCart}>
-            Cart
-          </button>
-        </div>
         <div>
           {displayItem.map(item => {
             return (

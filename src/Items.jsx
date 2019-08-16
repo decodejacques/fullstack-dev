@@ -113,10 +113,6 @@ class UnconnectedItems extends Component {
               placeholder="Search item"
             />
           </div>
-
-          <button className="CartButton" onClick={this.gotoCart}>
-            Cart
-          </button>
           <button className="LogoutButton" onClick={this.logout}>
             Logout
           </button>

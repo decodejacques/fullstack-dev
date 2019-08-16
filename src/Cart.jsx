@@ -24,6 +24,7 @@ class UnconnectedCart extends Component {
     };
     setInterval(updateCartItems, 500);
   };
+
   onToken = token => {
     fetch("/save-stripe-token", {
       method: "POST",
@@ -37,52 +38,64 @@ class UnconnectedCart extends Component {
     });
   };
 
+  clearCart = async () => {
+    let response = await (await fetch("/delete-cart", {
+      method: "POST"
+    })).text();
+    let body = JSON.parse(response);
+  };
   render = () => {
     // console.log("itemFindDetails", itemFindDetails);
     console.log("this.props.items", this.props.items);
     console.log("this.props.email", this.props.email);
+    console.log("this.props.cart", this.props.cart);
     return (
-      <div className="cart">
-        <div className="shopping-bag">
-          <h1>Shopping Bag</h1>
-          {this.props.cart.map(cartItem => {
-            let itemDetails = this.props.items.filter(item => {
-              console.log("item._id", item._id);
-              return Number(item._id) === cartItem.itemId;
-            })[0];
+      <div>
+        <div className="cart">
+          <div className="shopping-bag">
+            <h1>Shopping Bag</h1>
+            {this.props.cart.map(cartItem => {
+              let itemDetails = this.props.items.filter(item => {
+                console.log("item._id", item._id);
+                console.log("cartItem.itemId", cartItem.itemId);
+                return item._id === cartItem.itemId;
+              })[0];
 
-            console.log("itemDetails", itemDetails);
-            return (
-              <div>
-                {/* {
-                  (itemFindDetails = this.props.items.filter(item => {
-                    return item._id === cartItem.itemId;
-                  }))
-                }
-                {console.log("itemFindDetails", itemFindDetails)}
-                {itemFindDetails.map(item => {
-                  return <div>{item.cost + "$"}</div>;
-                })} */}
-                {/* <div>{itemDetails.cost + "$"}</div> */}
-                <h2>{cartItem.name}</h2>
-                quantity: {cartItem.quantity}
+              console.log("itemDetails", itemDetails);
+              return (
+                <div>
+                  <div>
+                    <img
+                      className="ItemPicture"
+                      src={itemDetails.filePath}
+                      height="200px"
+                      width="200px"
+                    />
+                    <div>{itemDetails.name}</div>
+                    <div>{itemDetails.description}</div>
+                    <div>{itemDetails.cost + "$ "} </div>
+                    quantity: {cartItem.quantity}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="checkout">
+            <h1>
+              Checkout
+              <div id="stripeButton">
+                <button onClick={this.clearCart} style={{ border: "0px" }}>
+                  <StripeCheckout
+                    // {<button className="btn btn-primary">checkout now!
+                    // </button>}
+                    token={this.onToken}
+                    stripeKey="pk_test_O9HT5wBse32v6Ev3y8xDbYnQ00SpdfFqSl"
+                  />
+                </button>
               </div>
-            );
-          })}
-        </div>
-
-        <div className="checkout">
-          <h1>
-            Checkout
-            <div id="stripeButton">
-              <StripeCheckout
-                // {<button className="btn btn-primary">checkout now!
-                // </button>}
-                token={this.onToken}
-                stripeKey="pk_test_O9HT5wBse32v6Ev3y8xDbYnQ00SpdfFqSl"
-              />
-            </div>
-          </h1>
+            </h1>
+          </div>
         </div>
       </div>
     );
