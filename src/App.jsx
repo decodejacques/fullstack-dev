@@ -14,6 +14,7 @@ import "./Item.css";
 import { connect } from "react-redux";
 import ItemDetails from "./itemDetails.jsx";
 
+// testing cronjob
 class UnconnectedNavigation extends Component {
   logout = async () => {
     console.log("clicked logout");
@@ -26,7 +27,7 @@ class UnconnectedNavigation extends Component {
   render = () => {
     return (
       <nav>
-        <div class="myNavbar">
+        <div className="myNavbar">
           <NavLink to="/all-items" className="hvr-bounce-to-right">
             Home
           </NavLink>
