@@ -7,6 +7,7 @@
 .App__Aside {
   width: 50%;
   background-color: #66dac7;
+  z-index: 105;
 }
 
 .App__Form {
@@ -14,40 +15,8 @@
   background-color: #2e4158;
   padding: 25px 40px;
   overflow: auto;
+  z-index: 105;
 }
-
-/* .PageSwitcher {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 10%;
-}
-
-.PageSwitcher__Item {
-  background-color: #4c5d72;
-  color: #9da6b1;
-  padding: 10px 25px;
-  cursor: pointer;
-  font-size: 0.9em;
-  border: none;
-  outline: none;
-  display: inline-block;
-  text-decoration: none;
-}
-
-.PageSwitcher__Item--Active {
-  background-color: #5ed0c0;
-  color: white;
-}
-
-.PageSwitcher__Item:first-child {
-  border-top-left-radius: 25px;
-  border-bottom-left-radius: 25px;
-}
-.PageSwitcher__Item:last-child {
-  border-top-right-radius: 25px;
-  border-bottom-right-radius: 25px;
-} */
-
 .FormCenter {
   margin-bottom: 100px;
 }
@@ -88,7 +57,7 @@
   color: white;
 }
 
-input:-webkit-autofill {
+.FormField__Input:-webkit-autofill {
   -webkit-text-fill-color: white !important;
   -webkit-box-shadow: 0 0 0px 1000px #2e4158 inset;
   box-shadow: 0 0 0px 1000px #2e4158 inset;

@@ -114,6 +114,7 @@ class UnconnectedItems extends Component {
          , cart and User Display */}
 
           <header className="HeaderNavBar">
+            {/* SearchBar */}
             <div className="SearchBar">
               Search bar
               <input
@@ -123,6 +124,7 @@ class UnconnectedItems extends Component {
                 placeholder="Search item"
               />
             </div>
+            {/* Logout */}
             <button className="LogoutButton" onClick={this.logout}>
               Logout
             </button>

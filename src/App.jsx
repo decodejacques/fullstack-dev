@@ -5,7 +5,6 @@ import NewItem from "./NewItem.jsx";
 import Items from "./Items.jsx";
 import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
-import "./App.css";
 import "./Item.css";
 import ItemDetails from "./ItemDetails.jsx";
 
