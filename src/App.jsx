@@ -12,7 +12,7 @@ import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
 import "./Item.css";
 import { connect } from "react-redux";
-import ItemDetails from "./itemDetails.jsx";
+import ItemDetails from "./ItemDetails.jsx";
 ​
 class UnconnectedNavigation extends Component {
   logout = async () => {
