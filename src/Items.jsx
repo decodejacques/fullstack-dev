@@ -2,12 +2,9 @@ import React, { Component } from "react";
 import "./Item.css";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
 import ItemDetails from "./itemDetails.jsx";
 import { IoMdSearch } from "react-icons/io";
 import { IconContext } from "react-icons";
-=======
->>>>>>> eff9602548405de75703ba58731ccc4916634311
 
 class UnconnectedItems extends Component {
   constructor(props) {
@@ -136,20 +133,11 @@ class UnconnectedItems extends Component {
                 placeholder="Search item"
               />
             </div>
-<<<<<<< HEAD
 
             {/* Logout
             <button className="LogoutButton" onClick={this.logout}>
               Logout
             </button> */}
-=======
-            {/* Logout */}
-            {/* <button className="LogoutButton" onClick={this.logout}>
-              Logout
-            </button> */}
-
-            <div className="UserDisplay">user: {this.props.email}</div>
->>>>>>> eff9602548405de75703ba58731ccc4916634311
           </header>
           {/* Filter goes here  */}
           <div className="FilterArea">
