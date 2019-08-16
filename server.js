@@ -59,7 +59,7 @@ app.post("/search-item", (req, res) => {
 });
 
 // signup
-app.post("fi/signup", upload.none(), (req, res) => {
+app.post("/signup", upload.none(), (req, res) => {
   console.log("**** I'm in the signup endpoint");
   console.log("this is the body", req.body);
 
@@ -199,6 +199,23 @@ app.get("/items", (req, res) => {
     });
 });
 
+// retrieve all items in cart
+app.get("/cart-items", (req, res) => {
+  let sessionId = req.cookies.sid;
+  let currentUser = sessions[sessionId];
+  dbo
+    .collection("cart")
+    .find({ email: currentUser })
+    .toArray((err, cartItems) => {
+      if (err) {
+        console.log("error", err);
+        res.send("fail");
+        return;
+      }
+      res.send(JSON.stringify(cartItems));
+    });
+});
+
 // display item details
 // app.get("/item-details", (req, res) => {
 //   let itemId = req.body.itemId;
@@ -217,6 +234,7 @@ app.get("/items", (req, res) => {
 app.post("/add-to-cart", upload.none(), (req, res) => {
   let sessionId = req.cookies.sid;
   let currentUser = sessions[sessionId];
+  let quantity = parseInt(req.body.quantity);
   console.log("req.body", req.body);
   console.log("ITEM QUANTITY", req.body.quantity);
   dbo
@@ -230,36 +248,67 @@ app.post("/add-to-cart", upload.none(), (req, res) => {
 
       console.log("item", item);
 
-      dbo.collection("cart").insertOne({
-        id: req.body.itemId,
-        email: currentUser,
-        name: item.name,
-        quantity: req.body.quantity
-      });
-      res.send(
-        JSON.stringify({
-          success: true
-        })
-      );
+      dbo
+        .collection("cart")
+        .findOne(
+          { itemId: req.body.itemId, email: currentUser },
+          (err, cartItem) => {
+            if (err) {
+              console.log("error", err);
+              res.send("fail");
+              return;
+            }
+            if (cartItem === null) {
+              dbo.collection("cart").insertOne({
+                itemId: req.body.itemId,
+                email: currentUser,
+                name: item.name,
+                quantity: quantity
+              });
+              res.send(
+                JSON.stringify({
+                  success: true
+                })
+              );
+              return;
+            }
+            if (cartItem !== null) {
+              dbo.collection("cart").updateOne(
+                { _id: ObjectID(cartItem._id) },
+                {
+                  $inc: {
+                    quantity: quantity
+                  }
+                }
+              );
+              res.send(
+                JSON.stringify({
+                  success: true
+                })
+              );
+              return;
+            }
+          }
+        );
     });
 });
 
-app.get("/cart-items", (req, res) => {
-  let email = req.body.email;
-  console.log("req.body.email", req.body.email);
-  dbo
-    .collection("cart")
-    .findOne({ email: email })
-    .toArray((err, cartItems) => {
-      if (err) {
-        console.log("error", err);
-        res.send("fail");
-        return;
-      }
-      console.log("cartItems", cartItems);
-      res.send(JSON.stringify(cartItems));
-    });
-});
+// app.get("/cart-items", (req, res) => {
+//   let email = req.body.email;
+//   console.log("req.body.email", req.body.email);
+//   dbo
+//     .collection("cart")
+//     .findOne({ email: email })
+//     .toArray((err, cartItems) => {
+//       if (err) {
+//         console.log("error", err);
+//         res.send("fail");
+//         return;
+//       }
+//       console.log("cartItems", cartItems);
+//       res.send(JSON.stringify(cartItems));
+//     });
+// });
 
 // reviews
 // likes

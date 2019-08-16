@@ -20,9 +20,12 @@ let reducer = (state, action) => {
   if (action.type === "set-items") {
     return { ...state, items: action.items };
   }
-  if (action.type === "set-item") {
-    return { ...state, item: action.item };
+  if (action.type === "set-cart") {
+    return { ...state, cart: action.cart };
   }
+  // if (action.type === "set-item") {
+  //   return { ...state, item: action.item };
+  // }
   if (action.type === "search-item") {
     return { ...state, itemFound: action.itemFound };
   }
@@ -31,7 +34,14 @@ let reducer = (state, action) => {
 
 const store = createStore(
   reducer,
-  { username: "", loggedIn: false, signedIn: false, items: [], email: "", item: {} },
+  {
+    loggedIn: false,
+    signedIn: false,
+    items: [],
+    cart: [],
+    email: "",
+    item: {}
+  },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
