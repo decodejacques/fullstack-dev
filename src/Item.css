@@ -103,7 +103,7 @@ nav {
   text-decoration: none;
 }
 .ItemsField {
-  position: fixed;
+  position: absolute;
   height: auto;
   top: 200px;
   left: 200px;
