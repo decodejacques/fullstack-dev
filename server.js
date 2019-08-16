@@ -216,20 +216,6 @@ app.get("/cart-items", (req, res) => {
     });
 });
 
-// display item details
-// app.get("/item-details", (req, res) => {
-//   let itemId = req.body.itemId;
-//   dbo.collection("items").findOne({ _id: ObjectID(itemId) }, (err, item) => {
-//     if (err) {
-//       console.log("error", err);
-//       res.send("fail");
-//       return;
-//     }
-//     console.log("item", item);
-//     res.send(JSON.stringify(item));
-//   });
-// });
-
 // cart
 app.post("/add-to-cart", upload.none(), (req, res) => {
   let sessionId = req.cookies.sid;
@@ -260,7 +246,8 @@ app.post("/add-to-cart", upload.none(), (req, res) => {
             }
             if (cartItem === null) {
               dbo.collection("cart").insertOne({
-                itemId: req.body.itemId,
+                // itemId: req.body.itemId,
+                itemId: item._id,
                 email: currentUser,
                 name: item.name,
                 quantity: quantity
@@ -293,21 +280,40 @@ app.post("/add-to-cart", upload.none(), (req, res) => {
     });
 });
 
-// app.get("/cart-items", (req, res) => {
-//   let email = req.body.email;
-//   console.log("req.body.email", req.body.email);
-//   dbo
-//     .collection("cart")
-//     .findOne({ email: email })
-//     .toArray((err, cartItems) => {
-//       if (err) {
-//         console.log("error", err);
-//         res.send("fail");
-//         return;
-//       }
-//       console.log("cartItems", cartItems);
-//       res.send(JSON.stringify(cartItems));
-//     });
+// delete cart and create history cart
+app.post("/delete-cart", upload.none(), (req, res) => {
+  let sessionId = req.cookies.sid;
+  let currentUser = sessions[sessionId];
+  dbo.collection("cart").find({ email: currentUser }, (err, cartHistory) => {
+    if (err) {
+      console.log("error", err);
+      res.send("fail");
+      return;
+    }
+    dbo.collection("cart-history").insertMany(
+      dbo
+        .collection("cart")
+        .find({
+          /*email: currentUser*/
+        })
+        .toArray()
+    );
+
+    dbo.collection("cart").deleteMany({ email: currentUser }, (err, result) => {
+      if (err) {
+        console.log("error", err);
+        res.send("fail");
+        return;
+      }
+      res.send(
+        JSON.stringify({
+          success: true
+        })
+      );
+      return;
+    });
+  });
+});
 // });
 
 // reviews
