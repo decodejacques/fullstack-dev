@@ -100,78 +100,88 @@ class UnconnectedItems extends Component {
     }
 
     return (
-      <div className="Wrapper">
-        {/* NavBar includes : SearchBar, Logout/Login(if not connected)
+      <div>
+        <video
+          src="images/ast_days_of_summer.mp4"
+          width="1400"
+          height="690"
+          controls="controls"
+          autoplay="true"
+        />
+        <div className="Wrapper">
+          {/* NavBar includes : SearchBar, Logout/Login(if not connected)
          , cart and User Display */}
-        <header className="HeaderNavBar">
-          <div className="SearchBar">
-            Search bar
-            <input
-              className="InputSearchBar"
-              type="text"
-              onChange={this.handleOnChangeSearch}
-              placeholder="Search item"
-            />
-          </div>
-          <button className="LogoutButton" onClick={this.logout}>
-            Logout
-          </button>
 
-          <div className="UserDisplay">user: {this.props.email}</div>
-        </header>
-        {/* Filter goes here  */}
-        <div className="FilterArea">
-          <button className="FilterButton" onClick={this.displayFilters}>
-            {this.state.displayFilters ? "less filters" : "more filters"}
-          </button>
-          <div
-            className="FiltersArea"
-            style={{ display: this.state.displayFilters ? "block" : "none" }}
-          >
-            min cost:
-            <input
-              className="MinCostForm"
-              type="text"
-              onChange={this.minCostOnChange}
-              value={this.state.filterCost}
-            />
-            max cost:
-            <input
-              className="MaxCostForm"
-              type="text"
-              onChange={this.maxCostOnChange}
-              value={this.state.filterCost}
-            />
-            In stock{" "}
-            <input
-              className="InStockCheckBox"
-              type="checkbox"
-              onChange={this.inStockOnChange}
-              value={this.state.filterInStock}
-            />
-          </div>
-        </div>
-        <div className="ItemsField">
-          {displayedItems.map(item => {
-            return (
-              <div className="ItemFields">
-                <img
-                  className="ItemPicture"
-                  src={item.filePath}
-                  height="200px"
-                  width="200px"
-                />
-                <div className="ItemName">{item.name}</div>
-                <div className="ItemDescription">{item.description}</div>
-                <div className="ItemPrice">{item.cost + "$ "} </div>
-                <button className="ItemDescriptionLink">
-                  <Link to={"/item/" + item._id}>Item Details</Link>
-                </button>
+          <header className="HeaderNavBar">
+            <div className="SearchBar">
+              Search bar
+              <input
+                className="InputSearchBar"
+                type="text"
+                onChange={this.handleOnChangeSearch}
+                placeholder="Search item"
+              />
+            </div>
+            <button className="LogoutButton" onClick={this.logout}>
+              Logout
+            </button>
 
-                <div />
-              </div>
-            );
-          })}
+            <div className="UserDisplay">user: {this.props.email}</div>
+          </header>
+          {/* Filter goes here  */}
+          <div className="FilterArea">
+            <button className="FilterButton" onClick={this.displayFilters}>
+              {this.state.displayFilters ? "less filters" : "more filters"}
+            </button>
+            <div
+              className="FiltersArea"
+              style={{ display: this.state.displayFilters ? "block" : "none" }}
+            >
+              min cost:
+              <input
+                className="MinCostForm"
+                type="text"
+                onChange={this.minCostOnChange}
+                value={this.state.filterCost}
+              />
+              max cost:
+              <input
+                className="MaxCostForm"
+                type="text"
+                onChange={this.maxCostOnChange}
+                value={this.state.filterCost}
+              />
+              In stock{" "}
+              <input
+                className="InStockCheckBox"
+                type="checkbox"
+                onChange={this.inStockOnChange}
+                value={this.state.filterInStock}
+              />
+            </div>
+          </div>
+          <div className="ItemsField">
+            {displayedItems.map(item => {
+              return (
+                <div className="ItemFields">
+                  <img
+                    className="ItemPicture"
+                    src={item.filePath}
+                    height="250px"
+                    width="250px"
+                  />
+                  <div className="ItemName">{item.name}</div>
+                  <div className="ItemDescription">{item.description}</div>
+                  <div className="ItemPrice">{item.cost + "$ "} </div>
+                  <button className="ItemDescriptionLink">
+                    <Link to={"/item/" + item._id}>Item Details</Link>
+                  </button>
+
+                  <div />
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     );

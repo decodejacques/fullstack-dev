@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Crimson+Text|Libre+Caslon+Display|Quicksand&display=swap");
+
 .Wrapper {
   z-index: 100;
   text-align: center;
@@ -11,6 +13,7 @@
   text-align: center;
   height: auto;
   justify-content: center;
+
   display: flex;
   left: 30%;
 }
@@ -21,24 +24,31 @@
   top: 200px;
 }
 
+video {
+  background-color: black;
+}
+
 nav {
   position: fixed;
-  top: 0;
+
+  top: 18px;
   left: 0;
   background: transparent;
   z-index: 99;
   width: 100%;
   display: flex;
   justify-content: center;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .hvr-bounce-to-right {
-  color: #333;
+  font-family: "Libre Caslon Display", serif;
+  color: #eee;
   text-decoration: none;
   padding: 20px;
   flex-grow: 1;
-  font-family: Gotham, Arial, "sans-serif";
+
+  font-size: 26px;
 }
 
 .hvr-bounce-to-right {
@@ -106,7 +116,7 @@ nav {
   position: absolute;
   height: auto;
   top: 200px;
-  left: 200px;
+  left: 100x;
   list-style-type: none;
   text-align: center;
   display: grid;
@@ -140,4 +150,7 @@ nav {
   border: none;
   cursor: pointer;
   overflow: hidden;
+}
+
+.homevideo {
 }
