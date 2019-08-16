@@ -1,31 +1,55 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  NavLink,
+  withRouter
+} from "react-router-dom";
 import Cart from "./Cart.jsx";
 import NewItem from "./NewItem.jsx";
 import Items from "./Items.jsx";
 import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
+import { connect } from "react-redux";
 import "./App.css";
 import "./Item.css";
-import ItemDetails from "./ItemDetails.jsx";
+import ItemDetails from "./itemDetails.jsx";
 
-const Navigation = props => (
-  <nav>
-    <div class="myNavbar">
-      <NavLink to="/all-items" className="hvr-bounce-to-right">
-        Home
-      </NavLink>
+class UnconnectedNavigation extends Component {
+  logout = async () => {
+    console.log("clicked logout");
+    let response = await (await fetch("/logout", { method: "POST" })).text();
+    let body = JSON.parse(response);
 
-      <NavLink className="hvr-bounce-to-right" to="/cart">
-        Cart
-      </NavLink>
+    if (body.success) {
+      this.props.history.push("/login");
+    }
+  };
+  render = () => {
+    return (
+      <nav>
+        <div class="myNavbar">
+          <NavLink to="/all-items" className="hvr-bounce-to-right">
+            Home
+          </NavLink>
 
-      <NavLink to="/new-item" className="hvr-bounce-to-right">
-        Sell an item
-      </NavLink>
-    </div>
-  </nav>
-);
+          <NavLink className="hvr-bounce-to-right" to="/cart">
+            Cart
+          </NavLink>
+
+          <NavLink to="/new-item" className="hvr-bounce-to-right">
+            Sell an item
+          </NavLink>
+
+          <button onClick={this.logout} className="hvr-bounce-to-right">
+            Log out
+          </button>
+        </div>
+      </nav>
+    );
+  };
+}
+let Navigation = withRouter(UnconnectedNavigation);
 
 let renderItemDetails = routerData => {
   return (
@@ -36,7 +60,7 @@ let renderItemDetails = routerData => {
   );
 };
 
-class App extends Component {
+class UnconnectedApp extends Component {
   render = () => {
     return (
       <div>
@@ -55,5 +79,5 @@ class App extends Component {
     );
   };
 }
-
+let App = connect()(UnconnectedApp);
 export default App;
