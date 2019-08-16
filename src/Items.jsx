@@ -3,6 +3,8 @@ import "./Item.css";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import ItemDetails from "./itemDetails.jsx";
+import { IoMdSearch } from "react-icons/io";
+import { IconContext } from "react-icons";
 
 class UnconnectedItems extends Component {
   constructor(props) {
@@ -47,15 +49,15 @@ class UnconnectedItems extends Component {
   };
   //   handleOnChangeSearch = event => {};
 
-  logout = async () => {
-    console.log("clicked logout");
-    let response = await (await fetch("/logout", { method: "POST" })).text();
-    let body = JSON.parse(response);
+  // logout = async () => {
+  //   console.log("clicked logout");
+  //   let response = await (await fetch("/logout", { method: "POST" })).text();
+  //   let body = JSON.parse(response);
 
-    if (body.success) {
-      this.props.history.push("/login");
-    }
-  };
+  //   if (body.success) {
+  //     this.props.history.push("/login");
+  //   }
+  // };
   displayFilters = () => {
     this.setState({
       ...this.state,
@@ -116,8 +118,14 @@ class UnconnectedItems extends Component {
 
           <header className="HeaderNavBar">
             {/* SearchBar */}
+
             <div className="SearchBar">
-              Search bar
+              <IconContext.Provider
+                value={{ size: "2em", className: "global-class-name" }}
+              >
+                <IoMdSearch />
+              </IconContext.Provider>
+
               <input
                 className="InputSearchBar"
                 type="text"
@@ -125,43 +133,48 @@ class UnconnectedItems extends Component {
                 placeholder="Search item"
               />
             </div>
-            {/* Logout */}
+
+            {/* Logout
             <button className="LogoutButton" onClick={this.logout}>
               Logout
-            </button>
-
-            <div className="UserDisplay">user: {this.props.email}</div>
+            </button> */}
           </header>
           {/* Filter goes here  */}
           <div className="FilterArea">
-            <button className="FilterButton" onClick={this.displayFilters}>
-              {this.state.displayFilters ? "less filters" : "more filters"}
-            </button>
-            <div
-              className="FiltersArea"
-              style={{ display: this.state.displayFilters ? "block" : "none" }}
-            >
-              min cost:
-              <input
-                className="MinCostForm"
-                type="text"
-                onChange={this.minCostOnChange}
-                value={this.state.filterCost}
-              />
-              max cost:
-              <input
-                className="MaxCostForm"
-                type="text"
-                onChange={this.maxCostOnChange}
-                value={this.state.filterCost}
-              />
-              In stock{" "}
-              <input
-                className="InStockCheckBox"
-                type="checkbox"
-                onChange={this.inStockOnChange}
-                value={this.state.filterInStock}
-              />
+            <div className="secondWrapper">
+              {" "}
+              <div className="UserDisplay">user: {this.props.email}</div>
+              <button className="FilterButton" onClick={this.displayFilters}>
+                {this.state.displayFilters ? "less filters" : "more filters"}
+              </button>
+              <div
+                className="FiltersArea"
+                style={{
+                  display: this.state.displayFilters ? "block" : "none"
+                }}
+              >
+                min cost:
+                <input
+                  className="MinCostForm"
+                  type="text"
+                  onChange={this.minCostOnChange}
+                  value={this.state.filterCost}
+                />
+                max cost:
+                <input
+                  className="MaxCostForm"
+                  type="text"
+                  onChange={this.maxCostOnChange}
+                  value={this.state.filterCost}
+                />
+                In stock{" "}
+                <input
+                  className="InStockCheckBox"
+                  type="checkbox"
+                  onChange={this.inStockOnChange}
+                  value={this.state.filterInStock}
+                />
+              </div>
             </div>
           </div>
           <div className="ItemsField">
