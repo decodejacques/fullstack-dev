@@ -46,15 +46,15 @@ class UnconnectedItems extends Component {
   };
   //   handleOnChangeSearch = event => {};
 
-  logout = async () => {
-    console.log("clicked logout");
-    let response = await (await fetch("/logout", { method: "POST" })).text();
-    let body = JSON.parse(response);
+  // logout = async () => {
+  //   console.log("clicked logout");
+  //   let response = await (await fetch("/logout", { method: "POST" })).text();
+  //   let body = JSON.parse(response);
 
-    if (body.success) {
-      this.props.history.push("/login");
-    }
-  };
+  //   if (body.success) {
+  //     this.props.history.push("/login");
+  //   }
+  // };
   displayFilters = () => {
     this.setState({
       ...this.state,
@@ -125,9 +125,9 @@ class UnconnectedItems extends Component {
               />
             </div>
             {/* Logout */}
-            <button className="LogoutButton" onClick={this.logout}>
+            {/* <button className="LogoutButton" onClick={this.logout}>
               Logout
-            </button>
+            </button> */}
 
             <div className="UserDisplay">user: {this.props.email}</div>
           </header>
