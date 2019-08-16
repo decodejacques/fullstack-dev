@@ -10,12 +10,8 @@ import NewItem from "./NewItem.jsx";
 import Items from "./Items.jsx";
 import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
-<<<<<<< HEAD
-import { connect } from "react-redux";
-import "./App.css";
-=======
->>>>>>> 0d7175db840febb4ba4887c5211793dc87a239b5
 import "./Item.css";
+import { connect } from "react-redux";
 import ItemDetails from "./itemDetails.jsx";
 
 class UnconnectedNavigation extends Component {
