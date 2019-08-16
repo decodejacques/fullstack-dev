@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./Item.css";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import ItemDetails from "./ItemDetails.jsx";
+import ItemDetails from "./itemDetails.jsx";
 
 class UnconnectedItems extends Component {
   constructor(props) {
@@ -100,20 +100,22 @@ class UnconnectedItems extends Component {
     }
 
     return (
-      <div>
+      <div className="mainDiv">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <video
+          loop
           src="images/ast_days_of_summer.mp4"
           width="1400"
           height="690"
           controls="controls"
-          autoPlay={true}
+          autoPlay="true"
         />
         <div className="Wrapper">
           {/* NavBar includes : SearchBar, Logout/Login(if not connected)
          , cart and User Display */}
 
           <header className="HeaderNavBar">
+            {/* SearchBar */}
             <div className="SearchBar">
               Search bar
               <input
@@ -123,6 +125,7 @@ class UnconnectedItems extends Component {
                 placeholder="Search item"
               />
             </div>
+            {/* Logout */}
             <button className="LogoutButton" onClick={this.logout}>
               Logout
             </button>

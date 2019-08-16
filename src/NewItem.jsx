@@ -73,6 +73,7 @@ class newItemForm extends Component {
               <div className="textspacing">
                 Name your listing:
                 <input
+                  className="FormNameListing"
                   type="text"
                   name="mytext"
                   value={this.state.inputName}
@@ -83,6 +84,7 @@ class newItemForm extends Component {
               <div className="textSpacing">
                 Write a description here
                 <input
+                  className="FormDescriptionListing"
                   type="text"
                   name="mytext"
                   value={this.state.inputDesc}

@@ -26,6 +26,7 @@
 
 video {
   background-color: black;
+  z-index: 104;
 }
 @media all and (min-width: 600px) {
   video {
@@ -51,6 +52,16 @@ nav {
 .hvr-bounce-to-right {
   font-family: "Libre Caslon Display", serif;
   color: #eee;
+  text-decoration: none;
+  padding: 20px;
+  flex-grow: 1;
+
+  font-size: 26px;
+}
+button.hvr-bounce-to-right {
+  border: none;
+  font-family: "Libre Caslon Display", serif;
+  background: transparent;
   text-decoration: none;
   padding: 20px;
   flex-grow: 1;
@@ -120,6 +131,7 @@ nav {
   text-decoration: none;
 }
 .ItemsField {
+  z-index: 104;
   position: absolute;
   height: auto;
   top: 200px;
@@ -132,6 +144,7 @@ nav {
   margin: 20px;
   grid-column-gap: 100px;
   grid-row-gap: 110px;
+  background-color: white;
 }
 .ItemsFields {
   border: 10px solid rgba(0, 0, 0, 0.8);
@@ -139,6 +152,7 @@ nav {
   font-size: 30px;
   text-align: center;
   margin: 50px;
+  z-index: 104;
 }
 .ItemName {
   font-style: italic;
