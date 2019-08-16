@@ -39,7 +39,7 @@ class UnconnectedCart extends Component {
   };
 
   clearCart = async () => {
-    let response = await (await fetch("/delete-cart", {
+    let response = await (await fetch("/checkout", {
       method: "POST"
     })).text();
     let body = JSON.parse(response);
@@ -60,7 +60,6 @@ class UnconnectedCart extends Component {
                 console.log("cartItem.itemId", cartItem.itemId);
                 return item._id === cartItem.itemId;
               })[0];
-
               console.log("itemDetails", itemDetails);
               return (
                 <div>
@@ -86,13 +85,14 @@ class UnconnectedCart extends Component {
               Checkout
               <div id="stripeButton">
                 <button onClick={this.clearCart} style={{ border: "0px" }}>
-                  <StripeCheckout
-                    // {<button className="btn btn-primary">checkout now!
-                    // </button>}
-                    token={this.onToken}
-                    stripeKey="pk_test_O9HT5wBse32v6Ev3y8xDbYnQ00SpdfFqSl"
-                  />
+                  clear cart
                 </button>
+                <StripeCheckout
+                  // {<button className="btn btn-primary">checkout now!
+                  // </button>}
+                  token={this.onToken}
+                  stripeKey="pk_test_O9HT5wBse32v6Ev3y8xDbYnQ00SpdfFqSl"
+                />
               </div>
             </h1>
           </div>

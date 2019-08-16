@@ -99,7 +99,9 @@
   font-size: 0.8em;
   font-weight: 500;
 }
-
+.FormField__Button:hover {
+  cursor: pointer;
+}
 .FormField__Link {
   color: #66707d;
   text-decoration: none;

@@ -26,6 +26,7 @@
 
 video {
   background-color: black;
+  z-index: 104;
 }
 @media all and (min-width: 600px) {
   video {
@@ -58,6 +59,7 @@ nav {
   font-size: 26px;
 }
 button.hvr-bounce-to-right {
+  border: none;
   font-family: "Libre Caslon Display", serif;
   background: transparent;
   text-decoration: none;

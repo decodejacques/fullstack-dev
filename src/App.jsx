@@ -14,12 +14,12 @@ import "./Item.css";
 import { connect } from "react-redux";
 import ItemDetails from "./itemDetails.jsx";
 
+// testing cronjob
 class UnconnectedNavigation extends Component {
   logout = async () => {
     console.log("clicked logout");
     let response = await (await fetch("/logout", { method: "POST" })).text();
     let body = JSON.parse(response);
-
     if (body.success) {
       this.props.history.push("/login");
     }
@@ -27,19 +27,16 @@ class UnconnectedNavigation extends Component {
   render = () => {
     return (
       <nav>
-        <div class="myNavbar">
+        <div className="myNavbar">
           <NavLink to="/all-items" className="hvr-bounce-to-right">
             Home
           </NavLink>
-
           <NavLink className="hvr-bounce-to-right" to="/cart">
             Cart
           </NavLink>
-
           <NavLink to="/new-item" className="hvr-bounce-to-right">
             Sell an item
           </NavLink>
-
           <button onClick={this.logout} className="hvr-bounce-to-right">
             Log out
           </button>
@@ -48,13 +45,11 @@ class UnconnectedNavigation extends Component {
     );
   };
 }
-let Navigation = withRouter(UnconnectedNavigation);
 
 let renderItemDetails = routerData => {
   return (
     <div>
       <ItemDetails id={routerData.match.params.id} />
-      {/* <Items id={routerData.match.params.id} /> */}
     </div>
   );
 };
@@ -78,5 +73,7 @@ class UnconnectedApp extends Component {
     );
   };
 }
+
+let Navigation = withRouter(UnconnectedNavigation);
 let App = connect()(UnconnectedApp);
 export default App;
