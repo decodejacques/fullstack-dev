@@ -234,6 +234,18 @@ app.post("/add-to-cart", upload.none(), (req, res) => {
         return;
       }
       //     console.log("item", item);
+      // update quantity in items collection
+      let quantityToRestore = quantity;
+      console.log("quantityToRestore", quantityToRestore);
+      dbo.collection("items").updateOne(
+        { _id: ObjectID(req.body.itemId) },
+        {
+          $inc: {
+            available_quantity: -quantityToRestore
+          }
+        }
+      );
+
       dbo
         .collection("cart")
         .findOne(
