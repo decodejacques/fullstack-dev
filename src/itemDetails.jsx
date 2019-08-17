@@ -10,6 +10,7 @@ class UnconnectedItemDetails extends Component {
     this.state = {
       quantity: 0,
       itemId: "",
+      cart: this.props.cart,
       displayCheckout: false
     };
   }
@@ -47,7 +48,7 @@ class UnconnectedItemDetails extends Component {
         let responseBody = await response.text();
         let body = JSON.parse(responseBody);
         if (body.success) {
-          //   alert("item added to cart successfully");
+          alert("item added to cart successfully");
           return;
         }
         alert("Oops an error occured");
@@ -59,52 +60,60 @@ class UnconnectedItemDetails extends Component {
   };
 
   render = () => {
-    console.log("this.props.id", this.props.id);
-    console.log("this.props.items", this.props.items);
     let displayItem = this.props.items.filter(item => {
       return item._id === this.props.id;
     });
+
     return (
       <div>
         <div>
           {displayItem.map(item => {
+            // let itemInCart = this.state.cart.filter(cartItem => {
+            //   return cartItem.itemId === item._id;
+            // })[0];
+            // console.log("itemInCart", itemInCart);
+
             return (
               <div>
-                <img
-                  className="ItemPicture"
-                  src={item.filePath}
-                  height="200px"
-                  width="200px"
-                />
-                <div>{item.name}</div>
-                <div>{item.description}</div>
-                <div>{item.cost + "$"}</div>
-                <div
+                <div>
+                  <img
+                    className="ItemPicture"
+                    src={item.filePath}
+                    height="200px"
+                    width="200px"
+                  />
+                  <div>{item.name}</div>
+                  <div>{item.description}</div>
+                  <div>{item.cost + "$"}</div>
+                </div>
+
+                <button onClick={this.addToCart}>add to cart</button>
+
+                {/* <div
                   style={{
                     display: this.state.quantity >= 1 ? "block" : "none"
                   }}
                 >
-                  <div>
-                    {this.state.quantity > 1
-                      ? this.state.quantity + " items in cart"
-                      : this.state.quantity + " item in cart"}
-                  </div>
-                </div>
+                  {this.state.quantity > 1
+                    ? this.state.quantity + " items in cart"
+                    : this.state.quantity + " item in cart"}
+                </div> */}
               </div>
             );
           })}
         </div>
-        <div />
-        <button onClick={this.addToCart}>add to cart</button>
-        <div style={{ display: this.state.quantity >= 1 ? "block" : "none" }}>
-          <button onClick={this.handleCheckout}>
-            checkout
-            <Link to="/cart" />
-            {console.log("this.state.itemId", this.state.itemId)}
-            <div style={{ display: "none" }}>
-              <Cart id={this.state.itemId} />
-            </div>
-          </button>
+
+        <div>
+          <div style={{ display: this.state.quantity >= 1 ? "block" : "none" }}>
+            <button onClick={this.handleCheckout}>
+              checkout
+              <Link to="/cart" />
+              {console.log("this.state.itemId", this.state.itemId)}
+              <div style={{ display: "none" }}>
+                <Cart id={this.state.itemId} />
+              </div>
+            </button>
+          </div>
         </div>
       </div>
     );
