@@ -85,14 +85,13 @@ class UnconnectedCart extends Component {
               Checkout
               <div id="stripeButton">
                 <button onClick={this.clearCart} style={{ border: "0px" }}>
-                  clear cart
+                  <StripeCheckout
+                    // {<button className="btn btn-primary">checkout now!
+                    // </button>}
+                    token={this.onToken}
+                    stripeKey="pk_test_O9HT5wBse32v6Ev3y8xDbYnQ00SpdfFqSl"
+                  />
                 </button>
-                <StripeCheckout
-                  // {<button className="btn btn-primary">checkout now!
-                  // </button>}
-                  token={this.onToken}
-                  stripeKey="pk_test_O9HT5wBse32v6Ev3y8xDbYnQ00SpdfFqSl"
-                />
               </div>
             </h1>
           </div>
