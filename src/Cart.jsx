@@ -10,7 +10,8 @@ class UnconnectedCart extends Component {
     this.state = {
       cart: this.props.cart,
       items: this.props.items,
-      itemId: this.props.itemId
+      itemId: this.props.itemId,
+      quantity: 0
     };
   }
 
@@ -40,23 +41,48 @@ class UnconnectedCart extends Component {
     });
   };
 
-  // removeFromCart = async () => {
-  //   console.log("REMOVE FROM CART PLEASE");
-  //   console.log("this.state.itemId", this.state.itemId);
-  //   console.log("this.props.itemId", this.props.itemId);
-  //   this.setState({ ...this.state, itemId: this.props.itemId }, async () => {
-  //     console.log("this.state.itemId", this.state.itemId);
-  //     console.log("this.props.itemId", this.props.itemId);
+  removeOneFromCart = async () => {
+    this.setState(
+      {
+        ...this.state,
+        itemId: this.props.itemId,
+        quantity: (this.state.quantity -= 1)
+      },
+      async () => {
+        console.log("this.state.itemId", this.state.itemId);
+        console.log("this.props.itemId", this.props.itemId);
 
-  //     let data = new FormData();
-  //     data.append("itemId", this.state.itemId);
-  //     let response = await (await fetch("/remove-from-cart", {
-  //       method: "POST",
-  //       body: data
-  //     })).text();
-  //     let body = JSON.parse(response);
-  //   });
-  // };
+        let data = new FormData();
+        data.append("itemId", this.state.itemId);
+        data.append("quantity", -1);
+        let response = await (await fetch("/update-quantity-cart", {
+          method: "POST",
+          body: data
+        })).text();
+        let body = JSON.parse(response);
+      }
+    );
+  };
+
+  addOneToCart = async () => {
+    this.setState(
+      {
+        ...this.state,
+        itemId: this.props.itemId,
+        quantity: (this.state.quantity += 1)
+      },
+      async () => {
+        let data = new FormData();
+        data.append("itemId", this.state.itemId);
+        data.append("quantity", +1);
+        let response = await (await fetch("/update-quantity-cart", {
+          method: "POST",
+          body: data
+        })).text();
+        let body = JSON.parse(response);
+      }
+    );
+  };
 
   clearCart = async () => {
     let response = await (await fetch("/checkout", {
@@ -98,9 +124,8 @@ class UnconnectedCart extends Component {
                     <div>{itemDetails.description}</div>
                     <div>{itemDetails.cost + "$ "} </div>
                     <div>quantity: {cartItem.quantity}</div>
-                    {/* <button onClick={this.removeFromCart}>
-                      remove from cart
-                    </button> */}
+                    <button onClick={this.removeOneFromCart}>-</button>
+                    <button onClick={this.addOneToCart}>+</button>
                   </div>
                 </div>
               );

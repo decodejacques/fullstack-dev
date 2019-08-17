@@ -10,7 +10,7 @@ class UnconnectedItemDetails extends Component {
     this.state = {
       quantity: 0,
       itemId: "",
-      cart: this.props.cart,
+      // cart: this.props.cart,
       displayCheckout: false
     };
   }
@@ -124,7 +124,7 @@ let mapStateToProps = state => {
   return {
     items: state.items,
     email: state.email,
-    cart: state.cart,
+    // cart: state.cart,
     itemId: state.itemId
   };
 };

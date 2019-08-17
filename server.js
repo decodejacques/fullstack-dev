@@ -217,22 +217,22 @@ app.get("/cart-items", (req, res) => {
 });
 
 // cart
-// app.post("/remove-from-cart", upload.none(), (req, res) => {
-//   let sessionId = req.cookies.sid;
-//   let user = sessions[sessionId];
-//   dbo
-//     .collection("cart")
-//     .deleteOne(
-//       { email: user, itemId: ObjectID(req.body.itemId) },
-//       (err, result) => {
-//         if (err) {
-//           console.log("error", err);
-//           res.send("fail");
-//           return;
-//         }
-//       }
-//     );
-// });
+app.post("/update-quantity-cart", upload.none(), (req, res) => {
+  let sessionId = req.cookies.sid;
+  let user = sessions[sessionId];
+  console.log("req.body.quantity", req.body.quantity);
+  let quantityToRestore = parseInt(req.body.quantity);
+
+  console.log("quantityToRestore", quantityToRestore);
+  dbo.collection("cart").updateOne(
+    { itemId: ObjectID(req.body.itemId), email: user },
+    {
+      $inc: {
+        quantity: quantityToRestore
+      }
+    }
+  );
+});
 
 app.post("/add-to-cart", upload.none(), (req, res) => {
   let sessionId = req.cookies.sid;
