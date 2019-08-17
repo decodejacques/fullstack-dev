@@ -217,6 +217,23 @@ app.get("/cart-items", (req, res) => {
 });
 
 // cart
+// app.post("/remove-from-cart", upload.none(), (req, res) => {
+//   let sessionId = req.cookies.sid;
+//   let user = sessions[sessionId];
+//   dbo
+//     .collection("cart")
+//     .deleteOne(
+//       { email: user, itemId: ObjectID(req.body.itemId) },
+//       (err, result) => {
+//         if (err) {
+//           console.log("error", err);
+//           res.send("fail");
+//           return;
+//         }
+//       }
+//     );
+// });
+
 app.post("/add-to-cart", upload.none(), (req, res) => {
   let sessionId = req.cookies.sid;
   let currentUser = sessions[sessionId];

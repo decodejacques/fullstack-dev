@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./main.css";
 import { connect } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
+import Cart from "./Cart.jsx";
 
 class UnconnectedItemDetails extends Component {
   constructor(props) {
@@ -20,6 +21,10 @@ class UnconnectedItemDetails extends Component {
 
   addToCart = async () => {
     console.log("add to cart: id ", this.props.id);
+    this.props.dispatch({
+      type: "add-item-to-cart",
+      itemId: this.props.id
+    });
 
     this.setState(
       {
@@ -95,6 +100,10 @@ class UnconnectedItemDetails extends Component {
           <button onClick={this.handleCheckout}>
             checkout
             <Link to="/cart" />
+            {console.log("this.state.itemId", this.state.itemId)}
+            <div style={{ display: "none" }}>
+              <Cart id={this.state.itemId} />
+            </div>
           </button>
         </div>
       </div>
@@ -103,7 +112,12 @@ class UnconnectedItemDetails extends Component {
 }
 
 let mapStateToProps = state => {
-  return { items: state.items, email: state.email, cart: state.cart };
+  return {
+    items: state.items,
+    email: state.email,
+    cart: state.cart,
+    itemId: state.itemId
+  };
 };
 let ItemDetails = connect(mapStateToProps)(UnconnectedItemDetails);
 

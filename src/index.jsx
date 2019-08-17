@@ -32,6 +32,9 @@ let reducer = (state, action) => {
   if (action.type === "search-item") {
     return { ...state, itemFound: action.itemFound };
   }
+  if (action.type === "add-item-to-cart") {
+    return { ...state, itemId: action.itemId };
+  }
   return state;
 };
 
@@ -43,7 +46,8 @@ const store = createStore(
     items: [],
     cart: [],
     email: "",
-    item: {}
+    item: {},
+    itemId: ""
   },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );

@@ -50,6 +50,9 @@ let renderItemDetails = routerData => {
   return (
     <div>
       <ItemDetails id={routerData.match.params.id} />
+      <div style={{ display: "none" }}>
+        <Cart id={routerData.match.params.id} />
+      </div>
     </div>
   );
 };

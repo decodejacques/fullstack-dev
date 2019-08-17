@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import { connect } from "react-redux";
+import ItemDetails from "./itemDetails.jsx";
 import "./main.css";
 
 class UnconnectedCart extends Component {
@@ -8,7 +9,8 @@ class UnconnectedCart extends Component {
     super(props);
     this.state = {
       cart: this.props.cart,
-      items: this.props.items
+      items: this.props.items,
+      itemId: this.props.itemId
     };
   }
 
@@ -19,7 +21,7 @@ class UnconnectedCart extends Component {
       let responseBody = await response.text();
       //   console.log("responseBody", responseBody);
       let parsed = JSON.parse(responseBody);
-      console.log("parsed", parsed);
+      // console.log("parsed", parsed);
       this.props.dispatch({ type: "set-cart", cart: parsed });
     };
     setInterval(updateCartItems, 500);
@@ -38,29 +40,51 @@ class UnconnectedCart extends Component {
     });
   };
 
+  // removeFromCart = async () => {
+  //   console.log("REMOVE FROM CART PLEASE");
+  //   console.log("this.state.itemId", this.state.itemId);
+  //   console.log("this.props.itemId", this.props.itemId);
+  //   this.setState({ ...this.state, itemId: this.props.itemId }, async () => {
+  //     console.log("this.state.itemId", this.state.itemId);
+  //     console.log("this.props.itemId", this.props.itemId);
+
+  //     let data = new FormData();
+  //     data.append("itemId", this.state.itemId);
+  //     let response = await (await fetch("/remove-from-cart", {
+  //       method: "POST",
+  //       body: data
+  //     })).text();
+  //     let body = JSON.parse(response);
+  //   });
+  // };
+
   clearCart = async () => {
     let response = await (await fetch("/checkout", {
       method: "POST"
     })).text();
     let body = JSON.parse(response);
   };
+
   render = () => {
-    // console.log("itemFindDetails", itemFindDetails);
-    console.log("this.props.items", this.props.items);
-    console.log("this.props.email", this.props.email);
-    console.log("this.props.cart", this.props.cart);
+    let itemId = "";
+    // console.log("this.props.items", this.props.items);
+    // console.log("this.props.email", this.props.email);
+    // console.log("this.props.cart", this.props.cart);
     return (
       <div>
         <div className="cart">
           <div className="shopping-bag">
             <h1>Shopping Bag</h1>
+            {/* {console.log("this.props.cart", this.props.cart)} */}
             {this.props.cart.map(cartItem => {
               let itemDetails = this.props.items.filter(item => {
-                console.log("item._id", item._id);
-                console.log("cartItem.itemId", cartItem.itemId);
+                // console.log("item._id", item._id);
+                // console.log("cartItem.itemId", cartItem.itemId);
                 return item._id === cartItem.itemId;
               })[0];
-              console.log("itemDetails", itemDetails);
+              itemId = itemDetails._id;
+              console.log("itemDetails._id", itemDetails._id);
+              // console.log("itemDetails", itemDetails);
               return (
                 <div>
                   <div>
@@ -73,7 +97,10 @@ class UnconnectedCart extends Component {
                     <div>{itemDetails.name}</div>
                     <div>{itemDetails.description}</div>
                     <div>{itemDetails.cost + "$ "} </div>
-                    quantity: {cartItem.quantity}
+                    <div>quantity: {cartItem.quantity}</div>
+                    {/* <button onClick={this.removeFromCart}>
+                      remove from cart
+                    </button> */}
                   </div>
                 </div>
               );
@@ -105,7 +132,8 @@ let mapStateToProps = state => {
   return {
     email: state.email,
     cart: state.cart,
-    items: state.items
+    items: state.items,
+    itemId: state.itemId
   };
 };
 let Cart = connect(mapStateToProps)(UnconnectedCart);
