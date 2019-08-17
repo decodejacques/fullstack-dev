@@ -42,6 +42,8 @@ class UnconnectedLogin extends Component {
       this.props.history.push("/all-items");
       return;
     }
+    this.setState({ email: "", password: "" });
+    alert("Oops, wrong username or password, please try again");
   };
   render = () => {
     console.log("I am in the loggin endpoint");
