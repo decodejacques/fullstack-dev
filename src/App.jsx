@@ -29,7 +29,7 @@ class UnconnectedNavigation extends Component {
     let response = await (await fetch("/logout", { method: "POST" })).text();
     let body = JSON.parse(response);
     if (body.success) {
-      this.props.history.push("/login");
+      this.props.history.push("/");
     }
   };
   render = () => {
@@ -70,14 +70,15 @@ class UnconnectedApp extends Component {
     return (
       <div>
         <div>
-          <Router history={history}>
+          <Router>
             <Navigation />
+            <Route exact={true} path="/" component={Login} />
             <Route path="/cart" component={Cart} />
             <Route path="/new-item" component={NewItem} />
             <Route path="/all-items" component={Items} />
             <Route path="/item/:id" render={renderItemDetails} />
             <Route path="/signup" component={Signup} />
-            <Route path="/login" component={Login} />
+            {/* <Route path="/login" component={Login} /> */}
           </Router>
         </div>
       </div>

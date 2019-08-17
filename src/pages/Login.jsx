@@ -55,7 +55,8 @@ class UnconnectedLogin extends Component {
             <div className="FormCenter">
               <div>
                 <NavLink
-                  to="/Login"
+                  // to="/Login"
+                  to="/"
                   activeClassName="FormTitle__Link--Active"
                   className="FormTitle__Link"
                 >
