@@ -110,25 +110,17 @@ class UnconnectedCart extends Component {
   };
 
   render = () => {
-    let itemId = "";
-    // console.log("this.props.items", this.props.items);
-    // console.log("this.props.email", this.props.email);
-    // console.log("this.props.cart", this.props.cart);
     return (
       <div>
         <div className="cart">
           <div className="shopping-bag">
             <h1>Shopping Bag</h1>
-            {/* {console.log("this.props.cart", this.props.cart)} */}
             {this.props.cart.map(cartItem => {
               let itemDetails = this.props.items.filter(item => {
-                // console.log("item._id", item._id);
-                // console.log("cartItem.itemId", cartItem.itemId);
                 return item._id === cartItem.itemId;
               })[0];
               itemId = itemDetails._id;
               console.log("itemDetails._id", itemDetails._id);
-              // console.log("itemDetails", itemDetails);
               return (
                 <div>
                   <div>

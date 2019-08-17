@@ -35,6 +35,7 @@
     "react-icons": "^3.7.0",
     "react-redux": "6.0.1",
     "react-router-dom": "^5.0.1",
+    "react-router-redux": "^4.0.8",
     "react-stripe-checkout": "^2.6.3",
     "redux": "^4.0.4",
     "sha1": "^1.1.1",

@@ -5,6 +5,14 @@ import {
   NavLink,
   withRouter
 } from "react-router-dom";
+import { browserHistory } from "react-router";
+import {
+  syncHistoryWithStore,
+  routerReducer,
+  routerMiddleware,
+  push
+} from "react-router-redux";
+
 import Cart from "./Cart.jsx";
 import NewItem from "./NewItem.jsx";
 import Items from "./Items.jsx";
@@ -50,9 +58,9 @@ let renderItemDetails = routerData => {
   return (
     <div>
       <ItemDetails id={routerData.match.params.id} />
-      <div style={{ display: "none" }}>
+      {/* <div style={{ display: "none" }}>
         <Cart id={routerData.match.params.id} />
-      </div>
+      </div> */}
     </div>
   );
 };
@@ -62,7 +70,7 @@ class UnconnectedApp extends Component {
     return (
       <div>
         <div>
-          <Router>
+          <Router history={history}>
             <Navigation />
             <Route path="/cart" component={Cart} />
             <Route path="/new-item" component={NewItem} />

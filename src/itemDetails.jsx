@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./main.css";
 import { connect } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, Redirect } from "react-router-dom";
+import { routerMiddleware, push } from "react-router-redux";
 import Cart from "./Cart.jsx";
 
 class UnconnectedItemDetails extends Component {
@@ -19,6 +20,15 @@ class UnconnectedItemDetails extends Component {
   //   componentDidMount = ()=>{
 
   //   }
+  handleCheckout = () => {
+    //  <Redirect push to="/cart" />;
+    store.dispatch(push("/cart"));
+    return;
+  };
+  handleContinueShopping = () => {
+    // <Redirect push to="/all-items" />;
+    // return;
+  };
 
   addToCart = async () => {
     console.log("add to cart: id ", this.props.id);
@@ -55,9 +65,6 @@ class UnconnectedItemDetails extends Component {
       }
     );
   };
-  handleCheckout = () => {
-    <NavLink to="/cart" />;
-  };
 
   render = () => {
     let displayItem = this.props.items.filter(item => {
@@ -68,11 +75,6 @@ class UnconnectedItemDetails extends Component {
       <div>
         <div>
           {displayItem.map(item => {
-            // let itemInCart = this.state.cart.filter(cartItem => {
-            //   return cartItem.itemId === item._id;
-            // })[0];
-            // console.log("itemInCart", itemInCart);
-
             return (
               <div>
                 <div>
@@ -86,18 +88,7 @@ class UnconnectedItemDetails extends Component {
                   <div>{item.description}</div>
                   <div>{item.cost + "$"}</div>
                 </div>
-
                 <button onClick={this.addToCart}>add to cart</button>
-
-                {/* <div
-                  style={{
-                    display: this.state.quantity >= 1 ? "block" : "none"
-                  }}
-                >
-                  {this.state.quantity > 1
-                    ? this.state.quantity + " items in cart"
-                    : this.state.quantity + " item in cart"}
-                </div> */}
               </div>
             );
           })}
@@ -107,11 +98,12 @@ class UnconnectedItemDetails extends Component {
           <div style={{ display: this.state.quantity >= 1 ? "block" : "none" }}>
             <button onClick={this.handleCheckout}>
               checkout
-              <Link to="/cart" />
-              {console.log("this.state.itemId", this.state.itemId)}
-              <div style={{ display: "none" }}>
+              {/* <div style={{ display: "none" }}>
                 <Cart id={this.state.itemId} />
-              </div>
+              </div> */}
+            </button>
+            <button onClick={this.handleContinueShopping}>
+              Continue shopping
             </button>
           </div>
         </div>
@@ -129,5 +121,5 @@ let mapStateToProps = state => {
   };
 };
 let ItemDetails = connect(mapStateToProps)(UnconnectedItemDetails);
-
+// let Navigation = withRouter(UnconnectedNavigation);
 export default ItemDetails;
