@@ -83,6 +83,24 @@ class UnconnectedCart extends Component {
       }
     );
   };
+  removeFromCart = async () => {
+    this.setState(
+      {
+        ...this.state,
+        itemId: this.props.itemId
+      },
+      async () => {
+        let data = new FormData();
+        data.append("itemId", this.state.itemId);
+
+        let response = await (await fetch("/remove-from-cart", {
+          method: "POST",
+          body: data
+        })).text();
+        let body = JSON.parse(response);
+      }
+    );
+  };
 
   clearCart = async () => {
     let response = await (await fetch("/checkout", {
@@ -126,6 +144,9 @@ class UnconnectedCart extends Component {
                     <div>quantity: {cartItem.quantity}</div>
                     <button onClick={this.removeOneFromCart}>-</button>
                     <button onClick={this.addOneToCart}>+</button>
+                    <button onClick={this.removeFromCart}>
+                      remove from cart
+                    </button>
                   </div>
                 </div>
               );

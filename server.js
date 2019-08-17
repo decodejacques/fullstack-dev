@@ -234,6 +234,29 @@ app.post("/update-quantity-cart", upload.none(), (req, res) => {
   );
 });
 
+app.post("/remove-from-cart", upload.none(), (req, res) => {
+  let sessionId = req.cookies.sid;
+  let user = sessions[sessionId];
+  dbo
+    .collection("cart")
+    .deleteOne(
+      { itemId: ObjectID(req.body.itemId), email: user },
+      (err, result) => {
+        if (err) {
+          console.log("error", err);
+          res.send("fail");
+          return;
+        }
+        res.send(
+          JSON.stringify({
+            success: true
+          })
+        );
+        return;
+      }
+    );
+});
+
 app.post("/add-to-cart", upload.none(), (req, res) => {
   let sessionId = req.cookies.sid;
   let currentUser = sessions[sessionId];
@@ -250,8 +273,6 @@ app.post("/add-to-cart", upload.none(), (req, res) => {
         res.send("fail");
         return;
       }
-      //     console.log("item", item);
-      // update quantity in items collection
       let quantityToRestore = quantity;
       console.log("quantityToRestore", quantityToRestore);
       dbo.collection("items").updateOne(
