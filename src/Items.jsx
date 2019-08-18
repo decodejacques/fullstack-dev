@@ -70,10 +70,6 @@ class UnconnectedItems extends Component {
     event.preventDefault();
     console.log("searched item", event.target.value);
     this.setState({ ...this.state, itemFound: event.target.value });
-    // this.props.dispatch({
-    //   type: "search-item",
-    //   itemFound: event.target.value
-    // });
   };
   submitFilters = event => {
     // fetch this '/filter-items'
@@ -89,6 +85,8 @@ class UnconnectedItems extends Component {
   };
 
   render = () => {
+    console.log("typeof this.props.email", typeof this.props.email);
+
     console.log("rendering items");
     let displayedItems = this.props.items;
     console.log("this.props.items", this.props.items);
@@ -133,17 +131,12 @@ class UnconnectedItems extends Component {
                 placeholder="Search item"
               />
             </div>
-
-            {/* Logout
-            <button className="LogoutButton" onClick={this.logout}>
-              Logout
-            </button> */}
           </header>
           {/* Filter goes here  */}
           <div className="FilterArea">
             <div className="secondWrapper">
               {" "}
-              <div className="UserDisplay">user: {this.props.email}</div>
+              <div className="UserDisplay">hi {" " + this.props.email}</div>
               <button className="FilterButton" onClick={this.displayFilters}>
                 {this.state.displayFilters ? "less filters" : "more filters"}
               </button>
@@ -189,6 +182,14 @@ class UnconnectedItems extends Component {
                   />
                   <div className="ItemName">{item.name}</div>
                   <div className="ItemDescription">{item.description}</div>
+                  <div
+                    className="ItemDescription"
+                    style={{
+                      display: item.available_quantity <= 0 ? "block" : "none"
+                    }}
+                  >
+                    SOLD OUT
+                  </div>
                   <div className="ItemPrice">{item.cost + "$ "} </div>
                   <div
                     style={{

@@ -74,6 +74,7 @@ class UnconnectedCart extends Component {
       async () => {
         let data = new FormData();
         data.append("itemId", this.state.itemId);
+
         data.append("quantity", +1);
         let response = await (await fetch("/update-quantity-cart", {
           method: "POST",

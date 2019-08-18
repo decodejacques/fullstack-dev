@@ -43,11 +43,11 @@ app.use("/images", express.static("images"));
 
 // loveit
 app.post("/add-a-loveIt", upload.none(), (req, res) => {
-  console.log('req.body', req.body)
+  console.log("req.body", req.body);
 
   let numberOfLoveIt = parseInt(req.body.loveItNumber);
 
-  dbo.collection("items").findOne({})
+  dbo.collection("items").findOne({});
   dbo.collection("items").updateOne(
     { _id: ObjectID(req.body.itemId) },
     {
@@ -248,7 +248,6 @@ app.post("/update-quantity-cart", upload.none(), (req, res) => {
   let user = sessions[sessionId];
   console.log("req.body.quantity", req.body.quantity);
   let quantityToRestore = parseInt(req.body.quantity);
-
   console.log("quantityToRestore", quantityToRestore);
   dbo.collection("cart").updateOne(
     { itemId: ObjectID(req.body.itemId), email: user },
