@@ -11,6 +11,7 @@ class UnconnectedItemDetails extends Component {
     this.state = {
       quantity: 0,
       itemId: "",
+      loveIt: 0,
       // cart: this.props.cart,
       displayCheckout: false
     };
@@ -66,6 +67,36 @@ class UnconnectedItemDetails extends Component {
     );
   };
 
+  handleLoveIt = async () => {
+    console.log("handle love it: id ", this.props.id);
+    this.props.dispatch({
+      type: "love-it",
+      itemId: this.props.id
+    });
+    this.setState(
+      {
+        ...this.state,
+        itemId: this.props.id,
+        loveIt: (this.state.loveIt += 1)
+      },
+      async () => {
+        let data = new FormData();
+        console.log("this.state.itemId", this.state.itemId);
+        data.append("itemId", this.state.itemId);
+        console.log("this.state.itemId", this.state.itemId);
+        data.append("loveItNumber", 1);
+        let response = await fetch("/add-a-loveIt", {
+          method: "POST",
+          body: data,
+          credentials: "include"
+        });
+        let responseBody = await response.text();
+        let body = JSON.parse(responseBody);
+        console.log("body", body);
+      }
+    );
+  };
+
   render = () => {
     let displayItem = this.props.items.filter(item => {
       return item._id === this.props.id;
@@ -87,6 +118,7 @@ class UnconnectedItemDetails extends Component {
                   <div>{item.name}</div>
                   <div>{item.description}</div>
                   <div>{item.cost + "$"}</div>
+                  <button onClick={this.handleLoveIt}>love it!</button>
                 </div>
                 <button onClick={this.addToCart}>add to cart</button>
               </div>

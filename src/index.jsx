@@ -35,6 +35,9 @@ let reducer = (state, action) => {
   if (action.type === "add-item-to-cart") {
     return { ...state, itemId: action.itemId };
   }
+  if (action.type === "love-it") {
+    return { ...state, itemId: action.itemId };
+  }
   return state;
 };
 

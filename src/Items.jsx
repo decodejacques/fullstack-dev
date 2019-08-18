@@ -190,6 +190,16 @@ class UnconnectedItems extends Component {
                   <div className="ItemName">{item.name}</div>
                   <div className="ItemDescription">{item.description}</div>
                   <div className="ItemPrice">{item.cost + "$ "} </div>
+                  <div
+                    style={{
+                      display: item.loveIt > 0 ? "block" : "none"
+                    }}
+                  >
+                    <div className="ItemDescription">
+                      {item.loveIt}
+                      {item.loveIt > 1 ? " love it! " : " loves it!"}
+                    </div>
+                  </div>
                   <button className="ItemDescriptionLink">
                     <Link to={"/item/" + item._id}>Item Details</Link>
                   </button>

@@ -41,6 +41,32 @@ app.use("/images", express.static("images"));
 // Your endpoints go after this line
 //app.post create/update a resource and send it back after
 
+// loveit
+app.post("/add-a-loveIt", upload.none(), (req, res) => {
+  console.log('req.body', req.body)
+
+  let numberOfLoveIt = parseInt(req.body.loveItNumber);
+
+  dbo.collection("items").findOne({})
+  dbo.collection("items").updateOne(
+    { _id: ObjectID(req.body.itemId) },
+    {
+      $inc: {
+        loveIt: numberOfLoveIt
+      }
+    },
+    (err, result) => {
+      if (err) {
+        console.log("error", err);
+        res.send("fail");
+        return;
+      }
+      res.send(JSON.stringify({ success: true }));
+      return;
+    }
+  );
+});
+
 // search item
 app.post("/search-item", (req, res) => {
   console.log("item = req.body.name", req.body.name);
