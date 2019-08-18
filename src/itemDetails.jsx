@@ -118,9 +118,24 @@ class UnconnectedItemDetails extends Component {
                   <div>{item.name}</div>
                   <div>{item.description}</div>
                   <div>{item.cost + "$"}</div>
+                  <div
+                    className="ItemDescription"
+                    style={{
+                      display: item.available_quantity <= 0 ? "block" : "none"
+                    }}
+                  >
+                    SOLD OUT
+                  </div>
                   <button onClick={this.handleLoveIt}>love it!</button>
                 </div>
-                <button onClick={this.addToCart}>add to cart</button>
+                <button
+                  onClick={this.addToCart}
+                  style={{
+                    display: item.available_quantity <= 0 ? "none" : "block"
+                  }}
+                >
+                  add to cart
+                </button>
               </div>
             );
           })}
