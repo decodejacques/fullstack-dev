@@ -3,7 +3,7 @@ import "./Item.css";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import ItemDetails from "./itemDetails.jsx";
-// import { IoMdSearch } from "react-icons/io";
+import { IoMdSearch } from "react-icons/io";
 import { IconContext } from "react-icons";
 
 class UnconnectedItems extends Component {
@@ -121,7 +121,7 @@ class UnconnectedItems extends Component {
               <IconContext.Provider
                 value={{ size: "2em", className: "global-class-name" }}
               >
-                {/* <IoMdSearch /> */}
+                <IoMdSearch />
               </IconContext.Provider>
 
               <input
