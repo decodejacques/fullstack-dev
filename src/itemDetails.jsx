@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { Link, NavLink, Redirect } from "react-router-dom";
 import { routerMiddleware, push } from "react-router-redux";
 import Cart from "./Cart.jsx";
-
 class UnconnectedItemDetails extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +12,8 @@ class UnconnectedItemDetails extends Component {
       itemId: "",
       loveIt: 0,
       // cart: this.props.cart,
-      displayCheckout: false
+      displayCheckout: false,
+      reviews: ""
     };
   }
 
@@ -29,6 +29,27 @@ class UnconnectedItemDetails extends Component {
   handleContinueShopping = () => {
     // <Redirect push to="/all-items" />;
     // return;
+  };
+  handleText = event => {
+    event.preventDefault();
+    this.setState({ reviews: event.target.value });
+  };
+
+  handleReview = async event => {
+    event.preventDefault();
+    let formData = new FormData();
+    formData.append("review", this.state.reviews);
+    console.log(this.state.reviews);
+
+    let response = await fetch("/reviews", {
+      method: "POST",
+      body: formData,
+      credentials: "include"
+    }).then(response => response.text());
+
+    let parsed = JSON.parse(response);
+
+    this.props.dispatch({ type: "set-reviews", reviews: parsed });
   };
 
   addToCart = async () => {
@@ -60,6 +81,7 @@ class UnconnectedItemDetails extends Component {
         let body = JSON.parse(responseBody);
         if (body.success) {
           alert("item added to cart successfully");
+
           return;
         }
         alert("Oops an error occured");
@@ -101,7 +123,6 @@ class UnconnectedItemDetails extends Component {
     let displayItem = this.props.items.filter(item => {
       return item._id === this.props.id;
     });
-
     return (
       <div>
         <div>
@@ -118,6 +139,7 @@ class UnconnectedItemDetails extends Component {
                   <div>{item.name}</div>
                   <div>{item.description}</div>
                   <div>{item.cost + "$"}</div>
+                  <div>{item.reviews}</div>
                   <div
                     className="ItemDescription"
                     style={{
@@ -140,7 +162,6 @@ class UnconnectedItemDetails extends Component {
             );
           })}
         </div>
-
         <div>
           <div style={{ display: this.state.quantity >= 1 ? "block" : "none" }}>
             <button onClick={this.handleCheckout}>
@@ -154,6 +175,18 @@ class UnconnectedItemDetails extends Component {
             </button>
           </div>
         </div>
+
+        <form onSubmit={this.handleReview}>
+          {" "}
+          Add a review
+          <input
+            type="text"
+            name="review"
+            value={this.state.reviews}
+            onChange={this.handleText}
+          />
+          <input type="submit" value="submit" />
+        </form>
       </div>
     );
   };
@@ -164,9 +197,11 @@ let mapStateToProps = state => {
     items: state.items,
     email: state.email,
     // cart: state.cart,
-    itemId: state.itemId
+    itemId: state.itemId,
+    reviews: state.reviews
   };
 };
+
 let ItemDetails = connect(mapStateToProps)(UnconnectedItemDetails);
 // let Navigation = withRouter(UnconnectedNavigation);
 export default ItemDetails;

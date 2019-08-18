@@ -3,7 +3,7 @@ import "./Item.css";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import ItemDetails from "./itemDetails.jsx";
-// import { IoMdSearch } from "react-icons/io";
+import { IoMdSearch } from "react-icons/io";
 import { IconContext } from "react-icons";
 
 class UnconnectedItems extends Component {
@@ -14,6 +14,7 @@ class UnconnectedItems extends Component {
       items: this.props.items,
       displayFilters: false,
       filterCost: "",
+      filterMaxCost: 1000,
       filterInStock: "",
       itemName: "",
       email: "",
@@ -76,9 +77,15 @@ class UnconnectedItems extends Component {
   };
   maxCostOnChange = event => {
     event.preventDefault();
+    let cost = parseInt(event.target.value);
+    if (isNaN(cost)) return;
+    this.setState({ filterMaxCost: cost });
   };
   minCostOnChange = event => {
     event.preventDefault();
+    let cost = parseInt(event.target.value);
+    if (isNaN(cost)) return;
+    this.setState({ filterCost: cost });
   };
   inStockOnChange = event => {
     event.preventDefault();
@@ -96,8 +103,16 @@ class UnconnectedItems extends Component {
       displayedItems = displayedItems.filter(item => {
         return item.name.includes(this.state.itemFound);
       });
-      console.log("displayedItems", displayedItems);
     }
+    if (this.state.filterCost !== "") {
+      displayedItems = displayedItems.filter(item => {
+        return (
+          item.cost > this.state.filterCost &&
+          item.cost < this.state.filterMaxCost
+        );
+      });
+    }
+    console.log("displayedItems", displayedItems);
 
     return (
       <div className="mainDiv">
@@ -121,7 +136,7 @@ class UnconnectedItems extends Component {
               <IconContext.Provider
                 value={{ size: "2em", className: "global-class-name" }}
               >
-                {/* <IoMdSearch /> */}
+                <IoMdSearch />
               </IconContext.Provider>
 
               <input
@@ -158,7 +173,7 @@ class UnconnectedItems extends Component {
                   className="MaxCostForm"
                   type="text"
                   onChange={this.maxCostOnChange}
-                  value={this.state.filterCost}
+                  value={this.state.filterMaxCost}
                 />
                 In stock{" "}
                 <input
@@ -220,7 +235,8 @@ let mapStateToProps = state => {
   return {
     email: state.email,
     items: state.items,
-    itemFound: state.itemFound
+    itemFound: state.itemFound,
+    minPrice: state.min
   };
 };
 
