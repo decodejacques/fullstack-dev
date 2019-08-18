@@ -9,7 +9,7 @@
   position: absolute;
   top: 200px;
   margin-left: 150px;
-  width: 750px;
+  width: fit-content;
   height: fit-content;
   margin: 80px auto;
   background: pink;
@@ -29,17 +29,12 @@
   font-weight: 400;
 }
 .ItemFrame {
-  border: 1px solid;
+  border-bottom: 1px solid;
   text-align: left;
   margin: 40px;
   padding: 20px 30px;
-  height: 250px;
+  height: fit-content;
   display: flex;
-}
-
-.ItemPictureFrame {
-  box-sizing: inherit;
-  text-align: left;
 }
 
 .ItemsDetailsUl {
@@ -63,19 +58,16 @@
   margin-left: 100px;
 }
 .ItemsPictureFrame {
-  width: 200px;
-  height: 200px;
+  margin: 10px;
+  padding: 10px;
+}
+.ItemPicture {
+  border: transparent 10px;
 }
 .ItemsDetailsDiv {
-  padding-top: 10px;
+  margin-top: 20px;
   margin-right: 60px;
   width: 115px;
-}
-.ItemsDetailsDiv span {
-  display: block;
-  font-size: 14px;
-  color: #43484d;
-  font-weight: 400;
 }
 .ItemsDetailsDiv span:first-child {
   margin-bottom: 5px;
@@ -86,7 +78,7 @@
   color: #86939e;
 }
 .ItemsQuantity {
-  padding-top: 20px;
+  margin-top: 20px;
   margin-right: 60px;
 }
 .ItemsQuantity input {
@@ -117,4 +109,32 @@ input:focus {
   border-radius: 6px;
   border: none;
   cursor: pointer;
+  margin-top: 20px;
+}
+.ItemPriceDiv {
+  margin-top: 20px;
+  margin-right: 60px;
+}
+.RemoveOneItemButton {
+  margin-left: 10px;
+  font-size: 20px;
+}
+.AddOneItemButton {
+  margin-right: 10px;
+}
+.ItemsName {
+  display: block;
+  font-size: 22px;
+  color: #43484d;
+  font-weight: 600;
+}
+.ItemsDescription {
+  font-size: 18px;
+  color: aqua;
+  font-weight: 300;
+  display: block;
+}
+.ItemsCost {
+  font-size: 22px;
+  font-weight: bolder;
 }

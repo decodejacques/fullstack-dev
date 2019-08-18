@@ -114,7 +114,7 @@ class UnconnectedCart extends Component {
     return (
       <div className="MainFrame">
         <div className="ShoppingBag">
-          <h1 className="ShoppingBagText">Shopping Bag</h1>
+          <div className="ShoppingBagText">Shopping Bag</div>
           {this.props.cart.map(cartItem => {
             let itemDetails = this.props.items.filter(item => {
               return item._id === cartItem.itemId;
@@ -126,8 +126,8 @@ class UnconnectedCart extends Component {
                   <img
                     className="ItemPicture"
                     src={itemDetails.filePath}
-                    height="200px"
-                    width="200px"
+                    height="300px"
+                    width="300px"
                   />
                 </a>
                 <div className="ItemsDetailsDiv">
@@ -135,16 +135,11 @@ class UnconnectedCart extends Component {
                   <span className="ItemsDescription">
                     {itemDetails.description}
                   </span>
-                  <span className="ItemsCost">{itemDetails.cost + "$ "} </span>
+                </div>
+                <div className="ItemPriceDiv">
+                  <span className="ItemsCost"> {itemDetails.cost + "$ "} </span>
                 </div>
                 <div className="QuantityButtons">
-                  <button
-                    className="RemoveOneItemButton"
-                    id="buttonCart"
-                    onClick={this.removeOneFromCart}
-                  >
-                    -
-                  </button>
                   <div className="ItemsQuantity">
                     quantity: {cartItem.quantity}
                   </div>
@@ -155,6 +150,13 @@ class UnconnectedCart extends Component {
                   >
                     +
                   </button>
+                  <button
+                    className="RemoveOneItemButton"
+                    id="buttonCart"
+                    onClick={this.removeOneFromCart}
+                  >
+                    -
+                  </button>
                 </div>
                 <button
                   className="RemoveItemButton"
@@ -163,6 +165,7 @@ class UnconnectedCart extends Component {
                   remove from cart
                 </button>
               </div>
+              
             );
           })}
         </div>
