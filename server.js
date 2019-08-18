@@ -40,7 +40,6 @@ app.use("/uploads", express.static("uploads")); // Needed for local assets
 app.use("/images", express.static("images"));
 // Your endpoints go after this line
 //app.post create/update a resource and send it back after
-
 // loveit
 app.post("/add-a-loveIt", upload.none(), (req, res) => {
   console.log("req.body", req.body);
@@ -170,6 +169,7 @@ app.post("/new-item", upload.single("itemImage"), (req, res) => {
   let name = req.body.name;
   let cost = req.body.cost;
   let description = req.body.description;
+  let review = "";
   let available_quantity = parseInt(req.body.available_quantity);
 
   if (req.file !== undefined) {
@@ -181,7 +181,8 @@ app.post("/new-item", upload.single("itemImage"), (req, res) => {
     name: name,
     cost: cost,
     description: description,
-    available_quantity: available_quantity
+    available_quantity: available_quantity,
+    review: ""
   });
   res.send(
     JSON.stringify({
@@ -281,7 +282,6 @@ app.post("/remove-from-cart", upload.none(), (req, res) => {
       }
     );
 });
-
 app.post("/add-to-cart", upload.none(), (req, res) => {
   let sessionId = req.cookies.sid;
   let currentUser = sessions[sessionId];
@@ -298,6 +298,8 @@ app.post("/add-to-cart", upload.none(), (req, res) => {
         res.send("fail");
         return;
       }
+      //     console.log("item", item);
+      // update quantity in items collection
       let quantityToRestore = quantity;
       console.log("quantityToRestore", quantityToRestore);
       dbo.collection("items").updateOne(
@@ -405,6 +407,24 @@ app.post("/checkout", upload.none(), (req, res) => {
 });
 
 // reviews
+app.post("/reviews", upload.none(), (req, body) => {
+  console.log("our review: ", req.body.review);
+  let review = req.body.review;
+  let currentUser = sessions[sessionId];
+
+  dbo.collection("items").updateOne(
+    { _id: ObjectID(req.body.itemId) },
+    {
+      review: review
+    }
+  );
+  res.send(
+    JSON.stringify({
+      success: true
+    })
+  );
+  return;
+});
 // likes
 
 // Your endpoints go before this line

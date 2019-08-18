@@ -41,6 +41,9 @@ let reducer = (state, action) => {
   if (action.type === "love-it") {
     return { ...state, itemId: action.itemId };
   }
+  if (action.type === "set-review") {
+    return { ...state, reviews: action.reviews };
+  }
   return state;
 };
 
@@ -53,7 +56,8 @@ const store = createStore(
     cart: [],
     email: "",
     item: {},
-    itemId: ""
+    itemId: "",
+    reviews: ""
   },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
