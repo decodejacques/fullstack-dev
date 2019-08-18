@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import { connect } from "react-redux";
 import ItemDetails from "./itemDetails.jsx";
-import "./main.css";
+import "./cart.css";
 
 class UnconnectedCart extends Component {
   constructor(props) {
@@ -111,31 +111,56 @@ class UnconnectedCart extends Component {
 
   render = () => {
     return (
-      <div>
-        <div className="cart">
-          <div className="shopping-bag">
-            <h1>Shopping Bag</h1>
+      <div className="MainFrame">
+        <div className="Cart">
+          <div className="ShoppingBag">
+            <h1 className="ShoppingBagText">Shopping Bag</h1>
             {this.props.cart.map(cartItem => {
               let itemDetails = this.props.items.filter(item => {
                 return item._id === cartItem.itemId;
               })[0];
 
               return (
-                <div>
-                  <div>
-                    <img
-                      className="ItemPicture"
-                      src={itemDetails.filePath}
-                      height="200px"
-                      width="200px"
-                    />
-                    <div>{itemDetails.name}</div>
-                    <div>{itemDetails.description}</div>
-                    <div>{itemDetails.cost + "$ "} </div>
-                    <div>quantity: {cartItem.quantity}</div>
-                    <button onClick={this.removeOneFromCart}>-</button>
-                    <button onClick={this.addOneToCart}>+</button>
-                    <button onClick={this.removeFromCart}>
+                <div className="ItemsFrame">
+                  <div className="ItemFrame">
+                    <div className="ItemsPictureFrame">
+                      <img
+                        className="ItemPicture"
+                        src={itemDetails.filePath}
+                        height="200px"
+                        width="200px"
+                      />
+                    </div>
+                    <div>
+                      <ul className="ItemsDetailsUl">
+                        <li className="ItemsName">{itemDetails.name}</li>
+                        <li className="ItemsDescription">
+                          {itemDetails.description}
+                        </li>
+                        <li className="ItemsCost">
+                          {itemDetails.cost + "$ "}{" "}
+                        </li>
+                        <li className="ItemsQuantity">
+                          quantity: {cartItem.quantity}
+                        </li>
+                      </ul>
+                    </div>
+                    <button
+                      className="RemoveOneItemButton"
+                      onClick={this.removeOneFromCart}
+                    >
+                      -
+                    </button>
+                    <button
+                      className="AddOneItemButton"
+                      onClick={this.addOneToCart}
+                    >
+                      +
+                    </button>
+                    <button
+                      className="RemoveItemButton"
+                      onClick={this.removeFromCart}
+                    >
                       remove from cart
                     </button>
                   </div>
@@ -144,11 +169,15 @@ class UnconnectedCart extends Component {
             })}
           </div>
 
-          <div className="checkout">
+          <div className="Checkout">
             <h1>
               Checkout
-              <div id="stripeButton">
-                <button onClick={this.clearCart} style={{ border: "0px" }}>
+              <div className="StripeFrame">
+                <button
+                  className="StripeButton"
+                  onClick={this.clearCart}
+                  style={{ border: "0px" }}
+                >
                   <StripeCheckout
                     // {<button className="btn btn-primary">checkout now!
                     // </button>}

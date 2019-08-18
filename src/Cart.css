@@ -1,0 +1,50 @@
+.Cart {
+  display: flex;
+  position: relative;
+  justify-items: center;
+  display: block;
+  box-sizing: inherit;
+  text-align: left;
+}
+
+.ShoppingBag {
+  position: absolute;
+  top: 200px;
+  margin-left: 150px;
+  display: block;
+  box-sizing: inherit;
+  text-align: left;
+}
+.ItemsFrame {
+  display: block;
+  box-sizing: inherit;
+  text-align: left;
+}
+.ItemFrame {
+  border: 2px solid;
+  display: block;
+  box-sizing: inherit;
+  text-align: left;
+}
+.ItemPictureFrame {
+  display: block;
+  box-sizing: inherit;
+  text-align: left;
+}
+
+.ItemsDetailsUl {
+  list-style-type: none;
+}
+
+.Checkout {
+  position: absolute;
+  left: 700px;
+  top: 200px;
+  margin-left: 100px;
+}
+.StripeFrame {
+  position: fixed;
+  top: 300px;
+  left: 700px;
+  margin-left: 100px;
+}
