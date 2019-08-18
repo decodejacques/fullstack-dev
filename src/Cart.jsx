@@ -112,82 +112,78 @@ class UnconnectedCart extends Component {
   render = () => {
     return (
       <div className="MainFrame">
-        <div className="Cart">
-          <div className="ShoppingBag">
-            <h1 className="ShoppingBagText">Shopping Bag</h1>
-            {this.props.cart.map(cartItem => {
-              let itemDetails = this.props.items.filter(item => {
-                return item._id === cartItem.itemId;
-              })[0];
+        <div className="ShoppingBag">
+          <h1 className="ShoppingBagText">Shopping Bag</h1>
+          {this.props.cart.map(cartItem => {
+            let itemDetails = this.props.items.filter(item => {
+              return item._id === cartItem.itemId;
+            })[0];
 
-              return (
-                <div className="ItemsFrame">
-                  <div className="ItemFrame">
-                    <div className="ItemsPictureFrame">
-                      <img
-                        className="ItemPicture"
-                        src={itemDetails.filePath}
-                        height="200px"
-                        width="200px"
-                      />
-                    </div>
-                    <div>
-                      <ul className="ItemsDetailsUl">
-                        <li className="ItemsName">{itemDetails.name}</li>
-                        <li className="ItemsDescription">
-                          {itemDetails.description}
-                        </li>
-                        <li className="ItemsCost">
-                          {itemDetails.cost + "$ "}{" "}
-                        </li>
-                        <li className="ItemsQuantity">
-                          quantity: {cartItem.quantity}
-                        </li>
-                      </ul>
-                    </div>
-                    <button
-                      className="RemoveOneItemButton"
-                      onClick={this.removeOneFromCart}
-                    >
-                      -
-                    </button>
-                    <button
-                      className="AddOneItemButton"
-                      onClick={this.addOneToCart}
-                    >
-                      +
-                    </button>
-                    <button
-                      className="RemoveItemButton"
-                      onClick={this.removeFromCart}
-                    >
-                      remove from cart
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="Checkout">
-            <h1>
-              Checkout
-              <div className="StripeFrame">
-                <button
-                  className="StripeButton"
-                  onClick={this.clearCart}
-                  style={{ border: "0px" }}
-                >
-                  <StripeCheckout
-                    // {<button className="btn btn-primary">checkout now!
-                    // </button>}
-                    token={this.onToken}
-                    stripeKey="pk_test_O9HT5wBse32v6Ev3y8xDbYnQ00SpdfFqSl"
+            return (
+              <div className="ItemFrame">
+                <a className="ItemsPictureFrame">
+                  <img
+                    className="ItemPicture"
+                    src={itemDetails.filePath}
+                    height="200px"
+                    width="200px"
                   />
+                </a>
+                <div className="ItemsDetailsDiv">
+                  <span className="ItemsName">{itemDetails.name}</span>
+                  <span className="ItemsDescription">
+                    {itemDetails.description}
+                  </span>
+                  <span className="ItemsCost">{itemDetails.cost + "$ "} </span>
+                </div>
+                <div className="QuantityButtons">
+                  <button
+                    className="RemoveOneItemButton"
+                    id="buttonCart"
+                    onClick={this.removeOneFromCart}
+                  >
+                    -
+                  </button>
+                  <div className="ItemsQuantity">
+                    quantity: {cartItem.quantity}
+                  </div>
+                  <button
+                    className="AddOneItemButton"
+                    id="buttonCart"
+                    onClick={this.addOneToCart}
+                  >
+                    +
+                  </button>
+                </div>
+                <button
+                  className="RemoveItemButton"
+                  onClick={this.removeFromCart}
+                >
+                  remove from cart
                 </button>
               </div>
-            </h1>
-          </div>
+            );
+          })}
+        </div>
+
+        <div className="Checkout">
+          <h1>
+            Checkout
+            <div className="StripeFrame">
+              <button
+                className="StripeButton"
+                onClick={this.clearCart}
+                style={{ border: "0px" }}
+              >
+                <StripeCheckout
+                  // {<button className="btn btn-primary">checkout now!
+                  // </button>}
+                  token={this.onToken}
+                  stripeKey="pk_test_O9HT5wBse32v6Ev3y8xDbYnQ00SpdfFqSl"
+                />
+              </button>
+            </div>
+          </h1>
         </div>
       </div>
     );

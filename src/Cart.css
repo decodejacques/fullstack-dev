@@ -1,8 +1,6 @@
 .Cart {
-  display: flex;
   position: relative;
   justify-items: center;
-  display: block;
   box-sizing: inherit;
   text-align: left;
 }
@@ -11,33 +9,49 @@
   position: absolute;
   top: 200px;
   margin-left: 150px;
-  display: block;
-  box-sizing: inherit;
-  text-align: left;
+  width: 750px;
+  height: fit-content;
+  margin: 80px auto;
+  background: pink;
+  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+
+  display: flex;
+  flex-direction: column;
 }
-.ItemsFrame {
-  display: block;
-  box-sizing: inherit;
-  text-align: left;
+.ShoppingBagText {
+  margin-bottom: 40px;
+  height: 60px;
+  border-bottom: 1px solid #e1e8ee;
+  padding: 20px 30px;
+  color: #5e6977;
+  font-size: 18px;
+  font-weight: 400;
 }
 .ItemFrame {
-  border: 2px solid;
-  display: block;
-  box-sizing: inherit;
+  border: 1px solid;
   text-align: left;
+  margin: 40px;
+  padding: 20px 30px;
+  height: 250px;
+  display: flex;
 }
+
 .ItemPictureFrame {
-  display: block;
   box-sizing: inherit;
   text-align: left;
 }
 
 .ItemsDetailsUl {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
   list-style-type: none;
+  text-align: left;
 }
 
 .Checkout {
-  position: absolute;
+  position: fixed;
   left: 700px;
   top: 200px;
   margin-left: 100px;
@@ -47,4 +61,60 @@
   top: 300px;
   left: 700px;
   margin-left: 100px;
+}
+.ItemsPictureFrame {
+  width: 200px;
+  height: 200px;
+}
+.ItemsDetailsDiv {
+  padding-top: 10px;
+  margin-right: 60px;
+  width: 115px;
+}
+.ItemsDetailsDiv span {
+  display: block;
+  font-size: 14px;
+  color: #43484d;
+  font-weight: 400;
+}
+.ItemsDetailsDiv span:first-child {
+  margin-bottom: 5px;
+}
+.ItemsDetailsDiv span:last-child {
+  font-weight: 300;
+  margin-top: 8px;
+  color: #86939e;
+}
+.ItemsQuantity {
+  padding-top: 20px;
+  margin-right: 60px;
+}
+.ItemsQuantity input {
+  -webkit-appearance: none;
+  border: none;
+  text-align: center;
+  width: 32px;
+  font-size: 16px;
+  color: #43484d;
+  font-weight: 300;
+}
+#buttonCart {
+  width: 30px;
+  height: 30px;
+  background-color: #e1e8ee;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+#buttonCart:focus,
+input:focus {
+  outline: 0;
+}
+.RemoveItemButton {
+  height: fit-content;
+  background-color: #e1e8ee;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
 }
