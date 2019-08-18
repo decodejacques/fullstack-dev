@@ -17,6 +17,9 @@ let reducer = (state, action) => {
   if (action.type === "login-successful") {
     return { ...state, loggedIn: true, email: action.email };
   }
+  if (action.type === "logout") {
+    return { ...state, loggedIn: false };
+  }
   if (action.type === "set-items") {
     return { ...state, items: action.items };
   }
