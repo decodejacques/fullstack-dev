@@ -44,6 +44,9 @@ let reducer = (state, action) => {
   if (action.type === "set-review") {
     return { ...state, reviews: action.reviews };
   }
+  if (action.type === "minimum-price") {
+    return { ...state, min: action.cost };
+  }
   return state;
 };
 
@@ -57,7 +60,8 @@ const store = createStore(
     email: "",
     item: {},
     itemId: "",
-    reviews: ""
+    reviews: "",
+    min: ""
   },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
