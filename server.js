@@ -46,7 +46,7 @@ app.post("/add-a-loveIt", upload.none(), (req, res) => {
 
   let numberOfLoveIt = parseInt(req.body.loveItNumber);
 
-  dbo.collection("items").findOne({});
+  // dbo.collection("items").findOne({});
   dbo.collection("items").updateOne(
     { _id: ObjectID(req.body.itemId) },
     {
