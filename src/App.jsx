@@ -57,7 +57,10 @@ class UnconnectedNavigation extends Component {
 let renderItemDetails = routerData => {
   return (
     <div>
-      <ItemDetails id={routerData.match.params.id} />
+      <ItemDetails
+        id={routerData.match.params.id}
+        history={routerData.history}
+      />
       {/* <div style={{ display: "none" }}>
         <Cart id={routerData.match.params.id} />
       </div> */}
