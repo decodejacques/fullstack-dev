@@ -139,8 +139,6 @@ class UnconnectedCart extends Component {
                   <span className="ItemsDescription">
                     {itemDetails.description}
                   </span>
-                </div>
-                <div className="ItemPriceDiv">
                   <span className="ItemsCost"> {itemDetails.cost + "$ "} </span>
                 </div>
 
@@ -183,29 +181,32 @@ class UnconnectedCart extends Component {
               </div>
             );
           })}
-          <div className="Checkout">
-            <h1>Total Price: {subTotal}$</h1>
-            <h1>
-              Checkout
-              <div className="StripeFrame">
-                <button
-                  className="StripeButton"
-                  onClick={this.clearCart}
-                  style={{ border: "0px" }}
+        </div>
+        <div className="Checkout">
+          <h1>Total Price: {subTotal}$</h1>
+          <h1>
+            Checkout
+            <div className="StripeFrame">
+              <button
+                className="StripeButton"
+                onClick={this.clearCart}
+                style={{ border: "0px" }}
+              >
+                <StripeCheckout
+                  // {<button className="btn btn-primary">checkout now!
+                  // </button>}
+                  ComponentClass="div"
+                  token={this.onToken}
+                  stripeKey="pk_test_O9HT5wBse32v6Ev3y8xDbYnQ00SpdfFqSl"
                 >
-                  <StripeCheckout
-                    // {<button className="btn btn-primary">checkout now!
-                    // </button>}
-                    ComponentClass="div"
-                    token={this.onToken}
-                    stripeKey="pk_test_O9HT5wBse32v6Ev3y8xDbYnQ00SpdfFqSl"
-                  >
-                    <button className="StripeButtonText"> Hello Money!</button>
-                  </StripeCheckout>
-                </button>
-              </div>
-            </h1>
-          </div>
+                  <button className="StripeButtonText">
+                    {" "}
+                    Proceed to payment{" "}
+                  </button>
+                </StripeCheckout>
+              </button>
+            </div>
+          </h1>
         </div>
       </div>
     );
