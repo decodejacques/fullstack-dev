@@ -38,6 +38,7 @@ class UnconnectedItemDetails extends Component {
     event.preventDefault();
     let formData = new FormData();
     formData.append("review", this.state.reviews);
+    formData.append("itemId", this.props.id);
     console.log(this.state.reviews);
 
     let response = await fetch("/reviews", {
@@ -138,7 +139,7 @@ class UnconnectedItemDetails extends Component {
                   <div>{item.name}</div>
                   <div>{item.description}</div>
                   <div>{item.cost + "$"}</div>
-                  <div>{item.reviews}</div>
+                  <div />
                   <div
                     className="ItemDescription"
                     style={{
@@ -161,6 +162,10 @@ class UnconnectedItemDetails extends Component {
             );
           })}
         </div>
+        {console.log(this.props.reviews)}
+        {this.props.reviews.map(review => {
+          return <div>{review}</div>;
+        })}
         <div>
           <div style={{ display: this.state.quantity >= 1 ? "block" : "none" }}>
             <button onClick={this.handleCheckout}>
