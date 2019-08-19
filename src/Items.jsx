@@ -123,7 +123,7 @@ class UnconnectedItems extends Component {
                 className="InputSearchBar"
                 type="text"
                 onChange={this.handleOnChangeSearch}
-                placeholder="Search item"
+                placeholder="   search item"
               />
             </div>
           </header>
