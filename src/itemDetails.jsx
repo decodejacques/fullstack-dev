@@ -22,8 +22,7 @@ class UnconnectedItemDetails extends Component {
 
   //   }
   handleCheckout = () => {
-    //  <Redirect push to="/cart" />;
-    store.dispatch(push("/cart"));
+    this.props.history.push("/cart");
     return;
   };
   handleContinueShopping = () => {
