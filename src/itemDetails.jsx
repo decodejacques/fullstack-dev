@@ -162,16 +162,14 @@ class UnconnectedItemDetails extends Component {
                 >
                   add to cart
                 </button>
-                {/* <div>
+                {console.log("item.review", item.review)}
+                <div>
                   <div>Reviews</div>
-                  {item.review.map(UniqueReview => {
-                    return (
-                      <div>
-                        {UniqueReview.username}: {UniqueReview.message}
-                      </div>
-                    );
-                  })}
-                </div> */}
+                  {/* {item.review.map(UniqueReview => {
+                    return <div>{UniqueReview.message}</div>;
+                  })} */}
+                  {item.review}
+                </div>
               </div>
             );
           })}
