@@ -23,11 +23,11 @@
 .ShoppingBagText {
   margin-bottom: 40px;
   height: 60px;
-  border-bottom: 1px solid #e1e8ee;
-  padding: 20px 30px;
-  color: #5e6977;
-  font-size: 18px;
-  font-weight: 400;
+  border-bottom: 1px solid black;
+  padding: 0px 30px;
+  color: black;
+  font-size: 32px;
+  font-weight: 500;
 }
 .ItemFrame {
   border-bottom: 1px solid;
@@ -46,18 +46,13 @@
   text-align: left;
 }
 
-/* .Checkout {
+.Checkout {
+  border: 5px solid;
   position: fixed;
-  left: 700px;
-  top: 200px;
-  margin-left: 100px;
+  left: 1150px;
+  top: 500px;
+  padding: 20px;
 }
-.StripeFrame {
-  position: fixed;
-  top: 300px;
-  left: 700px;
-  margin-left: 100px;
-} */
 .ItemsPictureFrame {
   margin: 10px;
   padding: 10px;
@@ -79,7 +74,7 @@
   color: #86939e;
 }
 .ItemsQuantity {
-  margin-top: 20px;
+  margin-top: 48px;
   margin-right: 60px;
   text-align: center;
 }
@@ -107,18 +102,23 @@ input:focus {
 }
 .RemoveItemButton {
   height: fit-content;
-  background-color: #e1e8ee;
+  background-color: transparent;
   border-radius: 6px;
   border: none;
   cursor: pointer;
-  margin-top: 20px;
+  margin-left: 30px;
+  margin-top: 30px;
+  font-size: 18px;
 }
 .ItemPriceDiv {
   margin-top: 20px;
   margin-right: 60px;
 }
 .RemoveOneItemButton {
-  margin-top: 10px;
+  font-size: 24px;
+  font-weight: 500px;
+}
+.AddOneItemButton {
   font-size: 20px;
 }
 
@@ -139,7 +139,7 @@ input:focus {
   align-content: center;
 }
 .SubTotalDiv {
-  margin-top: 20px;
+  margin-top: 50px;
   width: 80px;
   margin-right: 60px;
 }
@@ -153,8 +153,8 @@ input:focus {
   border: none;
   font-family: "Roboto", sans-serif;
   font-size: 28px;
-  border-radius: 12px;
-  border: 2px solid crimson;
+  padding-left: 27px;
+  padding-right: 27px;
 }
 .StripeButton {
   background-color: transparent;
