@@ -431,7 +431,7 @@ app.post("/reviews", upload.none(), (req, res) => {
   dbo.collection("items").updateOne(
     { _id: ObjectID(req.body.itemId) },
     {
-      $set: {
+      $push: {
         review: {
           username: currentUser,
           message: review
