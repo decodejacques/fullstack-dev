@@ -13,8 +13,8 @@ class UnconnectedItems extends Component {
       searchItem: "",
       items: this.props.items,
       displayFilters: false,
-      filterCost: "",
-      filterMaxCost: "",
+      filterCost: 0,
+      filterMaxCost: 10000,
       filterInStock: "",
       itemName: "",
       email: "",
@@ -59,12 +59,8 @@ class UnconnectedItems extends Component {
   };
   maxCostOnChange = event => {
     event.preventDefault();
-    if (event.target.value === "") {
-      this.setState({ filterMaxCost: 100000 });
-    }
-    let cost = parseInt(event.target.value);
-    if (isNaN(cost)) return;
-    this.setState({ filterMaxCost: cost });
+
+    this.setState({ filterMaxCost: event.target.value });
   };
   minCostOnChange = event => {
     event.preventDefault();
@@ -72,7 +68,7 @@ class UnconnectedItems extends Component {
       this.setState({ filterCost: 0 });
     }
     let cost = parseInt(event.target.value);
-    if (isNaN(cost)) return;
+    if (isNaN(cost)) return 0;
     this.setState({ filterCost: cost });
   };
   inStockOnChange = event => {
@@ -92,14 +88,12 @@ class UnconnectedItems extends Component {
         return item.name.includes(this.state.itemFound);
       });
     }
-    if (this.state.filterCost !== "") {
-      displayedItems = displayedItems.filter(item => {
-        return (
-          item.cost > this.state.filterCost &&
-          item.cost < this.state.filterMaxCost
-        );
-      });
-    }
+    let maxCost = parseInt(this.state.filterMaxCost);
+
+    displayedItems = displayedItems.filter(item => {
+      return item.cost > this.state.filterCost && item.cost < maxCost;
+    });
+
     console.log("displayedItems", displayedItems);
 
     return (
