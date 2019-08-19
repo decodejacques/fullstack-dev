@@ -121,6 +121,15 @@ class UnconnectedCart extends Component {
             let itemDetails = this.props.items.filter(item => {
               return item._id === cartItem.itemId;
             })[0];
+            {
+              console.log("itemDetails", itemDetails);
+            }
+            {
+              console.log(
+                "parseInt(itemDetails.cost)",
+                parseInt(itemDetails.cost)
+              );
+            }
 
             return (
               <div className="ItemFrame">
