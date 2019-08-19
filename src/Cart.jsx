@@ -158,6 +158,9 @@ class UnconnectedCart extends Component {
                     -
                   </button>
                 </div>
+                <div className="SubTotalDiv">
+                  <span className="SubTotalText">sub total</span>
+                </div>
                 <button
                   className="RemoveItemButton"
                   onClick={this.removeFromCart}
