@@ -167,7 +167,7 @@ app.post("/new-item", upload.single("itemImage"), (req, res) => {
   console.log(req.file);
   let filePath;
   let name = req.body.name;
-  let cost = req.body.cost;
+  let cost = parseInt(req.body.cost);
   let description = req.body.description;
   let review = "";
   let available_quantity = parseInt(req.body.available_quantity);
@@ -431,7 +431,7 @@ app.post("/reviews", upload.none(), (req, res) => {
   dbo.collection("items").updateOne(
     { _id: ObjectID(req.body.itemId) },
     {
-      $set: {
+      $push: {
         review: {
           username: currentUser,
           message: review

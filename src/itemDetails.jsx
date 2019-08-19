@@ -82,12 +82,10 @@ class UnconnectedItemDetails extends Component {
         });
         let responseBody = await response.text();
         let body = JSON.parse(responseBody);
-        if (body.success) {
-          alert("item added to cart successfully");
-
+        if (!body.success) {
+          alert("Oops an error occured");
           return;
         }
-        alert("Oops an error occured");
       }
     );
   };
@@ -165,10 +163,11 @@ class UnconnectedItemDetails extends Component {
                 {console.log("item.review", item.review)}
                 <div>
                   <div>Reviews</div>
-                  {/* {item.review.map(UniqueReview => {
-                    return <div>{UniqueReview.message}</div>;
-                  })} */}
-                  {item.review}
+                  {item.review
+                    ? item.review.map(UniqueReview => {
+                        return <div>{UniqueReview.message}</div>;
+                      })
+                    : null}
                 </div>
               </div>
             );

@@ -113,6 +113,7 @@ class UnconnectedCart extends Component {
   };
 
   render = () => {
+    let subTotal = 0;
     return (
       <div className="MainFrame">
         <div className="ShoppingBag">
@@ -141,7 +142,13 @@ class UnconnectedCart extends Component {
                 </div>
 
                 <div className="SubTotalDiv">
-                  <span className="SubTotalText">sub total</span>
+                  <span className="SubTotalText">
+                    {cartItem.quantity * itemDetails.cost}$
+                    <div style={{ display: "none" }}>
+                      {(subTotal += cartItem.quantity * itemDetails.cost)}
+                    </div>
+                    {console.log("subTotal", subTotal)}
+                  </span>
                 </div>
 
                 <div className="QuantityButtons">
@@ -174,7 +181,7 @@ class UnconnectedCart extends Component {
             );
           })}
           <div className="Checkout">
-            <h1>Total Price: </h1>
+            <h1>Total Price: {subTotal}$</h1>
             <h1>
               Checkout
               <div className="StripeFrame">
