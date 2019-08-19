@@ -197,15 +197,30 @@ app.post("/logout", upload.none(), (req, res) => {
   console.log("sessions", sessions);
   let sessionId = req.cookies.sid;
   console.log("sessionId", sessionId);
+  let currentUser = sessions[sessionId];
+  // delete cart
+  dbo.collection("cart").deleteMany(
+    {
+      email: currentUser
+    },
+    (err, result) => {
+      if (err) {
+        console.log("error", err);
+        res.send("fail");
+        return;
+      }
+      res.send(
+        JSON.stringify({
+          success: true
+        })
+      );
+      return;
+    }
+  );
 
+  // delete cookie
   delete sessions[sessionId];
   console.log("sessions", sessions);
-  res.send(
-    JSON.stringify({
-      success: true
-    })
-  );
-  return;
 });
 
 // app.get retrieves information and send it back after
