@@ -86,11 +86,11 @@ class UnconnectedCart extends Component {
       }
     );
   };
-  removeFromCart = async (/*itemId*/) => {
+  removeFromCart = async () => {
     this.setState(
       {
         ...this.state,
-        itemId: this.props.itemId /*itemId*/
+        itemId: this.props.itemId
       },
       async () => {
         let data = new FormData();
@@ -160,14 +160,14 @@ class UnconnectedCart extends Component {
                   <button
                     className="AddOneItemButton"
                     id="buttonCart"
-                    onClick={this.addOneToCart(/*cartItem.itemId*/)}
+                    onClick={this.addOneToCart}
                   >
                     +
                   </button>
                   <button
                     className="RemoveOneItemButton"
                     id="buttonCart"
-                    onClick={this.removeOneFromCart(/*cartItem.itemId*/)}
+                    onClick={this.removeOneFromCart}
                   >
                     -
                   </button>
@@ -175,7 +175,7 @@ class UnconnectedCart extends Component {
 
                 <button
                   className="RemoveItemButton"
-                  onClick={removeFromCart(/*this.cartItem.itemId*/)}
+                  onClick={this.removeFromCart}
                 >
                   remove from cart
                 </button>
