@@ -14,7 +14,7 @@ class UnconnectedItems extends Component {
       items: this.props.items,
       displayFilters: false,
       filterCost: "",
-      filterMaxCost: 1000,
+      filterMaxCost: "",
       filterInStock: "",
       itemName: "",
       email: "",
@@ -77,12 +77,18 @@ class UnconnectedItems extends Component {
   };
   maxCostOnChange = event => {
     event.preventDefault();
+    if (event.target.value === "") {
+      this.setState({ filterMaxCost: 100000 });
+    }
     let cost = parseInt(event.target.value);
     if (isNaN(cost)) return;
     this.setState({ filterMaxCost: cost });
   };
   minCostOnChange = event => {
     event.preventDefault();
+    if (event.target.value === "") {
+      this.setState({ filterCost: 0 });
+    }
     let cost = parseInt(event.target.value);
     if (isNaN(cost)) return;
     this.setState({ filterCost: cost });
