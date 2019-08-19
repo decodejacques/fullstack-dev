@@ -137,8 +137,6 @@ class UnconnectedCart extends Component {
                   <span className="ItemsDescription">
                     {itemDetails.description}
                   </span>
-                </div>
-                <div className="ItemPriceDiv">
                   <span className="ItemsCost"> {itemDetails.cost + "$ "} </span>
                 </div>
 
@@ -192,7 +190,10 @@ class UnconnectedCart extends Component {
                     token={this.onToken}
                     stripeKey="pk_test_O9HT5wBse32v6Ev3y8xDbYnQ00SpdfFqSl"
                   >
-                    <button className="StripeButtonText"> Hello Money!</button>
+                    <button className="StripeButtonText">
+                      {" "}
+                      Proceed to payment{" "}
+                    </button>
                   </StripeCheckout>
                 </button>
               </div>

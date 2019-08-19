@@ -150,6 +150,11 @@ input:focus {
   background-color: black !important;
   background-image: none;
   color: white;
+  border: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 28px;
+  border-radius: 12px;
+  border: 2px solid crimson;
 }
 .StripeButton {
   background-color: transparent;
