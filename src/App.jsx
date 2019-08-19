@@ -30,15 +30,15 @@ class UnconnectedNavigation extends Component {
       email: ""
     };
   }
+
   logout = async () => {
     console.log("clicked logout");
-    console.log("this.state.email", this.state.email);
     let response = await (await fetch("/logout", { method: "POST" })).text();
     let body = JSON.parse(response);
     if (body.success) {
       // console.log("this.state.email", this.state.email);
       // this.setState({ email: this.state.email });
-      this.props.dispatch({ type: "logout", email: this.state.email });
+      // this.props.dispatch({ type: "logout", email: this.state.email });
       this.props.history.push("/");
     }
   };

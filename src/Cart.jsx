@@ -11,7 +11,9 @@ class UnconnectedCart extends Component {
       cart: this.props.cart,
       items: this.props.items,
       itemId: this.props.itemId,
-      quantity: 0
+      quantity: 0,
+      loggedIn: this.props.loggedIn,
+      email: this.props.email
     };
   }
 
@@ -201,7 +203,8 @@ let mapStateToProps = state => {
     email: state.email,
     cart: state.cart,
     items: state.items,
-    itemId: state.itemId
+    itemId: state.itemId,
+    loggedIn: state.loggedIn
   };
 };
 let Cart = connect(mapStateToProps)(UnconnectedCart);

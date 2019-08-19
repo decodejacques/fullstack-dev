@@ -10,8 +10,16 @@ class UnconnectedUsers extends Component {
       loggedIn: this.props.loggedIn
     };
   }
+
+  clearCart = async () => {
+    let response = await (await fetch("/checkout", {
+      method: "POST"
+    })).text();
+    let body = JSON.parse(response);
+  };
+
   render = () => {
-    console.log("this.props.loggedIn", this.props.loggedIn);
+    return <div />;
   };
 }
 let mapStateToProps = state => {
