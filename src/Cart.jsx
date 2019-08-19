@@ -43,19 +43,19 @@ class UnconnectedCart extends Component {
     });
   };
 
-  removeOneFromCart = async () => {
+  removeOneFromCart = async itemId => {
     this.setState(
       {
         ...this.state,
-        itemId: this.props.itemId,
+        itemId: itemId,
         quantity: (this.state.quantity -= 1)
       },
       async () => {
-        console.log("this.state.itemId", this.state.itemId);
+        console.log("this.state.itemId", itemId);
         console.log("this.props.itemId", this.props.itemId);
 
         let data = new FormData();
-        data.append("itemId", this.state.itemId);
+        data.append("itemId", itemId);
         data.append("quantity", -1);
         let response = await (await fetch("/update-quantity-cart", {
           method: "POST",
@@ -66,16 +66,16 @@ class UnconnectedCart extends Component {
     );
   };
 
-  addOneToCart = async () => {
+  addOneToCart = async itemId => {
     this.setState(
       {
         ...this.state,
-        itemId: this.props.itemId,
+        itemId: itemId,
         quantity: (this.state.quantity += 1)
       },
       async () => {
         let data = new FormData();
-        data.append("itemId", this.state.itemId);
+        data.append("itemId", itemId);
 
         data.append("quantity", +1);
         let response = await (await fetch("/update-quantity-cart", {
@@ -86,16 +86,17 @@ class UnconnectedCart extends Component {
       }
     );
   };
-  removeFromCart = async () => {
+  removeFromCart = async itemId => {
     this.setState(
       {
         ...this.state,
-        itemId: this.props.itemId
+        itemId: itemId
+        // itemId: this.props.itemId
       },
       async () => {
         let data = new FormData();
-        data.append("itemId", this.state.itemId);
-
+        // data.append("itemId", this.state.itemId);
+        data.append("itemId", itemId);
         let response = await (await fetch("/remove-from-cart", {
           method: "POST",
           body: data
@@ -158,14 +159,14 @@ class UnconnectedCart extends Component {
                   <button
                     className="AddOneItemButton"
                     id="buttonCart"
-                    onClick={this.addOneToCart}
+                    onClick={() => this.addOneToCart(cartItem.itemId)}
                   >
                     +
                   </button>
                   <button
                     className="RemoveOneItemButton"
                     id="buttonCart"
-                    onClick={this.removeOneFromCart}
+                    onClick={() => this.removeOneFromCart(cartItem.itemId)}
                   >
                     -
                   </button>
@@ -173,7 +174,7 @@ class UnconnectedCart extends Component {
 
                 <button
                   className="RemoveItemButton"
-                  onClick={this.removeFromCart}
+                  onClick={() => this.removeFromCart(cartItem.itemId)}
                 >
                   remove from cart
                 </button>
