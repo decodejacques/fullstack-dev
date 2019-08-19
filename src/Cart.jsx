@@ -168,6 +168,7 @@ class UnconnectedCart extends Component {
             );
           })}
           <div className="Checkout">
+            <h1>Total Price: </h1>
             <h1>
               Checkout
               <div className="StripeFrame">
