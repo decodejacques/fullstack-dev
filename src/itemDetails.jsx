@@ -165,10 +165,9 @@ class UnconnectedItemDetails extends Component {
                 {console.log("item.review", item.review)}
                 <div>
                   <div>Reviews</div>
-                  {/* {item.review.map(UniqueReview => {
+                  {item.review.map(UniqueReview => {
                     return <div>{UniqueReview.message}</div>;
-                  })} */}
-                  {item.review}
+                  })}
                 </div>
               </div>
             );
