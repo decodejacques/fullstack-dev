@@ -46,7 +46,7 @@ app.post("/add-a-loveIt", upload.none(), (req, res) => {
 
   let numberOfLoveIt = parseInt(req.body.loveItNumber);
 
-  dbo.collection("items").findOne({});
+  // dbo.collection("items").findOne({});
   dbo.collection("items").updateOne(
     { _id: ObjectID(req.body.itemId) },
     {
@@ -182,7 +182,7 @@ app.post("/new-item", upload.single("itemImage"), (req, res) => {
     cost: cost,
     description: description,
     available_quantity: available_quantity,
-    review: ""
+    review: []
   });
   res.send(
     JSON.stringify({
@@ -197,15 +197,30 @@ app.post("/logout", upload.none(), (req, res) => {
   console.log("sessions", sessions);
   let sessionId = req.cookies.sid;
   console.log("sessionId", sessionId);
+  let currentUser = sessions[sessionId];
+  // delete cart
+  dbo.collection("cart").deleteMany(
+    {
+      email: currentUser
+    },
+    (err, result) => {
+      if (err) {
+        console.log("error", err);
+        res.send("fail");
+        return;
+      }
+      res.send(
+        JSON.stringify({
+          success: true
+        })
+      );
+      return;
+    }
+  );
 
+  // delete cookie
   delete sessions[sessionId];
   console.log("sessions", sessions);
-  res.send(
-    JSON.stringify({
-      success: true
-    })
-  );
-  return;
 });
 
 // app.get retrieves information and send it back after
@@ -358,6 +373,7 @@ app.post("/add-to-cart", upload.none(), (req, res) => {
     });
 });
 
+// delete cart and create history cart
 // rename the endpoint  /checkout
 app.post("/checkout", upload.none(), (req, res) => {
   let sessionId = req.cookies.sid;
@@ -406,15 +422,21 @@ app.post("/checkout", upload.none(), (req, res) => {
 });
 
 // reviews
-app.post("/reviews", upload.none(), (req, body) => {
+app.post("/reviews", upload.none(), (req, res) => {
   console.log("our review: ", req.body.review);
   let review = req.body.review;
+  let sessionId = req.cookies.sid;
   let currentUser = sessions[sessionId];
 
   dbo.collection("items").updateOne(
     { _id: ObjectID(req.body.itemId) },
     {
-      review: review
+      $set: {
+        review: {
+          username: currentUser,
+          message: review
+        }
+      }
     }
   );
   res.send(
@@ -424,6 +446,8 @@ app.post("/reviews", upload.none(), (req, body) => {
   );
   return;
 });
+
+//get reviews
 // likes
 
 // Your endpoints go before this line

@@ -26,18 +26,22 @@ class UnconnectedItemDetails extends Component {
     return;
   };
   handleContinueShopping = () => {
-    // <Redirect push to="/all-items" />;
-    // return;
+    this.props.history.push("/all-items");
+    return;
   };
   handleText = event => {
     event.preventDefault();
     this.setState({ reviews: event.target.value });
+    console.log("this.state.reviews", this.state.reviews);
   };
 
   handleReview = async event => {
     event.preventDefault();
+    console.log("this.state.reviews", this.state.reviews);
     let formData = new FormData();
     formData.append("review", this.state.reviews);
+    console.log("this.state.reviews", this.state.reviews);
+    formData.append("itemId", this.props.id);
     console.log(this.state.reviews);
 
     let response = await fetch("/reviews", {
@@ -122,6 +126,7 @@ class UnconnectedItemDetails extends Component {
     let displayItem = this.props.items.filter(item => {
       return item._id === this.props.id;
     });
+    // console.log("displayItem.name", displayItem.name);
     return (
       <div>
         <div>
@@ -138,7 +143,7 @@ class UnconnectedItemDetails extends Component {
                   <div>{item.name}</div>
                   <div>{item.description}</div>
                   <div>{item.cost + "$"}</div>
-                  <div>{item.reviews}</div>
+                  <div />
                   <div
                     className="ItemDescription"
                     style={{
@@ -157,10 +162,26 @@ class UnconnectedItemDetails extends Component {
                 >
                   add to cart
                 </button>
+                {console.log("item.review", item.review)}
+                <div>
+                  <div>Reviews</div>
+                  {/* {item.review.map(UniqueReview => {
+                    return <div>{UniqueReview.message}</div>;
+                  })} */}
+                  {item.review}
+                </div>
               </div>
             );
           })}
         </div>
+        {/* {console.log("this.props.reviews", this.props.reviews)}
+        {this.props.reviews.map(review => {
+          return (
+            <div>
+              {review.username}: {review.message}
+            </div>
+          );
+        })} */}
         <div>
           <div style={{ display: this.state.quantity >= 1 ? "block" : "none" }}>
             <button onClick={this.handleCheckout}>

@@ -14,11 +14,15 @@ let reducer = (state, action) => {
   if (action.type === "signup-successful") {
     return { ...state, signedIn: true };
   }
+  if (action.type === "set-reviews") {
+    return { ...state, reviews: action.reviews };
+  }
+
   if (action.type === "login-successful") {
     return { ...state, loggedIn: true, email: action.email };
   }
   if (action.type === "logout") {
-    return { ...state, loggedIn: false };
+    return { ...state, loggedIn: false, email: action.email };
   }
   if (action.type === "set-items") {
     return { ...state, items: action.items };
@@ -60,7 +64,7 @@ const store = createStore(
     email: "",
     item: {},
     itemId: "",
-    reviews: "",
+    reviews: [],
     min: ""
   },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

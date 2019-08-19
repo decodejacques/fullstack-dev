@@ -24,15 +24,26 @@ import ItemDetails from "./itemDetails.jsx";
 
 // testing cronjob
 class UnconnectedNavigation extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: ""
+    };
+  }
+
   logout = async () => {
     console.log("clicked logout");
     let response = await (await fetch("/logout", { method: "POST" })).text();
     let body = JSON.parse(response);
     if (body.success) {
+      // console.log("this.state.email", this.state.email);
+      // this.setState({ email: this.state.email });
+      // this.props.dispatch({ type: "logout", email: this.state.email });
       this.props.history.push("/");
     }
   };
   render = () => {
+    console.log("this.state.email", this.state.email);
     return (
       <nav>
         <div className="myNavbar">
@@ -61,9 +72,6 @@ let renderItemDetails = routerData => {
         id={routerData.match.params.id}
         history={routerData.history}
       />
-      {/* <div style={{ display: "none" }}>
-        <Cart id={routerData.match.params.id} />
-      </div> */}
     </div>
   );
 };
@@ -89,6 +97,12 @@ class UnconnectedApp extends Component {
   };
 }
 
+let mapStateToProps = state => {
+  return {
+    email: state.email
+  };
+};
+
 let Navigation = withRouter(UnconnectedNavigation);
-let App = connect()(UnconnectedApp);
+let App = connect(mapStateToProps)(UnconnectedApp);
 export default App;
