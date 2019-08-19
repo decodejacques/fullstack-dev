@@ -358,7 +358,6 @@ app.post("/add-to-cart", upload.none(), (req, res) => {
     });
 });
 
-// delete cart and create history cart
 // rename the endpoint  /checkout
 app.post("/checkout", upload.none(), (req, res) => {
   let sessionId = req.cookies.sid;

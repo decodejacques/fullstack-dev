@@ -20,7 +20,8 @@ class UnconnectedItems extends Component {
       email: "",
       itemFound: "",
       quantity: 0,
-      item: {}
+      item: {},
+      loveIt: 0
     };
   }
   componentDidMount = async () => {
@@ -36,29 +37,10 @@ class UnconnectedItems extends Component {
     // setInterval(updateItems, 500);
   };
 
-  //   renderGridItem = item => {
-  //     return (
-  //       <Link to={"/all-items" + item.id}>
-  //         <GridItem item={item} />
-  //       </Link>
-  //     );
-  //   };
-
-  //   handleSubmit = () => {};
   gotoCart = () => {
     this.props.history.push("/cart");
   };
-  //   handleOnChangeSearch = event => {};
 
-  // logout = async () => {
-  //   console.log("clicked logout");
-  //   let response = await (await fetch("/logout", { method: "POST" })).text();
-  //   let body = JSON.parse(response);
-
-  //   if (body.success) {
-  //     this.props.history.push("/login");
-  //   }
-  // };
   displayFilters = () => {
     this.setState({
       ...this.state,
