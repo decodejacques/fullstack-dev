@@ -32,12 +32,15 @@ class UnconnectedItemDetails extends Component {
   handleText = event => {
     event.preventDefault();
     this.setState({ reviews: event.target.value });
+    console.log("this.state.reviews", this.state.reviews);
   };
 
   handleReview = async event => {
     event.preventDefault();
+    console.log("this.state.reviews", this.state.reviews);
     let formData = new FormData();
     formData.append("review", this.state.reviews);
+    console.log("this.state.reviews", this.state.reviews);
     formData.append("itemId", this.props.id);
     console.log(this.state.reviews);
 
@@ -123,6 +126,7 @@ class UnconnectedItemDetails extends Component {
     let displayItem = this.props.items.filter(item => {
       return item._id === this.props.id;
     });
+    // console.log("displayItem.name", displayItem.name);
     return (
       <div>
         <div>
@@ -158,14 +162,28 @@ class UnconnectedItemDetails extends Component {
                 >
                   add to cart
                 </button>
+                {/* <div>
+                  <div>Reviews</div>
+                  {item.review.map(UniqueReview => {
+                    return (
+                      <div>
+                        {UniqueReview.username}: {UniqueReview.message}
+                      </div>
+                    );
+                  })}
+                </div> */}
               </div>
             );
           })}
         </div>
-        {console.log(this.props.reviews)}
+        {/* {console.log("this.props.reviews", this.props.reviews)}
         {this.props.reviews.map(review => {
-          return <div>{review}</div>;
-        })}
+          return (
+            <div>
+              {review.username}: {review.message}
+            </div>
+          );
+        })} */}
         <div>
           <div style={{ display: this.state.quantity >= 1 ? "block" : "none" }}>
             <button onClick={this.handleCheckout}>
