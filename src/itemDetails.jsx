@@ -26,8 +26,8 @@ class UnconnectedItemDetails extends Component {
     return;
   };
   handleContinueShopping = () => {
-    // <Redirect push to="/all-items" />;
-    // return;
+    this.props.history.push("/all-items");
+    return;
   };
   handleText = event => {
     event.preventDefault();

@@ -18,7 +18,7 @@ let reducer = (state, action) => {
     return { ...state, loggedIn: true, email: action.email };
   }
   if (action.type === "logout") {
-    return { ...state, loggedIn: false };
+    return { ...state, loggedIn: false, email: action.email };
   }
   if (action.type === "set-items") {
     return { ...state, items: action.items };

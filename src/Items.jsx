@@ -80,8 +80,6 @@ class UnconnectedItems extends Component {
   };
 
   render = () => {
-    console.log("typeof this.props.email", typeof this.props.email);
-
     console.log("rendering items");
     let displayedItems = this.props.items;
     console.log("this.props.items", this.props.items);
