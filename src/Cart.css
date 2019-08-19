@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
 .Cart {
   position: relative;
   justify-items: center;
@@ -31,7 +32,7 @@
 .ItemFrame {
   border-bottom: 1px solid;
   text-align: left;
-  margin: 40px;
+  margin: 20px;
   padding: 20px 30px;
   height: fit-content;
   display: flex;
@@ -66,8 +67,8 @@
 }
 .ItemsDetailsDiv {
   margin-top: 20px;
-  margin-right: 60px;
-  width: 115px;
+  margin-right: 20px;
+  width: 250px;
 }
 .ItemsDetailsDiv span:first-child {
   margin-bottom: 5px;
@@ -117,13 +118,10 @@ input:focus {
   margin-right: 60px;
 }
 .RemoveOneItemButton {
-  margin-left: 10px;
   margin-top: 10px;
   font-size: 20px;
 }
-.AddOneItemButton {
-  margin-right: 10px;
-}
+
 .ItemsName {
   display: block;
   font-size: 22px;
@@ -131,9 +129,6 @@ input:focus {
   font-weight: 600;
 }
 .ItemsDescription {
-  font-size: 18px;
-  color: aqua;
-  font-weight: 300;
   display: block;
 }
 .ItemsCost {
@@ -142,4 +137,20 @@ input:focus {
 }
 .QuantityButtons {
   align-content: center;
+}
+.SubTotalDiv {
+  margin-top: 20px;
+  width: 80px;
+  margin-right: 60px;
+}
+.SubTotalText {
+  width: 60px;
+}
+.StripeButtonText {
+  background-color: black !important;
+  background-image: none;
+  color: white;
+}
+.StripeButton {
+  background-color: transparent;
 }
