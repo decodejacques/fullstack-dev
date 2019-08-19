@@ -141,6 +141,11 @@ class UnconnectedCart extends Component {
                 <div className="ItemPriceDiv">
                   <span className="ItemsCost"> {itemDetails.cost + "$ "} </span>
                 </div>
+
+                <div className="SubTotalDiv">
+                  <span className="SubTotalText">sub total</span>
+                </div>
+
                 <div className="QuantityButtons">
                   <div className="ItemsQuantity">
                     quantity: {cartItem.quantity}
@@ -160,9 +165,7 @@ class UnconnectedCart extends Component {
                     -
                   </button>
                 </div>
-                <div className="SubTotalDiv">
-                  <span className="SubTotalText">sub total</span>
-                </div>
+
                 <button
                   className="RemoveItemButton"
                   onClick={this.removeFromCart}
@@ -185,9 +188,12 @@ class UnconnectedCart extends Component {
                   <StripeCheckout
                     // {<button className="btn btn-primary">checkout now!
                     // </button>}
+                    ComponentClass="div"
                     token={this.onToken}
                     stripeKey="pk_test_O9HT5wBse32v6Ev3y8xDbYnQ00SpdfFqSl"
-                  />
+                  >
+                    <button className="StripeButtonText"> Hello Money!</button>
+                  </StripeCheckout>
                 </button>
               </div>
             </h1>
