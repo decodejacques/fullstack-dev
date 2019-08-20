@@ -168,6 +168,11 @@ input:focus {
   font-size: 28px;
   padding-left: 27px;
   padding-right: 27px;
+  cursor: pointer;
+}
+.StripeButtonText:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 .StripeButton {
   background-color: transparent;
