@@ -33,9 +33,9 @@ let reducer = (state, action) => {
   if (action.type === "clear-cart") {
     return { ...state, cart: [] };
   }
-  // if (action.type === "set-item") {
-  //   return { ...state, item: action.item };
-  // }
+  if (action.type === "set-item") {
+    return { ...state, item: action.item };
+  }
   if (action.type === "search-item") {
     return { ...state, itemFound: action.itemFound };
   }
