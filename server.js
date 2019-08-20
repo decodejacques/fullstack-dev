@@ -302,10 +302,6 @@ app.post("/add-to-cart", upload.none(), (req, res) => {
   let sessionId = req.cookies.sid;
   let currentUser = sessions[sessionId];
   let quantity = parseInt(req.body.quantity);
-  console.log("ITEM.ID", req.body.itemId);
-  // console.log("- quantity", -quantity);
-  // console.log("req.body", req.body);
-  // console.log("ITEM QUANTITY", req.body.quantity);
   dbo
     .collection("items")
     .findOne({ _id: ObjectID(req.body.itemId) }, (err, item) => {
@@ -314,7 +310,6 @@ app.post("/add-to-cart", upload.none(), (req, res) => {
         res.send("fail");
         return;
       }
-      //     console.log("item", item);
       // update quantity in items collection
       let quantityToRestore = quantity;
       console.log("quantityToRestore", quantityToRestore);
@@ -375,7 +370,6 @@ app.post("/add-to-cart", upload.none(), (req, res) => {
 });
 
 // delete cart and create history cart
-// rename the endpoint  /checkout
 app.post("/checkout", upload.none(), (req, res) => {
   let sessionId = req.cookies.sid;
   let currentUser = sessions[sessionId];
@@ -447,9 +441,6 @@ app.post("/reviews", upload.none(), (req, res) => {
   );
   return;
 });
-
-//get reviews
-// likes
 
 // Your endpoints go before this line
 
