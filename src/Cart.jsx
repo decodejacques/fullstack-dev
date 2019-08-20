@@ -117,6 +117,7 @@ class UnconnectedCart extends Component {
     let subTotal = 0;
     return (
       <div className="MainFrame">
+        <div className="NavBlock" />
         <div className="ShoppingBag">
           <div className="ShoppingBagText">Shopping Bag</div>
           {this.props.cart.map(cartItem => {
@@ -156,19 +157,20 @@ class UnconnectedCart extends Component {
                   <div className="ItemsQuantity">
                     quantity: {cartItem.quantity}
                   </div>
-                  <button
-                    className="AddOneItemButton"
-                    id="buttonCart"
-                    onClick={() => this.addOneToCart(cartItem.itemId)}
-                  >
-                    +
-                  </button>
+
                   <button
                     className="RemoveOneItemButton"
                     id="buttonCart"
                     onClick={() => this.removeOneFromCart(cartItem.itemId)}
                   >
                     -
+                  </button>
+                  <button
+                    className="AddOneItemButton"
+                    id="buttonCart"
+                    onClick={() => this.addOneToCart(cartItem.itemId)}
+                  >
+                    +
                   </button>
                 </div>
 
@@ -183,9 +185,8 @@ class UnconnectedCart extends Component {
           })}
         </div>
         <div className="Checkout">
-          <h1>Total Price: {subTotal}$</h1>
+          <h1 className="TotalText">Total: {subTotal}$</h1>
           <h1>
-            Checkout
             <div className="StripeFrame">
               <button
                 className="StripeButton"

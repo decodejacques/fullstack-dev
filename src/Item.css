@@ -34,7 +34,9 @@ video {
     background: contain;
   }
 }
-
+.myNavbar {
+  background: black;
+}
 nav {
   position: fixed;
 
@@ -240,4 +242,7 @@ input {
   border: none;
   cursor: pointer;
   overflow: hidden;
+}
+
+.commentBox {
 }

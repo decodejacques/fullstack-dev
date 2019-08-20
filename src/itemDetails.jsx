@@ -167,6 +167,7 @@ class UnconnectedItemDetails extends Component {
                 </div>
 
                 {console.log("item.review", item.review)}
+<<<<<<< HEAD
                 <div className="reviewBox">
                   <div>Reviews</div>
                   {item.review
@@ -174,6 +175,45 @@ class UnconnectedItemDetails extends Component {
                         return (
                           <div className="newReview">
                             {UniqueReview.message}
+=======
+                <div>
+                  <div
+                    style={{
+                      display: this.state.quantity >= 1 ? "block" : "none"
+                    }}
+                  >
+                    <button onClick={this.handleCheckout}>checkout</button>
+                    <button onClick={this.handleContinueShopping}>
+                      Continue shopping
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  <div />
+
+                  <h3>Reviews</h3>
+                  <div>
+                    <form onSubmit={this.handleReview}>
+                      <input
+                        type="text"
+                        name="review"
+                        value={this.state.reviews}
+                        onChange={this.handleText}
+                        placeholder="Please add your review here"
+                      />
+                      <input type="submit" value="submit" />
+                    </form>
+                  </div>
+
+                  {item.review
+                    ? item.review.map(UniqueReview => {
+                        return (
+                          <div>
+                            <div>{UniqueReview.username}:</div>
+                            <ul>
+                              <li>{UniqueReview.message}</li>
+                            </ul>
+>>>>>>> 8d8d9288257eedaa963eda6bbe8b41e0282bebd8
                           </div>
                         );
                       })
@@ -183,6 +223,7 @@ class UnconnectedItemDetails extends Component {
             );
           })}
         </div>
+<<<<<<< HEAD
         {/* {console.log("this.props.reviews", this.props.reviews)}
         {this.props.reviews.map(review => {
           return (
@@ -217,6 +258,8 @@ class UnconnectedItemDetails extends Component {
             <input type="submit" value="submit" />
           </form>
         </div>
+=======
+>>>>>>> 8d8d9288257eedaa963eda6bbe8b41e0282bebd8
       </div>
     );
   };

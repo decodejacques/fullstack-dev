@@ -1,3 +1,8 @@
+.ItemPicture {
+  position: absolute;
+  top: 25%;
+  left: 10%;
+}
 .itemInfo {
   position: absolute;
   top: 50%;

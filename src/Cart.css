@@ -5,8 +5,16 @@
   box-sizing: inherit;
   text-align: left;
 }
-
+.NavBlock {
+  z-index: 101;
+  position: absolute;
+  width: 100%;
+  background: white;
+  height: 80%;
+  margin-top: 268px;
+}
 .ShoppingBag {
+  z-index: 200;
   position: absolute;
   top: 200px;
   margin-left: 150px;
@@ -16,23 +24,20 @@
   background: white;
   box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.1);
   border-radius: 6px;
-
   display: flex;
   flex-direction: column;
 }
 .ShoppingBagText {
-  margin-bottom: 40px;
   height: 60px;
-  border-bottom: 1px solid #e1e8ee;
-  padding: 20px 30px;
-  color: #5e6977;
-  font-size: 18px;
-  font-weight: 400;
+  border-bottom: 1px solid black;
+  padding: 0px 30px;
+  color: black;
+  font-size: 32px;
+  font-weight: 500;
 }
 .ItemFrame {
   border-bottom: 1px solid;
   text-align: left;
-  margin: 20px;
   padding: 20px 30px;
   height: fit-content;
   display: flex;
@@ -46,18 +51,15 @@
   text-align: left;
 }
 
-/* .Checkout {
+.Checkout {
+  z-index: 140;
+  border: 5px solid;
   position: fixed;
-  left: 700px;
-  top: 200px;
-  margin-left: 100px;
+  left: 1167px;
+  top: 400px;
+  padding: 20px;
+  margin-left: 60px;
 }
-.StripeFrame {
-  position: fixed;
-  top: 300px;
-  left: 700px;
-  margin-left: 100px;
-} */
 .ItemsPictureFrame {
   margin: 10px;
   padding: 10px;
@@ -79,7 +81,7 @@
   color: #86939e;
 }
 .ItemsQuantity {
-  margin-top: 20px;
+  margin-top: 53px;
   margin-right: 60px;
   text-align: center;
 }
@@ -107,18 +109,29 @@ input:focus {
 }
 .RemoveItemButton {
   height: fit-content;
-  background-color: #e1e8ee;
-  border-radius: 6px;
+  background-color: black;
+  color: white;
   border: none;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 45px;
+  margin-right: 20px;
+  font-size: 18px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.RemoveItemButton:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 .ItemPriceDiv {
   margin-top: 20px;
   margin-right: 60px;
 }
 .RemoveOneItemButton {
-  margin-top: 10px;
+  font-size: 24px;
+  font-weight: 500px;
+}
+.AddOneItemButton {
   font-size: 20px;
 }
 
@@ -139,7 +152,7 @@ input:focus {
   align-content: center;
 }
 .SubTotalDiv {
-  margin-top: 20px;
+  margin-top: 53px;
   width: 80px;
   margin-right: 60px;
 }
@@ -153,9 +166,17 @@ input:focus {
   border: none;
   font-family: "Roboto", sans-serif;
   font-size: 28px;
-  border-radius: 12px;
-  border: 2px solid crimson;
+  padding-left: 27px;
+  padding-right: 27px;
+  cursor: pointer;
+}
+.StripeButtonText:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 .StripeButton {
   background-color: transparent;
+}
+.TotalText {
+  text-align: center;
 }
