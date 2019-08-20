@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import ItemDetails from "./itemDetails.jsx";
 import { IoMdSearch } from "react-icons/io";
+import { IconContext } from "react-icons";
 
 class UnconnectedItems extends Component {
   constructor(props) {
