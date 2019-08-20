@@ -17,17 +17,33 @@ class UnconnectedCart extends Component {
     };
   }
 
+  // componentDidMount = () => {
+  //   let updateCartItems = async () => {
+  //     // get all cart items from the server
+  //     let response = await fetch("/cart-items");
+  //     let responseBody = await response.text();
+  //     //   console.log("responseBody", responseBody);
+  //     let parsed = JSON.parse(responseBody);
+  //     // console.log("parsed", parsed);
+  //     this.props.dispatch({ type: "set-cart", cart: parsed });
+  //   };
+  //   setInterval(updateCartItems, 500);
+  // };
+
   componentDidMount = () => {
-    let updateCartItems = async () => {
-      // get all cart items from the server
-      let response = await fetch("/cart-items");
-      let responseBody = await response.text();
-      //   console.log("responseBody", responseBody);
-      let parsed = JSON.parse(responseBody);
-      // console.log("parsed", parsed);
-      this.props.dispatch({ type: "set-cart", cart: parsed });
-    };
-    setInterval(updateCartItems, 500);
+    this.reload();
+  };
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevState.cart !== this.state.cart) {
+      this.reload();
+    }
+  };
+
+  reload = async () => {
+    let response = await fetch("/cart-items");
+    let responseBody = await response.text();
+    let parsed = JSON.parse(responseBody);
+    this.props.dispatch({ type: "set-cart", cart: parsed });
   };
 
   onToken = token => {

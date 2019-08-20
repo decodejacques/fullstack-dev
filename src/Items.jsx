@@ -3,7 +3,7 @@ import "./Item.css";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import ItemDetails from "./itemDetails.jsx";
-import { IoMdSearch } from "react-icons/io";
+import { IoMdSearch, IoIosThumbsDown } from "react-icons/io";
 import { IconContext } from "react-icons";
 
 class UnconnectedItems extends Component {
@@ -25,17 +25,32 @@ class UnconnectedItems extends Component {
       page: 0
     };
   }
-  componentDidMount = async () => {
-    // let updateItems = async () => {
-    // get all items from the server
+  // componentDidMount = async () => {
+  //   // let updateItems = async () => {
+  //   // get all items from the server
+  //   let response = await fetch("/items");
+  //   let responseBody = await response.text();
+  //   //   console.log("responseBody", responseBody);
+  //   let parsed = JSON.parse(responseBody);
+  //   console.log("parsed", parsed);
+  //   this.props.dispatch({ type: "set-items", items: parsed });
+  //   // };
+  //   // setInterval(updateItems, 500);
+  // };
+  componentDidMount = () => {
+    this.reload();
+  };
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevState.items !== this.state.items) {
+      this.reload();
+    }
+  };
+
+  reload = async () => {
     let response = await fetch("/items");
     let responseBody = await response.text();
-    //   console.log("responseBody", responseBody);
     let parsed = JSON.parse(responseBody);
-    console.log("parsed", parsed);
     this.props.dispatch({ type: "set-items", items: parsed });
-    // };
-    // setInterval(updateItems, 500);
   };
 
   gotoCart = () => {
