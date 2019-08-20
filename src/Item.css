@@ -37,6 +37,14 @@ video {
 .myNavbar {
   background: black;
 }
+
+.secondPart {
+  position: absolute;
+  right: 5%;
+  top: 6%;
+  font-size: 20px;
+  display: flex;
+}
 nav {
   position: fixed;
 
@@ -240,9 +248,11 @@ input {
   background-color: Transparent;
   background-repeat: no-repeat;
   border: none;
+
   cursor: pointer;
   overflow: hidden;
 }
 
-.commentBox {
+.ItemDescriptionLink a {
+  color: white;
 }

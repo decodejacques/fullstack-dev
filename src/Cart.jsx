@@ -160,9 +160,11 @@ class UnconnectedCart extends Component {
                 </div>
                 <div className="ItemsAction">
                   <div className="SubTotalDiv">
-                    <span className="SubTotalNumber">
-                      Sub total:
-                      {cartItem.quantity * itemDetails.cost}$
+                    <span className="SubTotalText">
+                      Sub total:⠀
+                      <span className="SubTotalNumber">
+                        {cartItem.quantity * itemDetails.cost}$
+                      </span>
                       <div style={{ display: "none" }}>
                         {(subTotal += cartItem.quantity * itemDetails.cost)}
                       </div>
@@ -203,7 +205,10 @@ class UnconnectedCart extends Component {
         </div>
         <div className="Checkout">
           <h1 className="CheckoutText">Checkout</h1>
-          <h1 className="TotalText">Total: {subTotal}$</h1>
+          <h1 className="TotalText">
+            Total:
+            <span className="TotalNumber"> {subTotal}$</span>
+          </h1>
           <h1>
             <div className="StripeFrame">
               <button
