@@ -9,6 +9,7 @@ class UnconnectedItemDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      items: this.props.items,
       quantity: 0,
       itemId: "",
       loveIt: 0,
@@ -18,10 +19,36 @@ class UnconnectedItemDetails extends Component {
     };
   }
 
-  // fetch the quantity in the cart and update the quantity in the state
-  //   componentDidMount = ()=>{
+  componentDidMount = /*async*/ () => {
+    let updateItems = async () => {
+      // get all items from the server
+      let response = await fetch("/items");
+      let responseBody = await response.text();
+      //   console.log("responseBody", responseBody);
+      let parsed = JSON.parse(responseBody);
+      console.log("parsed", parsed);
+      this.props.dispatch({ type: "set-items", items: parsed });
+    };
+    setInterval(updateItems, 500);
+  };
 
+  // componentDidMount = () => {
+  //   this.reload();
+  // };
+  // componentDidUpdate = (prevProps, prevState) => {
+  //   if (prevState.items !== this.state.items) {
+  //     this.reload();
   //   }
+  // };
+
+  // reload = async () => {
+  //   let response = await fetch("/items");
+  //   let responseBody = await response.text();
+  //   let parsed = JSON.parse(responseBody);
+  //   console.log("parsed", parsed);
+  //   this.props.dispatch({ type: "set-items", items: parsed });
+  // };
+
   handleCheckout = () => {
     this.props.history.push("/cart");
     return;
@@ -163,6 +190,23 @@ class UnconnectedItemDetails extends Component {
                         add to cart
                       </button>
                     </div>
+                    <div>
+                      <div
+                        style={{
+                          display: this.state.quantity >= 1 ? "block" : "none"
+                        }}
+                      >
+                        <button onClick={this.handleCheckout}>
+                          checkout
+                          {/* <div style={{ display: "none" }}>
+                <Cart id={this.state.itemId} />
+              </div> */}
+                        </button>
+                        <button onClick={this.handleContinueShopping}>
+                          Continue shopping
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -183,27 +227,7 @@ class UnconnectedItemDetails extends Component {
             );
           })}
         </div>
-        {/* {console.log("this.props.reviews", this.props.reviews)}
-        {this.props.reviews.map(review => {
-          return (
-            <div>
-              {review.username}: {review.message}
-            </div>
-          );
-        })} */}
-        <div>
-          <div style={{ display: this.state.quantity >= 1 ? "block" : "none" }}>
-            <button onClick={this.handleCheckout}>
-              checkout
-              {/* <div style={{ display: "none" }}>
-                <Cart id={this.state.itemId} />
-              </div> */}
-            </button>
-            <button onClick={this.handleContinueShopping}>
-              Continue shopping
-            </button>
-          </div>
-        </div>
+
         <div className="reviewForm">
           <form onSubmit={this.handleReview}>
             {" "}

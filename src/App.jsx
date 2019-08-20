@@ -53,15 +53,18 @@ class UnconnectedNavigation extends Component {
           <NavLink to="/all-items" className="hvr-bounce-to-right">
             Home
           </NavLink>
-          <NavLink className="hvr-bounce-to-right" to="/cart">
-            <FiShoppingCart />
-          </NavLink>
           <NavLink to="/new-item" className="hvr-bounce-to-right">
             Sell an item
           </NavLink>
-          <button onClick={this.logout} className="hvr-bounce-to-right">
-            Log out
-          </button>
+          <div className="secondPart">
+            <NavLink className="hvr-bounce-to-right" to="/cart">
+              <FiShoppingCart />
+            </NavLink>
+
+            <button onClick={this.logout} className="hvr-bounce-to-right">
+              Log out
+            </button>
+          </div>
         </div>
       </nav>
     );
