@@ -167,43 +167,13 @@ class UnconnectedItemDetails extends Component {
                 </div>
 
                 {console.log("item.review", item.review)}
-                <div>
-                  <div
-                    style={{
-                      display: this.state.quantity >= 1 ? "block" : "none"
-                    }}
-                  >
-                    <button onClick={this.handleCheckout}>checkout</button>
-                    <button onClick={this.handleContinueShopping}>
-                      Continue shopping
-                    </button>
-                  </div>
-                </div>
-                <div>
-                  <div />
-
-                  <h3>Reviews</h3>
-                  <div>
-                    <form onSubmit={this.handleReview}>
-                      <input
-                        type="text"
-                        name="review"
-                        value={this.state.reviews}
-                        onChange={this.handleText}
-                        placeholder="Please add your review here"
-                      />
-                      <input type="submit" value="submit" />
-                    </form>
-                  </div>
-
+                <div className="reviewBox">
+                  <div>Reviews</div>
                   {item.review
                     ? item.review.map(UniqueReview => {
                         return (
-                          <div>
-                            <div>{UniqueReview.username}:</div>
-                            <ul>
-                              <li>{UniqueReview.message}</li>
-                            </ul>
+                          <div className="newReview">
+                            {UniqueReview.message}
                           </div>
                         );
                       })
@@ -212,6 +182,40 @@ class UnconnectedItemDetails extends Component {
               </div>
             );
           })}
+        </div>
+        {/* {console.log("this.props.reviews", this.props.reviews)}
+        {this.props.reviews.map(review => {
+          return (
+            <div>
+              {review.username}: {review.message}
+            </div>
+          );
+        })} */}
+        <div>
+          <div style={{ display: this.state.quantity >= 1 ? "block" : "none" }}>
+            <button onClick={this.handleCheckout}>
+              checkout
+              {/* <div style={{ display: "none" }}>
+                <Cart id={this.state.itemId} />
+              </div> */}
+            </button>
+            <button onClick={this.handleContinueShopping}>
+              Continue shopping
+            </button>
+          </div>
+        </div>
+        <div className="reviewForm">
+          <form onSubmit={this.handleReview}>
+            {" "}
+            Add a review
+            <input
+              type="text"
+              name="review"
+              value={this.state.reviews}
+              onChange={this.handleText}
+            />
+            <input type="submit" value="submit" />
+          </form>
         </div>
       </div>
     );

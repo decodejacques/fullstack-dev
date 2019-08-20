@@ -145,7 +145,7 @@ class UnconnectedCart extends Component {
               <div className="ItemFrame">
                 <a className="ItemsPictureFrame">
                   <img
-                    className="ItemPicture"
+                    className="ItemPictureCart"
                     src={itemDetails.filePath}
                     height="300px"
                     width="300px"
@@ -158,49 +158,51 @@ class UnconnectedCart extends Component {
                   </span>
                   <span className="ItemsCost"> {itemDetails.cost + "$ "} </span>
                 </div>
-
-                <div className="SubTotalDiv">
-                  <span className="SubTotalText">
-                    {cartItem.quantity * itemDetails.cost}$
-                    <div style={{ display: "none" }}>
-                      {(subTotal += cartItem.quantity * itemDetails.cost)}
+                <div className="ItemsAction">
+                  <div className="SubTotalDiv">
+                    <span className="SubTotalNumber">
+                      Sub total:
+                      {cartItem.quantity * itemDetails.cost}$
+                      <div style={{ display: "none" }}>
+                        {(subTotal += cartItem.quantity * itemDetails.cost)}
+                      </div>
+                      {console.log("subTotal", subTotal)}
+                    </span>
+                  </div>
+                  <div className="QuantityButtons">
+                    <div className="ItemsQuantity">
+                      quantity: {cartItem.quantity}
                     </div>
-                    {console.log("subTotal", subTotal)}
-                  </span>
-                </div>
 
-                <div className="QuantityButtons">
-                  <div className="ItemsQuantity">
-                    quantity: {cartItem.quantity}
+                    <button
+                      className="RemoveOneItemButton"
+                      id="buttonCart"
+                      onClick={() => this.removeOneFromCart(cartItem.itemId)}
+                    >
+                      -
+                    </button>
+                    <button
+                      className="AddOneItemButton"
+                      id="buttonCart"
+                      onClick={() => this.addOneToCart(cartItem.itemId)}
+                    >
+                      +
+                    </button>
                   </div>
 
                   <button
-                    className="RemoveOneItemButton"
-                    id="buttonCart"
-                    onClick={() => this.removeOneFromCart(cartItem.itemId)}
+                    className="RemoveItemButton"
+                    onClick={() => this.removeFromCart(cartItem.itemId)}
                   >
-                    -
-                  </button>
-                  <button
-                    className="AddOneItemButton"
-                    id="buttonCart"
-                    onClick={() => this.addOneToCart(cartItem.itemId)}
-                  >
-                    +
+                    remove from cart
                   </button>
                 </div>
-
-                <button
-                  className="RemoveItemButton"
-                  onClick={() => this.removeFromCart(cartItem.itemId)}
-                >
-                  remove from cart
-                </button>
               </div>
             );
           })}
         </div>
         <div className="Checkout">
+          <h1 className="CheckoutText">Checkout</h1>
           <h1 className="TotalText">Total: {subTotal}$</h1>
           <h1>
             <div className="StripeFrame">
