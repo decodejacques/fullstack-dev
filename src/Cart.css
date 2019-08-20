@@ -16,7 +16,7 @@
 .ShoppingBag {
   z-index: 200;
   position: absolute;
-  top: 200px;
+  top: 100px;
   margin-left: 150px;
   width: fit-content;
   height: fit-content;
