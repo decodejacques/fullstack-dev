@@ -39,61 +39,6 @@ app.use("/", express.static("build")); // Needed for the HTML and JS files
 app.use("/uploads", express.static("uploads")); // Needed for local assets
 app.use("/images", express.static("images"));
 
-// pagination below
-// let fs = require("fs");
-// let path = require("path");
-// let util = require("util");
-// let serveStatic = require("serve-static");
-// let webpack = require("webpack");
-// let webpackDevMiddleware = require("webpack-dev-middleware");
-// let WebpackConfig = require("./webpack.config");
-// let ROOT_DIR = path.join(__dirname, ".");
-// let STYLES_DIR = path.join(__dirname, "styles");
-// let DATA = path.join(__dirname, "data", "data.json");
-// let NODE_PORT = process.env.NODE_PORT || 3000;
-// let NODE_ENV = process.env.NODE_ENV || "development";
-// let PER_PAGE = 6;
-
-// app.use(serveStatic(ROOT_DIR));
-// app.use(serveStatic(STYLES_DIR));
-
-// app.use(
-//   webpackDevMiddleware(webpack(WebpackConfig), {
-//     publicPath: "/build/",
-//     stats: {
-//       colors: true
-//     }
-//   })
-// );
-
-// function getPaginatedItems(items, offset) {
-//   return items.slice(offset, offset + PER_PAGE);
-// }
-
-// app.get("/all-items", function(req, res) {
-//   let items = JSON.parse(fs.readFileSync(DATA));
-//   let offset = req.query.offset ? parseInt(req.query.offset, 3) : 0;
-//   let nextOffset = offset + PER_PAGE;
-//   let previousOffset = offset - PER_PAGE < 1 ? 0 : offset - PER_PAGE;
-
-//   let meta = {
-//     limit: PER_PAGE,
-//     next: util.format("?limit=%s&offset=%s", PER_PAGE, nextOffset),
-//     offset: req.query.offset,
-//     previous: util.format("?limit=%s&offset=%s", PER_PAGE, previousOffset),
-//     total_count: items.length
-//   };
-
-//   let json = {
-//     meta: meta,
-//     comments: getPaginatedItems(items, offset)
-//   };
-
-//   return res.json(json);
-// });
-
-// pagination above
-
 // Your endpoints go after this line
 //app.post create/update a resource and send it back after
 // loveit
