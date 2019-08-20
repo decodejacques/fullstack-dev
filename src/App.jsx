@@ -26,6 +26,7 @@ import Login from "./pages/Login.jsx";
 import ItemDetails from "./itemDetails.jsx";
 
 import "./Item.css";
+import { FiShoppingCart } from "react-icons/fi";
 
 // pagnination
 window.React = React;
@@ -77,7 +78,7 @@ class UnconnectedNavigation extends Component {
             Home
           </NavLink>
           <NavLink className="hvr-bounce-to-right" to="/cart">
-            Cart
+            <FiShoppingCart />
           </NavLink>
           <NavLink to="/new-item" className="hvr-bounce-to-right">
             Sell an item
