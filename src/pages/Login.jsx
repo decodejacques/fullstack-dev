@@ -50,6 +50,7 @@ class UnconnectedLogin extends Component {
     return (
       <div className="App">
         <div className="App__Aside" />
+
         <div className="App__Form">
           <div className="FormTitle">
             <div className="FormCenter">

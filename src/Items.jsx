@@ -194,12 +194,17 @@ class UnconnectedItems extends Component {
             {displayedItems.map(item => {
               return (
                 <div className="ItemFields">
-                  <img
-                    className="picture"
-                    src={item.filePath}
-                    height="300px"
-                    width="200px"
-                  />
+                  <button className="ItemDescriptionLink">
+                    <Link to={"/item/" + item._id}>
+                      {" "}
+                      <img
+                        className="picture"
+                        src={item.filePath}
+                        height="300px"
+                        width="200px"
+                      />
+                    </Link>
+                  </button>
                   <div className="ItemName">{item.name}</div>
                   <div className="ItemDescription">{item.description}</div>
                   <div
@@ -221,9 +226,6 @@ class UnconnectedItems extends Component {
                       {item.loveIt > 1 ? " love it! " : " loves it!"}
                     </div>
                   </div>
-                  <button className="ItemDescriptionLink">
-                    <Link to={"/item/" + item._id}>Item Details</Link>
-                  </button>
 
                   <div />
                 </div>
