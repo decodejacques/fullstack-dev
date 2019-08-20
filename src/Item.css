@@ -211,19 +211,21 @@ input {
 }
 .ItemsField {
   z-index: 104;
-  position: absolute;
-  height: auto;
-  top: 200px;
-  left: 100x;
+  align-items: center;
+  position: relative;
+  height: fit-content;
   list-style-type: none;
   text-align: center;
   display: grid;
   grid-template-columns: auto auto auto;
   padding: 40px;
   margin: 20px;
-  grid-column-gap: 100px;
-  grid-row-gap: 110px;
+  grid-column-gap: 76px;
+  grid-row-gap: 70px;
+  width: fit-content;
   background-color: white;
+  inline-size: -webkit-fill-available;
+  align-self: center;
 }
 .ItemsFields {
   border: 10px solid rgba(0, 0, 0, 0.8);
@@ -232,6 +234,8 @@ input {
   text-align: center;
   margin: 50px;
   z-index: 104;
+  min-width: 520px;
+  width: fit-content;
 }
 .ItemName {
   font-style: italic;
