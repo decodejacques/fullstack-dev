@@ -170,10 +170,10 @@ class UnconnectedItems extends Component {
               return (
                 <div className="ItemFields">
                   <img
-                    className="ItemPicture"
+                    className="picture"
                     src={item.filePath}
-                    height="290px"
-                    width="260px"
+                    height="300px"
+                    width="200px"
                   />
                   <div className="ItemName">{item.name}</div>
                   <div className="ItemDescription">{item.description}</div>

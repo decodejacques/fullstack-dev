@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./main.css";
+import "./ItemDetails.css";
 import { connect } from "react-redux";
 import { Link, NavLink, Redirect } from "react-router-dom";
 import { routerMiddleware, push } from "react-router-redux";
@@ -135,37 +136,46 @@ class UnconnectedItemDetails extends Component {
                   <img
                     className="ItemPicture"
                     src={item.filePath}
-                    height="200px"
-                    width="200px"
+                    height="400px"
+                    width="350px"
                   />
-                  <div>{item.name}</div>
-                  <div>{item.description}</div>
-                  <div>{item.cost + "$"}</div>
-                  <div />
-                  <div
-                    className="ItemDescription"
-                    style={{
-                      display: item.available_quantity <= 0 ? "block" : "none"
-                    }}
-                  >
-                    SOLD OUT
+                  <div className="itemInfo">
+                    <div>{item.name}</div>
+                    <div>{item.description}</div>
+                    <div>{item.cost + "$"}</div>{" "}
+                    <div
+                      className="ItemDescription"
+                      style={{
+                        display: item.available_quantity <= 0 ? "block" : "none"
+                      }}
+                    >
+                      SOLD OUT
+                    </div>
+                    <button onClick={this.handleLoveIt}>love it!</button>
+                    <div className="addButton">
+                      <button
+                        onClick={this.addToCart}
+                        style={{
+                          display:
+                            item.available_quantity <= 0 ? "none" : "block"
+                        }}
+                      >
+                        add to cart
+                      </button>
+                    </div>
                   </div>
-                  <button onClick={this.handleLoveIt}>love it!</button>
                 </div>
-                <button
-                  onClick={this.addToCart}
-                  style={{
-                    display: item.available_quantity <= 0 ? "none" : "block"
-                  }}
-                >
-                  add to cart
-                </button>
+
                 {console.log("item.review", item.review)}
-                <div>
+                <div className="reviewBox">
                   <div>Reviews</div>
                   {item.review
                     ? item.review.map(UniqueReview => {
-                        return <div>{UniqueReview.message}</div>;
+                        return (
+                          <div className="newReview">
+                            {UniqueReview.message}
+                          </div>
+                        );
                       })
                     : null}
                 </div>
@@ -194,18 +204,19 @@ class UnconnectedItemDetails extends Component {
             </button>
           </div>
         </div>
-
-        <form onSubmit={this.handleReview}>
-          {" "}
-          Add a review
-          <input
-            type="text"
-            name="review"
-            value={this.state.reviews}
-            onChange={this.handleText}
-          />
-          <input type="submit" value="submit" />
-        </form>
+        <div className="reviewForm">
+          <form onSubmit={this.handleReview}>
+            {" "}
+            Add a review
+            <input
+              type="text"
+              name="review"
+              value={this.state.reviews}
+              onChange={this.handleText}
+            />
+            <input type="submit" value="submit" />
+          </form>
+        </div>
       </div>
     );
   };

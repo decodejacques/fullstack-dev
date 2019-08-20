@@ -1,0 +1,23 @@
+.itemInfo {
+  position: absolute;
+  top: 50%;
+  left: 60%;
+}
+
+.reviewBox {
+  position: absolute;
+  height: auto;
+  padding: 10px;
+  border: 1px solid;
+  top: 650px;
+  left: 60%;
+}
+
+.reviewForm {
+  position: absolute;
+  height: auto;
+  padding: 10px;
+  border: 1px solid;
+  top: 650px;
+  left: 10%;
+}
