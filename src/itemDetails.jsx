@@ -175,6 +175,8 @@ class UnconnectedItemDetails extends Component {
                 </div>
                 <div>
                   <div />
+
+                  <h3>Reviews</h3>
                   <div>
                     <form onSubmit={this.handleReview}>
                       <input
@@ -187,7 +189,7 @@ class UnconnectedItemDetails extends Component {
                       <input type="submit" value="submit" />
                     </form>
                   </div>
-                  <h3>Reviews</h3>
+
                   {item.review
                     ? item.review.map(UniqueReview => {
                         return (
