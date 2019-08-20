@@ -117,6 +117,7 @@ class UnconnectedCart extends Component {
     let subTotal = 0;
     return (
       <div className="MainFrame">
+        <div className="NavBlock" />
         <div className="ShoppingBag">
           <div className="ShoppingBagText">Shopping Bag</div>
           {this.props.cart.map(cartItem => {
@@ -177,16 +178,15 @@ class UnconnectedCart extends Component {
                   className="RemoveItemButton"
                   onClick={() => this.removeFromCart(cartItem.itemId)}
                 >
-                  x
+                  remove from cart
                 </button>
               </div>
             );
           })}
         </div>
         <div className="Checkout">
-          <h1>Total Price: {subTotal}$</h1>
+          <h1 className="TotalText">Total: {subTotal}$</h1>
           <h1>
-            Checkout
             <div className="StripeFrame">
               <button
                 className="StripeButton"
