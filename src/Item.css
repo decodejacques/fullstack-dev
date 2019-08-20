@@ -4,7 +4,7 @@
   z-index: 100;
   text-align: center;
   position: relative;
-  top: 100px;
+  top: 2px;
   display: flex;
   justify-content: center;
   background-color: white;
@@ -218,7 +218,8 @@ input {
   text-align: center;
   display: grid;
   grid-template-columns: auto auto auto;
-  padding: 40px;
+  padding-left: 100px;
+  padding-right: 100px;
   margin: 20px;
   grid-column-gap: 76px;
   grid-row-gap: 70px;
@@ -228,13 +229,12 @@ input {
   align-self: center;
 }
 .ItemsFields {
-  border: 10px solid rgba(0, 0, 0, 0.8);
   padding: 20px;
   font-size: 30px;
   text-align: center;
   margin: 50px;
+  min-width: -webkit-fill-available;
   z-index: 104;
-  min-width: 520px;
   width: fit-content;
 }
 .ItemName {
@@ -259,4 +259,8 @@ input {
 
 .ItemDescriptionLink a {
   color: white;
+}
+.PaginationDiv {
+  display: flex;
+  justify-content: center;
 }
