@@ -156,13 +156,7 @@ class UnconnectedCart extends Component {
                   <div className="ItemsQuantity">
                     quantity: {cartItem.quantity}
                   </div>
-                  <button
-                    className="AddOneItemButton"
-                    id="buttonCart"
-                    onClick={() => this.addOneToCart(cartItem.itemId)}
-                  >
-                    +
-                  </button>
+
                   <button
                     className="RemoveOneItemButton"
                     id="buttonCart"
@@ -170,13 +164,20 @@ class UnconnectedCart extends Component {
                   >
                     -
                   </button>
+                  <button
+                    className="AddOneItemButton"
+                    id="buttonCart"
+                    onClick={() => this.addOneToCart(cartItem.itemId)}
+                  >
+                    +
+                  </button>
                 </div>
 
                 <button
                   className="RemoveItemButton"
                   onClick={() => this.removeFromCart(cartItem.itemId)}
                 >
-                  remove from cart
+                  x
                 </button>
               </div>
             );
