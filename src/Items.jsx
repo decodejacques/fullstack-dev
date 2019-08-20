@@ -20,7 +20,8 @@ class UnconnectedItems extends Component {
       itemFound: "",
       quantity: 0,
       item: {},
-      loveIt: 0
+      loveIt: 0,
+      page: 0
     };
   }
   componentDidMount = async () => {
@@ -74,6 +75,18 @@ class UnconnectedItems extends Component {
     event.preventDefault();
   };
 
+  GoBackToPreviousPage = () => {
+    this.setState({ ...this.state, page: this.state.page - 1 });
+  };
+
+  GoToNextPage = () => {
+    this.setState({ ...this.state, page: this.state.page + 1 });
+  };
+
+  GoToPage = i => {
+    this.setState({ ...this.state, page: i });
+  };
+
   render = () => {
     console.log("rendering items");
     let displayedItems = this.props.items;
@@ -87,9 +100,21 @@ class UnconnectedItems extends Component {
     }
     let maxCost = parseInt(this.state.filterMaxCost);
 
-    displayedItems = displayedItems.filter(item => {
-      return item.cost > this.state.filterCost && item.cost < maxCost;
-    });
+    // displayedItems = displayedItems.filter(item => {
+    //   return item.cost > this.state.filterCost && item.cost < maxCost;
+    // });
+
+    displayedItems = displayedItems
+      .slice(this.state.page * 6, this.state.page * 6 + 6)
+      .filter(item => {
+        return item.cost > this.state.filterCost && item.cost < maxCost;
+      });
+
+    let indexPage = [];
+    for (let index = 1; index <= this.props.items.length / 6; index += 6) {
+      console.log(index);
+      indexPage.push(index);
+    }
 
     console.log("displayedItems", displayedItems);
 
@@ -205,6 +230,37 @@ class UnconnectedItems extends Component {
             })}
           </div>
         </div>
+        {/* pagination */}
+        <div>
+          <button
+            onClick={this.GoBackToPreviousPage}
+            style={{ display: this.state.page > 0 ? "block" : "none" }}
+          >
+            previous
+          </button>
+          {indexPage.map(i => {
+            return (
+              <button
+                onClick={() => this.GoToPage(i)}
+                /*style={{ display: this.state.page > 0 ? "block" : "none" }}*/
+              >
+                {i}
+              </button>
+            );
+          })}
+          {/* other numbers coming */}
+          <button
+            onClick={this.GoToNextPage}
+            style={{
+              display:
+                this.state.page < Math.floor(this.props.items.length / 6)
+                  ? "block"
+                  : "none"
+            }}
+          >
+            next
+          </button>
+        </div>
       </div>
     );
   };
@@ -220,6 +276,4 @@ let mapStateToProps = state => {
 };
 
 let Items = connect(mapStateToProps)(UnconnectedItems);
-// let GridItem = connect(mapStateToProps)(UnconnectedGridItem);
 export default Items;
-// export { Items, GridItem };
