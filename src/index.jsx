@@ -72,7 +72,8 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <App url={"http://localhost:4000/all-items"} perPage={6} />
   </Provider>,
   document.getElementById("root")
+  // document.getElementById("react-paginate")
 );
