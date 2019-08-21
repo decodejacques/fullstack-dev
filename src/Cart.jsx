@@ -237,7 +237,7 @@ class UnconnectedCart extends Component {
               <button onClick={this.handleCheckout}>checkout</button>
             </div>
           </h1> */}
-          <button onClick={this.handleCheckout}>confirm address & pay</button>
+          <button onClick={this.handleCheckout}>shipping details & payment</button>
         </div>
       </div>
     );
