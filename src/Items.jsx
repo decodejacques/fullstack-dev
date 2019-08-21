@@ -140,8 +140,8 @@ class UnconnectedItems extends Component {
         <video
           loop
           src="images/ast_days_of_summer.mp4"
-          width="1400"
-          height="690"
+          width="100%"
+          height="100%"
           controls="controls"
           autoPlay="true"
         />
