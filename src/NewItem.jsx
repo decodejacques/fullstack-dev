@@ -65,8 +65,8 @@ class newItemForm extends Component {
 
   render() {
     return (
-      <div>
-        <div className="cardcreatelistingcard">
+      <div className="NewItemPage">
+        <div className="VideoLeftSide">
           <video
             loop
             src="images/farmer.mov"

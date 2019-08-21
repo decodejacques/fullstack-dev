@@ -79,8 +79,6 @@ em {
 
 nav {
   position: fixed;
-
-  top: 18px;
   left: 0;
   background: transparent;
   z-index: 99;
