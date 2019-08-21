@@ -67,64 +67,72 @@ class newItemForm extends Component {
     return (
       <div>
         <div className="cardcreatelistingcard">
-          <div className="createAListingForm">
-            <h2>Create a listing for your item</h2>
-            <form onSubmit={this.handleSubmit}>
-              <div className="textspacing">
-                Name your listing:
-                <input
-                  className="FormNameListing"
-                  type="text"
-                  name="mytext"
-                  value={this.state.inputName}
-                  placeholder="Item name"
-                  onChange={this.handleItemName}
-                />
-              </div>
-              <div className="textSpacing">
-                Write a description here
-                <input
-                  className="FormDescriptionListing"
-                  type="text"
-                  name="mytext"
-                  value={this.state.inputDesc}
-                  placeholder="Item description"
-                  onChange={this.handleItemDesc}
-                />
-              </div>
-              <div className="textSpacing">
-                How much would you like to sell it for?
-                <input
-                  type="text"
-                  name="mytext"
-                  value={this.state.inputItemPrice}
-                  placeholder="Item price"
-                  onChange={this.handleItemPrice}
-                />
-              </div>
-              <div className="textSpacing">
-                How many do you have in stock?
-                <input
-                  type="text"
-                  name="mytext"
-                  value={this.state.inputItemQuantity}
-                  placeholder="Item quantity"
-                  onChange={this.handleItemQuantity}
-                />
-              </div>
-              <div className="textspacing">
-                Upload an image:
-                <input
-                  type="file"
-                  id="input"
-                  onChange={e => this.uploadFile(e.target.files[0])}
-                />
-              </div>
-              <div className="textspacing">
-                <input className="buttontoadd" type="submit" />
-              </div>
-            </form>
-          </div>
+          <video
+            loop
+            src="images/farmer.mov"
+            width="1400"
+            height="690"
+            controls="controls"
+            autoPlay={true}
+          />
+        </div>
+        <div className="createAListingForm">
+          <h2>Create a listing for your item</h2>
+          <form onSubmit={this.handleSubmit}>
+            <div className="textspacing">
+              Name your listing:
+              <input
+                className="FormNameListing"
+                type="text"
+                name="mytext"
+                value={this.state.inputName}
+                placeholder="Item name"
+                onChange={this.handleItemName}
+              />
+            </div>
+            <div className="textSpacing">
+              Write a description here
+              <input
+                className="FormDescriptionListing"
+                type="text"
+                name="mytext"
+                value={this.state.inputDesc}
+                placeholder="Item description"
+                onChange={this.handleItemDesc}
+              />
+            </div>
+            <div className="textSpacing">
+              How much would you like to sell it for?
+              <input
+                type="text"
+                name="mytext"
+                value={this.state.inputItemPrice}
+                placeholder="Item price"
+                onChange={this.handleItemPrice}
+              />
+            </div>
+            <div className="textSpacing">
+              How many do you have in stock?
+              <input
+                type="text"
+                name="mytext"
+                value={this.state.inputItemQuantity}
+                placeholder="Item quantity"
+                onChange={this.handleItemQuantity}
+              />
+            </div>
+            <div className="textspacing">
+              Upload an image:
+              <input
+                type="file"
+                id="input"
+                onChange={e => this.uploadFile(e.target.files[0])}
+              />
+            </div>
+            <div className="textspacing">
+              <input className="buttontoadd" type="submit" />
+            </div>
+          </form>
         </div>
       </div>
     );

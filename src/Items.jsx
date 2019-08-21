@@ -225,7 +225,7 @@ class UnconnectedItems extends Component {
                 <div className="ItemName">{item.name}</div>
                 <div className="ItemDescription">{item.description}</div>
                 <div
-                  className="ItemDescription"
+                  className="ItemQuantities"
                   style={{
                     display: item.available_quantity <= 0 ? "block" : "none"
                   }}
@@ -247,6 +247,7 @@ class UnconnectedItems extends Component {
               </div>
             );
           })}
+<<<<<<< HEAD
         </div>
         {/* pagination */}
         <div className="PaginationDiv">
@@ -282,6 +283,43 @@ class UnconnectedItems extends Component {
           >
             next
           </button>
+=======
+          {/* pagination */}
+          <div className="PaginationDiv">
+            <button
+              className="Pagination"
+              className="PagePrevious"
+              onClick={this.GoBackToPreviousPage}
+              style={{ display: this.state.page > 0 ? "block" : "none" }}
+            >
+              previous
+            </button>
+            {indexPage.map(i => {
+              return (
+                <button
+                  className="PageNumber"
+                  onClick={() => this.GoToPage(i)}
+                  /*style={{ display: this.state.page > 0 ? "block" : "none" }}*/
+                >
+                  {i}
+                </button>
+              );
+            })}
+            {/* other numbers coming */}
+            <button
+              className="PageNext"
+              onClick={this.GoToNextPage}
+              style={{
+                display:
+                  this.state.page < Math.floor(this.props.items.length / 6)
+                    ? "block"
+                    : "none"
+              }}
+            >
+              next
+            </button>
+          </div>
+>>>>>>> 9bd6ff7cf71d56a942e214acefee94b5ebcd530b
         </div>
       </div>
     );

@@ -4,7 +4,7 @@
   z-index: 100;
   text-align: center;
   position: relative;
-  top: 20px;
+  top: 85px;
   display: flex;
   justify-content: center;
   background-color: white;
@@ -265,6 +265,7 @@ input {
   top: 200px;
 }
 .ItemsFields {
+  position: relative;
   padding: 20px;
   font-size: 30px;
   text-align: center;
@@ -282,6 +283,15 @@ input {
 .ItemDescription {
   font-weight: 100;
 }
+.ItemQuantities {
+  color: red;
+  transform: rotate(20deg);
+  display: block;
+  position: absolute;
+  right: 35%;
+  top: 26%;
+  font-weight: bolder;
+}
 .itemPrice {
   font-weight: 150;
 }
@@ -298,6 +308,7 @@ input {
   color: white;
 }
 .PaginationDiv {
+  inline-size: -webkit-fill-available;
   display: flex;
   justify-content: center;
 }

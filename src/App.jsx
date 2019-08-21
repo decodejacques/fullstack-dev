@@ -35,7 +35,7 @@ class UnconnectedNavigation extends Component {
     super(props);
     this.state = {
       email: "",
-      color: "white"
+      color: "transparent"
     };
   }
   listenScrollEvent = e => {
