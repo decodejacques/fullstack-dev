@@ -28,37 +28,37 @@ class UnconnectedCheckout extends Component {
       <div>
         <h2> Checkout</h2>
         <div>SHIPPING ADDRESS</div>
-        <form onSubmit={this.OnToken}>
+        <form className="shipping" onSubmit={this.OnToken}>
           <div>
-            First name
+            <b> First name </b>
             <input type="text" placeholder="..." />
           </div>
           <div>
-            Last name
+            <b>Last name</b>
             <input type="text" placeholder="..." />
           </div>
           <div>
-            Street address
+            <b> Street address </b>
             <input type="text" placeholder="..." />
           </div>
           <div>
-            City
+            <b> City </b>
             <input type="text" placeholder="..." />
           </div>
           <div>
-            ZIP or postal code
+            <b> ZIP or postal code </b>
             <input type="text" placeholder="AAA BBB" />
           </div>
           <div>
-            Country
+            <b>Country </b>
             <input type="text" placeholder="..." />
           </div>
           <div>
-            State or province
+            <b>State or province</b>
             <input type="text" placeholder="..." />
           </div>
           <div>
-            Phone
+            <b>Phone </b>
             <input type="text" placeholder="..." />
           </div>
         </form>

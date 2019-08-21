@@ -173,6 +173,8 @@ input:focus {
   font-weight: 400;
 }
 .StripeButtonText {
+  position: absolute;
+  top: 450px;
   background-color: black !important;
   background-image: none;
   color: white;
