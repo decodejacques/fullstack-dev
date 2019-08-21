@@ -46,45 +46,44 @@ body {
   left: 700px;
   margin-left: 100px;
 } */
-.cardcreatelistingcard {
-  width: 100%;
-  height: 100%;
-  padding: 20px;
-  background: #000;
+.NewItemPage {
   position: absolute;
+  display: flex;
+  background: black;
+  width: 100%;
+  height: -webkit-fill-available;
+}
+.VideoLeftSide {
+  width: 65%;
+  bottom: 43px;
+  background: #000;
+  position: relative;
   background-size: cover;
+  margin-top: auto;
 }
 
 .createAListingForm {
-  position: absolute;
+  margin-top: auto;
+  position: relative;
   z-index: 300;
-  top: 90px;
-  right: 25px;
   width: 35%;
-  height: 660px;
-  background: #eee;
-  padding: 30px;
-  border-radius: 10px;
-  background: rgba(238, 238, 238, 0.8);
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 .createAListingForm h2 {
   font-weight: normal;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  color: dimgray;
+  font-family: "roboto", sans-serif;
+  color: white;
   font-size: 27px;
 }
 input[name="mytext"] {
-  width: 100%;
-  padding: 12px 0px 4px;
+  text-align: -webkit-center;
+  width: 75%;
+  padding: 5px 0px 5px;
   margin: 6px 0 20px;
   display: block;
   border: none;
-  border-bottom: 1px dotted #000;
-  border-radius: 4px;
-  font-size: 22px;
-  font-family: Georgia, "Times New Roman", Times, serif;
-
+  font-size: 20px;
   color: #000;
   background: #eee;
   transition: all 0.3s;
@@ -101,7 +100,7 @@ input[name="mytext"]:focus {
 input[type="submit"] {
   display: block;
   width: 100%;
-  background-color: dimgray;
+  background-color: black;
   color: white;
   padding: 14px 20px;
   margin: 14px 10px 14px 0;
@@ -118,11 +117,21 @@ input[type="submit"]:hover,
 input[type="submit"]:focus,
 input[type="reset"]:hover,
 input[type="reset"]:focus {
-  background-color: dimgray;
+  background-color: black;
 }
 .FormNameListing {
   text-transform: lowercase;
 }
 .FormDescriptionListing {
   text-transform: lowercase;
+}
+.textspacing {
+  scroll-snap-align: center;
+  color: white;
+  background: black;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+.buttontoadd {
+  background: black;
 }
