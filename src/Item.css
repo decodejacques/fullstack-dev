@@ -308,6 +308,7 @@ input {
   color: white;
 }
 .PaginationDiv {
+  inline-size: -webkit-fill-available;
   display: flex;
   justify-content: center;
 }
