@@ -206,7 +206,7 @@ class UnconnectedItems extends Component {
                 <div className="ItemName">{item.name}</div>
                 <div className="ItemDescription">{item.description}</div>
                 <div
-                  className="ItemDescription"
+                  className="ItemQuantities"
                   style={{
                     display: item.available_quantity <= 0 ? "block" : "none"
                   }}
