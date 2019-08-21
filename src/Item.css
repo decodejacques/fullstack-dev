@@ -4,7 +4,7 @@
   z-index: 100;
   text-align: center;
   position: relative;
-  top: 100px;
+  top: 2px;
   display: flex;
   justify-content: center;
   background-color: white;
@@ -160,6 +160,7 @@ button.hvr-bounce-to-right {
 .filterArea {
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   top: 65px;
 }
 .UserDisplay {
@@ -245,6 +246,7 @@ input {
 }
 .ItemsField {
   z-index: 104;
+<<<<<<< HEAD
   position: absolute;
   height: auto;
   top: 200px;
@@ -258,15 +260,32 @@ input {
   margin: 0px;
   grid-column-gap: 100px;
   grid-row-gap: 110px;
+=======
+  align-items: center;
+  position: relative;
+  height: fit-content;
+  list-style-type: none;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-height: -webkit-fill-available;
+  grid-row-gap: 70px;
+  width: fit-content;
+>>>>>>> c58c7388d046f5b8dfb3cc9a6928b6e414ede537
   background-color: white;
+  inline-size: -webkit-fill-available;
+  align-self: center;
 }
 .ItemsFields {
-  border: 10px solid rgba(0, 0, 0, 0.8);
   padding: 20px;
   font-size: 30px;
   text-align: center;
-  margin: 50px;
+  min-width: 33%;
   z-index: 104;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
 }
 .ItemName {
   font-style: italic;
@@ -290,4 +309,55 @@ input {
 
 .ItemDescriptionLink a {
   color: white;
+}
+.PaginationDiv {
+  display: flex;
+  justify-content: center;
+}
+.PagePrevious {
+  padding-bottom: 10px;
+  background: transparent;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  margin-right: 10px;
+  margin-top: 15px;
+}
+.PageNumber {
+  padding-bottom: 10px;
+  background: transparent;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  margin-right: 10px;
+  margin-top: 15px;
+}
+.PageNext {
+  padding-bottom: 10px;
+  background: transparent;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  margin-right: 10px;
+  margin-top: 15px;
+}
+@media screen and (max-width: 480px) {
+  .ItemsFields {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 568px) {
+  .ItemsFields {
+    width: 33.3%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .ItemsFields {
+    width: 33.3%;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .ItemsFields {
+    width: 25%;
+  }
 }

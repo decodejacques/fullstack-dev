@@ -17,34 +17,34 @@ class UnconnectedCart extends Component {
     };
   }
 
+  componentDidMount = () => {
+    let updateCartItems = async () => {
+      // get all cart items from the server
+      let response = await fetch("/cart-items");
+      let responseBody = await response.text();
+      //   console.log("responseBody", responseBody);
+      let parsed = JSON.parse(responseBody);
+      // console.log("parsed", parsed);
+      this.props.dispatch({ type: "set-cart", cart: parsed });
+    };
+    setInterval(updateCartItems, 500);
+  };
+
   // componentDidMount = () => {
-  //   let updateCartItems = async () => {
-  //     // get all cart items from the server
-  //     let response = await fetch("/cart-items");
-  //     let responseBody = await response.text();
-  //     //   console.log("responseBody", responseBody);
-  //     let parsed = JSON.parse(responseBody);
-  //     // console.log("parsed", parsed);
-  //     this.props.dispatch({ type: "set-cart", cart: parsed });
-  //   };
-  //   setInterval(updateCartItems, 500);
+  //   this.reload();
+  // };
+  // componentDidUpdate = (prevProps, prevState) => {
+  //   if (prevState.cart !== this.state.cart) {
+  //     this.reload();
+  //   }
   // };
 
-  componentDidMount = () => {
-    this.reload();
-  };
-  componentDidUpdate = (prevProps, prevState) => {
-    if (prevState.cart !== this.state.cart) {
-      this.reload();
-    }
-  };
-
-  reload = async () => {
-    let response = await fetch("/cart-items");
-    let responseBody = await response.text();
-    let parsed = JSON.parse(responseBody);
-    this.props.dispatch({ type: "set-cart", cart: parsed });
-  };
+  // reload = async () => {
+  //   let response = await fetch("/cart-items");
+  //   let responseBody = await response.text();
+  //   let parsed = JSON.parse(responseBody);
+  //   this.props.dispatch({ type: "set-cart", cart: parsed });
+  // };
 
   onToken = token => {
     fetch("/save-stripe-token", {
@@ -160,9 +160,11 @@ class UnconnectedCart extends Component {
                 </div>
                 <div className="ItemsAction">
                   <div className="SubTotalDiv">
-                    <span className="SubTotalNumber">
-                      Sub total:
-                      {cartItem.quantity * itemDetails.cost}$
+                    <span className="SubTotalText">
+                      Sub total:⠀
+                      <span className="SubTotalNumber">
+                        {cartItem.quantity * itemDetails.cost}$
+                      </span>
                       <div style={{ display: "none" }}>
                         {(subTotal += cartItem.quantity * itemDetails.cost)}
                       </div>
@@ -203,7 +205,10 @@ class UnconnectedCart extends Component {
         </div>
         <div className="Checkout">
           <h1 className="CheckoutText">Checkout</h1>
-          <h1 className="TotalText">Total: {subTotal}$</h1>
+          <h1 className="TotalText">
+            Total:
+            <span className="TotalNumber"> {subTotal}$</span>
+          </h1>
           <h1>
             <div className="StripeFrame">
               <button

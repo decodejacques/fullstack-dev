@@ -105,9 +105,9 @@ class UnconnectedLogin extends Component {
                 </div>
                 <div className="FormField">
                   <button className="FormField__Button">Log In</button>
-                  <Link to="/signup" className="FormField__Link">
+                  {/* <Link to="/signup" className="FormField__Link">
                     Don't have an account yet? Click here to sign up
-                  </Link>
+                  </Link> */}
                 </div>
               </form>
             </div>{" "}
