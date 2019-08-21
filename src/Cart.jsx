@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import StripeCheckout from "react-stripe-checkout";
+// import StripeCheckout from "react-stripe-checkout";
 import { connect } from "react-redux";
 import ItemDetails from "./itemDetails.jsx";
 import "./cart.css";
@@ -46,18 +46,18 @@ class UnconnectedCart extends Component {
   //   this.props.dispatch({ type: "set-cart", cart: parsed });
   // };
 
-  onToken = token => {
-    fetch("/save-stripe-token", {
-      method: "POST",
-      body: JSON.stringify(token)
-    }).then(response => {
-      response.json().then(data => {
-        // alert(`Thank you for your purchase! ${data.email}`);
-        // add username/email below
-        alert(`Thank you for your purchase ${this.props.email}! `);
-      });
-    });
-  };
+  // onToken = token => {
+  //   fetch("/save-stripe-token", {
+  //     method: "POST",
+  //     body: JSON.stringify(token)
+  //   }).then(response => {
+  //     response.json().then(data => {
+  //       // alert(`Thank you for your purchase! ${data.email}`);
+  //       // add username/email below
+  //       alert(`Thank you for your purchase ${this.props.email}! `);
+  //     });
+  //   });
+  // };
 
   removeOneFromCart = async itemId => {
     this.setState(
@@ -127,6 +127,11 @@ class UnconnectedCart extends Component {
       method: "POST"
     })).text();
     let body = JSON.parse(response);
+  };
+
+  handleCheckout = () => {
+    this.props.history.push("/checkout");
+    return;
   };
 
   render = () => {
@@ -209,7 +214,7 @@ class UnconnectedCart extends Component {
             Total:
             <span className="TotalNumber"> {subTotal}$</span>
           </h1>
-          <h1>
+          {/* <h1>
             <div className="StripeFrame">
               <button
                 className="StripeButton"
@@ -229,8 +234,10 @@ class UnconnectedCart extends Component {
                   </button>
                 </StripeCheckout>
               </button>
+              <button onClick={this.handleCheckout}>checkout</button>
             </div>
-          </h1>
+          </h1> */}
+          <button onClick={this.handleCheckout}>confirm address & pay</button>
         </div>
       </div>
     );
