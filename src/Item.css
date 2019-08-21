@@ -245,23 +245,24 @@ input {
   text-decoration: none;
 }
 .ItemsField {
-  z-index: 1000;
-
+  align-items: center;
+  position: relative;
   height: fit-content;
-  top: 200px;
-
-  width: 100%;
   list-style-type: none;
   text-align: center;
-  display: grid;
-  grid-template-columns: auto auto auto;
-  padding: 0px;
-  margin: 0px;
-  grid-column-gap: 100px;
-  grid-row-gap: 110px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-height: -webkit-fill-available;
+  grid-row-gap: 70px;
+  width: fit-content;
   background-color: white;
   inline-size: -webkit-fill-available;
   align-self: center;
+  z-index: 104;
+
+  height: auto;
+  top: 200px;
 }
 .ItemsFields {
   padding: 20px;
