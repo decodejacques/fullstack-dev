@@ -33,11 +33,13 @@
   font-size: 20px;
   height: 45px;
   padding-bottom: 25px;
+  border: none;
 }
 .newButton {
   background-color: #181818;
   color: white;
   height: 30px;
+  border: none;
 }
 
 .reviewForm {
