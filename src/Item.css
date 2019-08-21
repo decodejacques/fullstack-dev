@@ -126,6 +126,7 @@ button.hvr-bounce-to-right {
 .filterArea {
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   top: 65px;
 }
 .UserDisplay {
