@@ -50,18 +50,22 @@ body {
   width: 100%;
   height: 100%;
   padding: 20px;
-  background: url("/images/store.jpg") no-repeat center center;
+  background: #000;
   position: absolute;
   background-size: cover;
 }
 
 .createAListingForm {
+  position: absolute;
+  z-index: 300;
+  top: 90px;
+  right: 25px;
   width: 35%;
-  height: 100%;
+  height: 660px;
   background: #eee;
   padding: 30px;
   border-radius: 10px;
-  background: rgba(238, 238, 238, 0.7);
+  background: rgba(238, 238, 238, 0.8);
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 .createAListingForm h2 {
