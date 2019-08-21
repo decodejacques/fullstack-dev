@@ -7,20 +7,25 @@
 .App__Aside {
   width: 50%;
   background-color: white;
+  background: url("/images/stores.jpg") no-repeat center center;
   z-index: 105;
+  background-size: cover;
 }
 
 .App__Form {
   width: 50%;
   text-align-last: center;
   height: 100%;
-  background-color: black;
+  background-color: #101010;
   padding: 25px 40px;
   overflow: auto;
   z-index: 105;
 }
 .FormCenter {
   margin-bottom: 100px;
+}
+.or {
+  color: white;
 }
 
 .FormTitle {
@@ -95,7 +100,7 @@
 }
 
 .FormField__Button {
-  background-color: black;
+  background-color: #101010;
   color: white;
   border: none;
   outline: none;
