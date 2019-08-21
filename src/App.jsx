@@ -23,6 +23,7 @@ import Items from "./Items.jsx";
 import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
 import ItemDetails from "./itemDetails.jsx";
+import Checkout from "./Checkout.jsx";
 
 import "./Item.css";
 import { FiShoppingCart } from "react-icons/fi";
@@ -141,9 +142,19 @@ class UnconnectedApp extends Component {
                 }}
               />
             )}
+            {this.props.loggedIn ? (
+              <Route exact={true} path="/checkout" component={Checkout} />
+            ) : (
+              <Redirect
+                to={{
+                  pathname: "/"
+                }}
+              />
+            )}
             {/* <Route path="/cart" component={Cart} /> */}
             {/* <Route path="/new-item" component={NewItem} /> */}
             {/* <Route path="/item/:id" render={renderItemDetails} /> */}
+            {/* <Route exact={true} path="/checkout" component={Checkout} /> */}
             <Route exact={true} path="/all-items" component={Items} />
             <Route exact={true} path="/signup" component={Signup} />
           </Router>
