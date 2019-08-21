@@ -28,6 +28,17 @@
 .newReview {
   margin-bottom: 25px;
 }
+.addButton {
+  margin-top: 10px;
+  font-size: 20px;
+  height: 45px;
+  padding-bottom: 25px;
+}
+.newButton {
+  background-color: #181818;
+  color: white;
+  height: 30px;
+}
 
 .reviewForm {
   position: absolute;

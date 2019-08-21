@@ -79,12 +79,8 @@ em {
 }
 
 nav {
-<<<<<<< HEAD
   position: absolute;
   top: 5px;
-=======
-  position: fixed;
->>>>>>> 4fcdcc375212e54a7cc19515304d1bd3664a7861
   left: 0;
   background: #101010;
   z-index: 99;
@@ -355,6 +351,8 @@ input {
   margin-right: 10px;
   margin-top: 15px;
 }
+
+
 @media screen and (max-width: 480px) {
   .ItemsFields {
     width: 50%;

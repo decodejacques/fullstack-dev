@@ -100,11 +100,7 @@ input[name="mytext"]:focus {
 input[type="submit"] {
   display: block;
   width: 100%;
-<<<<<<< HEAD
   background-color: #181818;
-=======
-  background-color: black;
->>>>>>> 4fcdcc375212e54a7cc19515304d1bd3664a7861
   color: white;
   padding: 14px 20px;
   margin: 14px 10px 14px 0;

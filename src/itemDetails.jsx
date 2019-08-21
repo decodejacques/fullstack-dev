@@ -178,9 +178,14 @@ class UnconnectedItemDetails extends Component {
                     >
                       SOLD OUT
                     </div>
-                    <button onClick={this.handleLoveIt}>love it!</button>
+                    <div className="addButton">
+                      <button className="newButton" onClick={this.handleLoveIt}>
+                        love it!
+                      </button>
+                    </div>
                     <div className="addButton">
                       <button
+                        className="newButton"
                         onClick={this.addToCart}
                         style={{
                           display:
