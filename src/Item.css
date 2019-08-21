@@ -155,6 +155,11 @@ button.hvr-bounce-to-right {
   -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
   transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
 }
+.FiltersArea {
+  font-weight: 500;
+  display: inline-flex;
+  text-align-last: center;
+}
 .filterArea {
   display: flex;
   justify-content: center;
@@ -162,15 +167,20 @@ button.hvr-bounce-to-right {
   top: 65px;
 }
 .UserDisplay {
-  display: flex;
+  top: -40px;
+  border: none;
   justify-content: center;
-
   position: relative;
-  flex-wrap: wrap;
+  color: black;
+  padding: 5px;
 }
 .FilterButton {
+  border: none;
+  background: black;
   justify-content: center;
   position: relative;
+  color: white;
+  padding: 5px;
 }
 .SearchBar {
   position: relative;

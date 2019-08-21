@@ -173,7 +173,7 @@ class UnconnectedItems extends Component {
           <div className="FilterArea">
             <div className="secondWrapper">
               {" "}
-              <div className="UserDisplay">hi {" " + this.props.email}</div>
+              {/* <div className="UserDisplay">hi {" " + this.props.email}</div> */}
               <button className="FilterButton" onClick={this.displayFilters}>
                 {this.state.displayFilters ? "less filters" : "more filters"}
               </button>
