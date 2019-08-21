@@ -252,6 +252,7 @@ class UnconnectedItems extends Component {
         <div className="PaginationDiv">
           <button
             className="Pagination"
+            className="PagePrevious"
             onClick={this.GoBackToPreviousPage}
             style={{ display: this.state.page > 0 ? "block" : "none" }}
           >
@@ -260,6 +261,7 @@ class UnconnectedItems extends Component {
           {indexPage.map(i => {
             return (
               <button
+                className="PageNumber"
                 onClick={() => this.GoToPage(i)}
                 /*style={{ display: this.state.page > 0 ? "block" : "none" }}*/
               >
@@ -269,6 +271,7 @@ class UnconnectedItems extends Component {
           })}
           {/* other numbers coming */}
           <button
+            className="PageNext"
             onClick={this.GoToNextPage}
             style={{
               display:
