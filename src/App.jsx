@@ -3,7 +3,9 @@ import {
   BrowserRouter as Router,
   Route,
   NavLink,
-  withRouter
+  withRouter,
+  Link,
+  Redirect
 } from "react-router-dom";
 import { browserHistory } from "react-router";
 import {
@@ -39,9 +41,6 @@ class UnconnectedNavigation extends Component {
     let response = await (await fetch("/logout", { method: "POST" })).text();
     let body = JSON.parse(response);
     if (body.success) {
-      // console.log("this.state.email", this.state.email);
-      // this.setState({ email: this.state.email });
-      // this.props.dispatch({ type: "logout", email: this.state.email });
       this.props.history.push("/");
     }
   };
@@ -77,6 +76,7 @@ let renderItemDetails = routerData => {
       <ItemDetails
         id={routerData.match.params.id}
         history={routerData.history}
+        location={routerData.location}
       />
     </div>
   );
@@ -90,12 +90,39 @@ class UnconnectedApp extends Component {
           <Router>
             <Navigation />
             <Route exact={true} path="/" component={Login} />
-            <Route path="/cart" component={Cart} />
-            <Route path="/new-item" component={NewItem} />
-            <Route path="/all-items" component={Items} />
-            <Route path="/item/:id" render={renderItemDetails} />
-            <Route path="/signup" component={Signup} />
-            {/* <Route path="/login" component={Login} /> */}
+
+            {this.props.loggedIn ? (
+              <Route exact={true} path="/cart" component={Cart} />
+            ) : (
+              <Redirect
+                to={{
+                  pathname: "/"
+                }}
+              />
+            )}
+            {this.props.loggedIn ? (
+              <Route exact={true} path="/new-item" component={NewItem} />
+            ) : (
+              <Redirect
+                to={{
+                  pathname: "/"
+                }}
+              />
+            )}
+            {this.props.loggedIn ? (
+              <Route exact={true} path="/item/:id" render={renderItemDetails} />
+            ) : (
+              <Redirect
+                to={{
+                  pathname: "/"
+                }}
+              />
+            )}
+            {/* <Route path="/cart" component={Cart} /> */}
+            {/* <Route path="/new-item" component={NewItem} /> */}
+            {/* <Route path="/item/:id" render={renderItemDetails} /> */}
+            <Route exact={true} path="/all-items" component={Items} />
+            <Route exact={true} path="/signup" component={Signup} />
           </Router>
         </div>
       </div>
@@ -105,7 +132,8 @@ class UnconnectedApp extends Component {
 
 let mapStateToProps = state => {
   return {
-    email: state.email
+    email: state.email,
+    loggedIn: state.loggedIn
   };
 };
 
