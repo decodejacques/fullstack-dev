@@ -267,7 +267,7 @@ input {
 .ItemsFields {
   position: relative;
   padding: 20px;
-  font-size: 30px;
+  font-size: 20px;
   text-align: center;
   min-width: 33%;
   z-index: 104;
@@ -285,6 +285,7 @@ input {
 }
 .ItemQuantities {
   color: red;
+  font-size: 28px;
   transform: rotate(20deg);
   display: block;
   position: absolute;

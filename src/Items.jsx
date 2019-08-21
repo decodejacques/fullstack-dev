@@ -247,6 +247,7 @@ class UnconnectedItems extends Component {
               </div>
             );
           })}
+<<<<<<< HEAD
         </div>
         {/* pagination */}
         <div className="PaginationDiv">
@@ -282,6 +283,43 @@ class UnconnectedItems extends Component {
           >
             next
           </button>
+=======
+          {/* pagination */}
+          <div className="PaginationDiv">
+            <button
+              className="Pagination"
+              className="PagePrevious"
+              onClick={this.goBackToPreviousPage}
+              style={{ display: this.state.page > 0 ? "block" : "none" }}
+            >
+              previous
+            </button>
+            {indexPage.map(i => {
+              return (
+                <button
+                  className="PageNumber"
+                  onClick={() => this.goToPage(i)}
+                  /*style={{ display: this.state.page > 0 ? "block" : "none" }}*/
+                >
+                  {i}
+                </button>
+              );
+            })}
+            {/* other numbers coming */}
+            <button
+              className="PageNext"
+              onClick={this.goToNextPage}
+              style={{
+                display:
+                  this.state.page < Math.floor(this.props.items.length / 6)
+                    ? "block"
+                    : "none"
+              }}
+            >
+              next
+            </button>
+          </div>
+>>>>>>> 7bfee8862099e9d8d81e515b35eaed589f9437cb
         </div>
       </div>
     );

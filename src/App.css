@@ -66,15 +66,14 @@
 }
 
 .FormField__Input:-webkit-autofill {
-  -webkit-text-fill-color: white !important;
-  -webkit-box-shadow: 0 0 0px 1000px #2e4158 inset;
-  box-shadow: 0 0 0px 1000px #2e4158 inset;
-  width: 85%;
+  -webkit-text-fill-color: black !important;
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  box-shadow: 0 0 0px 1000px white inset;
+  width: 50%;
   background-color: white;
   font-size: 0.9em;
   border: none;
   outline: none;
-  border-bottom: 1px solid black;
   font-size: 1em;
   font-weight: 300;
   padding-bottom: 10px;
@@ -105,11 +104,12 @@
   border: none;
   outline: none;
   padding-right: 25px;
-  padding-left: 15px;
+  padding-left: 25px;
   padding-top: 15px;
   padding-bottom: 15px;
   font-size: 22px;
   font-weight: 400;
+  min-inline-size: -webkit-fill-available;
 }
 .FormField__Button:hover {
   cursor: pointer;
