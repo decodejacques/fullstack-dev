@@ -14,7 +14,7 @@ class UnconnectedItems extends Component {
       displayFilters: false,
       filterCost: 0,
       filterMaxCost: 10000,
-      filterInStock: "",
+      filterInStock: false,
       itemName: "",
       email: "",
       itemFound: "",
@@ -83,14 +83,16 @@ class UnconnectedItems extends Component {
   };
   inStockOnChange = event => {
     event.preventDefault();
+    console.log("event.target.checked", event.target.checked);
+    this.setState({ ...this.state, filterInStock: event.target.checked });
   };
-  GoBackToPreviousPage = () => {
+  goBackToPreviousPage = () => {
     this.setState({ ...this.state, page: this.state.page - 1 });
   };
-  GoToNextPage = () => {
+  goToNextPage = () => {
     this.setState({ ...this.state, page: this.state.page + 1 });
   };
-  GoToPage = i => {
+  goToPage = i => {
     this.setState({ ...this.state, page: i });
   };
   render = () => {
@@ -108,6 +110,23 @@ class UnconnectedItems extends Component {
     // displayedItems = displayedItems.filter(item => {
     //   return item.cost > this.state.filterCost && item.cost < maxCost;
     // });
+    if (this.state.filterInStock) {
+      displayedItems = displayedItems
+        .slice(this.state.page * 6, this.state.page * 6 + 6)
+        .filter(item => {
+          return (
+            item.cost > this.state.filterCost &&
+            item.cost < maxCost &&
+            item.available_quantity > 0
+          );
+        });
+    } else {
+      displayedItems = displayedItems
+        .slice(this.state.page * 6, this.state.page * 6 + 6)
+        .filter(item => {
+          return item.cost > this.state.filterCost && item.cost < maxCost;
+        });
+    }
     displayedItems = displayedItems
       .slice(this.state.page * 6, this.state.page * 6 + 6)
       .filter(item => {
@@ -228,6 +247,43 @@ class UnconnectedItems extends Component {
               </div>
             );
           })}
+<<<<<<< HEAD
+        </div>
+        {/* pagination */}
+        <div className="PaginationDiv">
+          <button
+            className="Pagination"
+            className="PagePrevious"
+            onClick={this.goBackToPreviousPage}
+            style={{ display: this.state.page > 0 ? "block" : "none" }}
+          >
+            previous
+          </button>
+          {indexPage.map(i => {
+            return (
+              <button
+                className="PageNumber"
+                onClick={() => this.goToPage(i)}
+                /*style={{ display: this.state.page > 0 ? "block" : "none" }}*/
+              >
+                {i}
+              </button>
+            );
+          })}
+          {/* other numbers coming */}
+          <button
+            className="PageNext"
+            onClick={this.goToNextPage}
+            style={{
+              display:
+                this.state.page < Math.floor(this.props.items.length / 6)
+                  ? "block"
+                  : "none"
+            }}
+          >
+            next
+          </button>
+=======
           {/* pagination */}
           <div className="PaginationDiv">
             <button
@@ -263,6 +319,7 @@ class UnconnectedItems extends Component {
               next
             </button>
           </div>
+>>>>>>> 9bd6ff7cf71d56a942e214acefee94b5ebcd530b
         </div>
       </div>
     );
