@@ -143,7 +143,7 @@ class UnconnectedItems extends Component {
           width="1400"
           height="690"
           controls="controls"
-          autoPlay="true"
+          autoPlay={false}
         />
         <div className="Wrapper">
           {/* NavBar includes : SearchBar, Logout/Login(if not connected)
@@ -205,52 +205,54 @@ class UnconnectedItems extends Component {
               </div>
             </div>
           </div>
-          <div className="ItemsField">
-            {displayedItems.map(item => {
-              return (
-                <div className="ItemFields">
-                  <button className="ItemDescriptionLink">
-                    <Link to={"/item/" + item._id}>
-                      {" "}
-                      <img
-                        className="picture"
-                        src={item.filePath}
-                        height="300px"
-                        width="200px"
-                      />
-                    </Link>
-                  </button>
-                  <div className="ItemName">{item.name}</div>
-                  <div className="ItemDescription">{item.description}</div>
-                  <div
-                    className="ItemDescription"
-                    style={{
-                      display: item.available_quantity <= 0 ? "block" : "none"
-                    }}
-                  >
-                    SOLD OUT
-                  </div>
-                  <div className="ItemPrice">{item.cost + "$ "} </div>
-                  <div
-                    style={{
-                      display: item.loveIt > 0 ? "block" : "none"
-                    }}
-                  >
-                    <div className="ItemDescription">
-                      {item.loveIt}
-                      {item.loveIt > 1 ? " love it! " : " loves it!"}
-                    </div>
-                  </div>
-
-                  <div />
+        </div>
+        <div className="ItemsField">
+          {displayedItems.map(item => {
+            return (
+              <div className="ItemsFields">
+                <button className="ItemDescriptionLink">
+                  <Link to={"/item/" + item._id}>
+                    {" "}
+                    <img
+                      className="picture"
+                      src={item.filePath}
+                      height="300px"
+                      width="200px"
+                    />
+                  </Link>
+                </button>
+                <div className="ItemName">{item.name}</div>
+                <div className="ItemDescription">{item.description}</div>
+                <div
+                  className="ItemDescription"
+                  style={{
+                    display: item.available_quantity <= 0 ? "block" : "none"
+                  }}
+                >
+                  SOLD OUT
                 </div>
-              );
-            })}
-          </div>
+                <div className="ItemPrice">{item.cost + "$ "} </div>
+                <div
+                  style={{
+                    display: item.loveIt > 0 ? "block" : "none"
+                  }}
+                >
+                  <div className="ItemDescription">
+                    {item.loveIt}
+                    {item.loveIt > 1 ? " love it! " : " loves it!"}
+                  </div>
+                </div>
+
+                <div />
+              </div>
+            );
+          })}
         </div>
         {/* pagination */}
-        <div>
+        <div className="PaginationDiv">
           <button
+            className="Pagination"
+            className="PagePrevious"
             onClick={this.GoBackToPreviousPage}
             style={{ display: this.state.page > 0 ? "block" : "none" }}
           >
@@ -259,6 +261,7 @@ class UnconnectedItems extends Component {
           {indexPage.map(i => {
             return (
               <button
+                className="PageNumber"
                 onClick={() => this.GoToPage(i)}
                 /*style={{ display: this.state.page > 0 ? "block" : "none" }}*/
               >
@@ -268,6 +271,7 @@ class UnconnectedItems extends Component {
           })}
           {/* other numbers coming */}
           <button
+            className="PageNext"
             onClick={this.GoToNextPage}
             style={{
               display:
