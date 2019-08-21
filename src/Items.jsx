@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import ItemDetails from "./itemDetails.jsx";
 import { IoMdSearch, IoIosThumbsDown } from "react-icons/io";
 import { IconContext } from "react-icons";
-
 class UnconnectedItems extends Component {
   constructor(props) {
     super(props);
@@ -45,18 +44,15 @@ class UnconnectedItems extends Component {
       this.reload();
     }
   };
-
   reload = async () => {
     let response = await fetch("/items");
     let responseBody = await response.text();
     let parsed = JSON.parse(responseBody);
     this.props.dispatch({ type: "set-items", items: parsed });
   };
-
   gotoCart = () => {
     this.props.history.push("/cart");
   };
-
   displayFilters = () => {
     this.setState({
       ...this.state,
@@ -64,7 +60,6 @@ class UnconnectedItems extends Component {
     });
     console.log("this.state.displayFilters", this.state.displayFilters);
   };
-
   handleOnChangeSearch = event => {
     event.preventDefault();
     console.log("searched item", event.target.value);
@@ -75,7 +70,6 @@ class UnconnectedItems extends Component {
   };
   maxCostOnChange = event => {
     event.preventDefault();
-
     this.setState({ filterMaxCost: event.target.value });
   };
   minCostOnChange = event => {
@@ -90,19 +84,15 @@ class UnconnectedItems extends Component {
   inStockOnChange = event => {
     event.preventDefault();
   };
-
   GoBackToPreviousPage = () => {
     this.setState({ ...this.state, page: this.state.page - 1 });
   };
-
   GoToNextPage = () => {
     this.setState({ ...this.state, page: this.state.page + 1 });
   };
-
   GoToPage = i => {
     this.setState({ ...this.state, page: i });
   };
-
   render = () => {
     console.log("rendering items");
     let displayedItems = this.props.items;
@@ -115,25 +105,20 @@ class UnconnectedItems extends Component {
       });
     }
     let maxCost = parseInt(this.state.filterMaxCost);
-
     // displayedItems = displayedItems.filter(item => {
     //   return item.cost > this.state.filterCost && item.cost < maxCost;
     // });
-
     displayedItems = displayedItems
       .slice(this.state.page * 6, this.state.page * 6 + 6)
       .filter(item => {
         return item.cost > this.state.filterCost && item.cost < maxCost;
       });
-
     let indexPage = [];
     for (let index = 1; index <= this.props.items.length / 6; index += 6) {
       console.log(index);
       indexPage.push(index);
     }
-
     console.log("displayedItems", displayedItems);
-
     return (
       <div className="mainDiv">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -148,17 +133,14 @@ class UnconnectedItems extends Component {
         <div className="Wrapper">
           {/* NavBar includes : SearchBar, Logout/Login(if not connected)
          , cart and User Display */}
-
           <header className="HeaderNavBar">
             {/* SearchBar */}
-
             <div className="SearchBar">
               <IconContext.Provider
                 value={{ size: "2em", className: "global-class-name" }}
               >
                 <IoMdSearch />
               </IconContext.Provider>
-
               <input
                 className="InputSearchBar"
                 type="text"
@@ -242,7 +224,6 @@ class UnconnectedItems extends Component {
                     {item.loveIt > 1 ? " love it! " : " loves it!"}
                   </div>
                 </div>
-
                 <div />
               </div>
             );
@@ -287,7 +268,6 @@ class UnconnectedItems extends Component {
     );
   };
 }
-
 let mapStateToProps = state => {
   return {
     email: state.email,
@@ -296,6 +276,5 @@ let mapStateToProps = state => {
     minPrice: state.min
   };
 };
-
 let Items = connect(mapStateToProps)(UnconnectedItems);
 export default Items;

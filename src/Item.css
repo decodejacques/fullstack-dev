@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Crimson+Text|Libre+Caslon+Display|Quicksand&display=swap");
-
+@import url("https://fonts.googleapis.com/css?family=EB+Garamond|Cardo:400italic");
 .Wrapper {
   z-index: 100;
   text-align: center;
   position: relative;
-  top: 2px;
+  top: 20px;
   display: flex;
   justify-content: center;
   background-color: white;
@@ -35,7 +35,7 @@ video {
   }
 }
 .myNavbar {
-  background: black;
+  background: transparent;
 }
 
 .secondPart {
@@ -45,6 +45,38 @@ video {
   font-size: 20px;
   display: flex;
 }
+
+.entryNav {
+  position: absolute;
+  left: 5%;
+  top: 6%;
+  font-size: 20px;
+}
+
+.stylelogo {
+  color: #fff;
+  font-family: "Cardo", serif;
+
+  font-weight: normal;
+  font-style: italic;
+  letter-spacing: 0.1em;
+  line-height: 4px;
+  margin: auto;
+  text-align: center;
+  position: relative;
+}
+
+em {
+  font-family: "EB Garamond", serif;
+  font-size: 38px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: block;
+  font-style: normal;
+
+  text-shadow: 0.07em 0.07em 0 rgba(0, 0, 0, 0.1);
+}
+
 nav {
   position: fixed;
 
@@ -83,7 +115,7 @@ button.hvr-bounce-to-right {
   vertical-align: middle;
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  /* box-shadow: 0 0 1px rgba(0, 0, 0, 0); */
   position: relative;
   -webkit-transition-property: color;
   transition-property: color;
@@ -99,6 +131,7 @@ button.hvr-bounce-to-right {
   right: 0;
   bottom: 0;
   background: gray;
+
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transform-origin: 0 50%;
@@ -110,6 +143,7 @@ button.hvr-bounce-to-right {
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
+
 .hvr-bounce-to-right:hover,
 .hvr-bounce-to-right:focus,
 .hvr-bounce-to-right:active {
@@ -211,7 +245,6 @@ input {
   text-decoration: none;
 }
 .ItemsField {
-  z-index: 104;
   align-items: center;
   position: relative;
   height: fit-content;
@@ -226,6 +259,10 @@ input {
   background-color: white;
   inline-size: -webkit-fill-available;
   align-self: center;
+  z-index: 104;
+
+  height: auto;
+  top: 200px;
 }
 .ItemsFields {
   padding: 20px;

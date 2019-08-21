@@ -27,14 +27,30 @@ import Checkout from "./Checkout.jsx";
 
 import "./Item.css";
 import { FiShoppingCart } from "react-icons/fi";
+import { FaHome } from "react-icons/fa";
 
 // testing cronjob
 class UnconnectedNavigation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: ""
+      email: "",
+      color: "white"
     };
+  }
+  listenScrollEvent = e => {
+    if (window.scrollY > 400) {
+      this.setState({ color: "#101010" });
+    } else {
+      this.setState({ color: "transparent" });
+    }
+  };
+
+  componentDidMount() {
+    window.addEventListener("scroll", this.listenScrollEvent);
+  }
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.listenScrollEvent);
   }
 
   logout = async () => {
@@ -48,14 +64,21 @@ class UnconnectedNavigation extends Component {
   render = () => {
     console.log("this.state.email", this.state.email);
     return (
-      <nav>
+      <nav style={{ backgroundColor: this.state.color }}>
         <div className="myNavbar">
-          <NavLink to="/all-items" className="hvr-bounce-to-right">
-            Home
-          </NavLink>
-          <NavLink to="/new-item" className="hvr-bounce-to-right">
-            Sell an item
-          </NavLink>
+          <div className="entryNav">
+            <NavLink to="/all-items" className="hvr-bounce-to-right">
+              <FaHome />
+            </NavLink>
+            <NavLink to="/new-item" className="hvr-bounce-to-right">
+              Sell an item
+            </NavLink>
+          </div>
+          <div className="styleLogo">
+            <NavLink to="/all-items" className="hvr-bounce-to-right">
+              <em> ~ Fash·ion·is·ta ~ </em>
+            </NavLink>
+          </div>
           <div className="secondPart">
             <NavLink className="hvr-bounce-to-right" to="/cart">
               <FiShoppingCart />
