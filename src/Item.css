@@ -4,7 +4,7 @@
   z-index: 100;
   text-align: center;
   position: relative;
-  top: 2px;
+  top: 20px;
   display: flex;
   justify-content: center;
   background-color: white;
@@ -245,10 +245,9 @@ input {
   text-decoration: none;
 }
 .ItemsField {
-  z-index: 104;
-<<<<<<< HEAD
-  position: absolute;
-  height: auto;
+  z-index: 1000;
+
+  height: fit-content;
   top: 200px;
 
   width: 100%;
@@ -260,19 +259,6 @@ input {
   margin: 0px;
   grid-column-gap: 100px;
   grid-row-gap: 110px;
-=======
-  align-items: center;
-  position: relative;
-  height: fit-content;
-  list-style-type: none;
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  min-height: -webkit-fill-available;
-  grid-row-gap: 70px;
-  width: fit-content;
->>>>>>> c58c7388d046f5b8dfb3cc9a6928b6e414ede537
   background-color: white;
   inline-size: -webkit-fill-available;
   align-self: center;
