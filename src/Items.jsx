@@ -247,49 +247,12 @@ class UnconnectedItems extends Component {
               </div>
             );
           })}
-<<<<<<< HEAD
-        </div>
-        {/* pagination */}
-        <div className="PaginationDiv">
-          <button
-            className="Pagination"
-            className="PagePrevious"
-            onClick={this.goBackToPreviousPage}
-            style={{ display: this.state.page > 0 ? "block" : "none" }}
-          >
-            previous
-          </button>
-          {indexPage.map(i => {
-            return (
-              <button
-                className="PageNumber"
-                onClick={() => this.goToPage(i)}
-                /*style={{ display: this.state.page > 0 ? "block" : "none" }}*/
-              >
-                {i}
-              </button>
-            );
-          })}
-          {/* other numbers coming */}
-          <button
-            className="PageNext"
-            onClick={this.goToNextPage}
-            style={{
-              display:
-                this.state.page < Math.floor(this.props.items.length / 6)
-                  ? "block"
-                  : "none"
-            }}
-          >
-            next
-          </button>
-=======
           {/* pagination */}
           <div className="PaginationDiv">
             <button
               className="Pagination"
               className="PagePrevious"
-              onClick={this.GoBackToPreviousPage}
+              onClick={this.goBackToPreviousPage}
               style={{ display: this.state.page > 0 ? "block" : "none" }}
             >
               previous
@@ -298,7 +261,7 @@ class UnconnectedItems extends Component {
               return (
                 <button
                   className="PageNumber"
-                  onClick={() => this.GoToPage(i)}
+                  onClick={() => this.goToPage(i)}
                   /*style={{ display: this.state.page > 0 ? "block" : "none" }}*/
                 >
                   {i}
@@ -308,7 +271,7 @@ class UnconnectedItems extends Component {
             {/* other numbers coming */}
             <button
               className="PageNext"
-              onClick={this.GoToNextPage}
+              onClick={this.goToNextPage}
               style={{
                 display:
                   this.state.page < Math.floor(this.props.items.length / 6)
@@ -319,7 +282,6 @@ class UnconnectedItems extends Component {
               next
             </button>
           </div>
->>>>>>> 9bd6ff7cf71d56a942e214acefee94b5ebcd530b
         </div>
       </div>
     );
