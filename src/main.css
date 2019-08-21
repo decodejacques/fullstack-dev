@@ -101,7 +101,7 @@ input[name="mytext"]:focus {
 input[type="submit"] {
   display: block;
   width: 100%;
-  background-color: dimgray;
+  background-color: #181818;
   color: white;
   padding: 14px 20px;
   margin: 14px 10px 14px 0;

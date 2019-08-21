@@ -35,14 +35,14 @@ class UnconnectedNavigation extends Component {
     super(props);
     this.state = {
       email: "",
-      color: "transparent"
+      color: "#101010"
     };
   }
   listenScrollEvent = e => {
     if (window.scrollY > 400) {
       this.setState({ color: "#101010" });
     } else {
-      this.setState({ color: "transparent" });
+      this.setState({ color: "#101010" });
     }
   };
 

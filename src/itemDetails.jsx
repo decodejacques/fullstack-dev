@@ -212,11 +212,12 @@ class UnconnectedItemDetails extends Component {
 
                 {console.log("item.review", item.review)}
                 <div className="reviewBox">
-                  <div>Reviews</div>
+                  <div>Reviews</div> <br />
                   {item.review
                     ? item.review.map(UniqueReview => {
                         return (
                           <div className="newReview">
+                            <b> {UniqueReview.username} </b> <br /> <br />
                             {UniqueReview.message}
                           </div>
                         );
@@ -231,14 +232,15 @@ class UnconnectedItemDetails extends Component {
         <div className="reviewForm">
           <form onSubmit={this.handleReview}>
             {" "}
-            Add a review
+            <div className="divTitle"> Add a review </div>
             <input
+              className="formInput"
               type="text"
               name="review"
               value={this.state.reviews}
               onChange={this.handleText}
             />
-            <input type="submit" value="submit" />
+            <input className="submitButton" type="submit" value="submit" />
           </form>
         </div>
       </div>

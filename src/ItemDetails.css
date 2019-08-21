@@ -8,6 +8,14 @@
   top: 50%;
   left: 60%;
 }
+.formInput {
+  border: 1px solid black;
+  height: 50px;
+  padding: 15px;
+}
+.divTitle {
+  padding-bottom: 15px;
+}
 
 .reviewBox {
   position: absolute;
@@ -16,6 +24,9 @@
   /* border: 1px solid; */
   top: 650px;
   left: 60%;
+}
+.newReview {
+  margin-bottom: 25px;
 }
 
 .reviewForm {
