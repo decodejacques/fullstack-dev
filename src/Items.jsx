@@ -82,7 +82,7 @@ class UnconnectedItems extends Component {
     this.setState({ filterCost: cost });
   };
   inStockOnChange = event => {
-    event.preventDefault();
+    // event.preventDefault();
     console.log("event.target.checked", event.target.checked);
     this.setState({ ...this.state, filterInStock: event.target.checked });
   };
@@ -201,7 +201,7 @@ class UnconnectedItems extends Component {
                   className="InStockCheckBox"
                   type="checkbox"
                   onChange={this.inStockOnChange}
-                  value={this.state.filterInStock}
+                  checked={this.state.filterInStock}
                 />
               </div>
             </div>
@@ -247,7 +247,6 @@ class UnconnectedItems extends Component {
               </div>
             );
           })}
-<<<<<<< HEAD
         </div>
         {/* pagination */}
         <div className="PaginationDiv">
@@ -283,43 +282,6 @@ class UnconnectedItems extends Component {
           >
             next
           </button>
-=======
-          {/* pagination */}
-          <div className="PaginationDiv">
-            <button
-              className="Pagination"
-              className="PagePrevious"
-              onClick={this.GoBackToPreviousPage}
-              style={{ display: this.state.page > 0 ? "block" : "none" }}
-            >
-              previous
-            </button>
-            {indexPage.map(i => {
-              return (
-                <button
-                  className="PageNumber"
-                  onClick={() => this.GoToPage(i)}
-                  /*style={{ display: this.state.page > 0 ? "block" : "none" }}*/
-                >
-                  {i}
-                </button>
-              );
-            })}
-            {/* other numbers coming */}
-            <button
-              className="PageNext"
-              onClick={this.GoToNextPage}
-              style={{
-                display:
-                  this.state.page < Math.floor(this.props.items.length / 6)
-                    ? "block"
-                    : "none"
-              }}
-            >
-              next
-            </button>
-          </div>
->>>>>>> 9bd6ff7cf71d56a942e214acefee94b5ebcd530b
         </div>
       </div>
     );
