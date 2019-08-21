@@ -14,7 +14,7 @@ class UnconnectedItems extends Component {
       displayFilters: false,
       filterCost: 0,
       filterMaxCost: 10000,
-      filterInStock: "",
+      filterInStock: false,
       itemName: "",
       email: "",
       itemFound: "",
@@ -82,15 +82,17 @@ class UnconnectedItems extends Component {
     this.setState({ filterCost: cost });
   };
   inStockOnChange = event => {
-    event.preventDefault();
+    // event.preventDefault();
+    console.log("event.target.checked", event.target.checked);
+    this.setState({ ...this.state, filterInStock: event.target.checked });
   };
-  GoBackToPreviousPage = () => {
+  goBackToPreviousPage = () => {
     this.setState({ ...this.state, page: this.state.page - 1 });
   };
-  GoToNextPage = () => {
+  goToNextPage = () => {
     this.setState({ ...this.state, page: this.state.page + 1 });
   };
-  GoToPage = i => {
+  goToPage = i => {
     this.setState({ ...this.state, page: i });
   };
   render = () => {
@@ -105,14 +107,32 @@ class UnconnectedItems extends Component {
       });
     }
     let maxCost = parseInt(this.state.filterMaxCost);
-    // displayedItems = displayedItems.filter(item => {
-    //   return item.cost > this.state.filterCost && item.cost < maxCost;
-    // });
-    displayedItems = displayedItems
-      .slice(this.state.page * 6, this.state.page * 6 + 6)
-      .filter(item => {
-        return item.cost > this.state.filterCost && item.cost < maxCost;
-      });
+    displayedItems = displayedItems.filter(item => {
+      return item.cost > this.state.filterCost && item.cost < maxCost;
+    });
+    if (this.state.filterInStock) {
+      displayedItems = displayedItems
+        .slice(this.state.page * 6, this.state.page * 6 + 6)
+        .filter(item => {
+          return (
+            item.cost > this.state.filterCost &&
+            item.cost < maxCost &&
+            item.available_quantity > 0
+          );
+        });
+    } else {
+      displayedItems = displayedItems
+        .slice(this.state.page * 6, this.state.page * 6 + 6)
+        .filter(item => {
+          return item.cost > this.state.filterCost && item.cost < maxCost;
+        });
+    }
+
+    // displayedItems = displayedItems
+    //   .slice(this.state.page * 6, this.state.page * 6 + 6)
+    //   .filter(item => {
+    //     return item.cost > this.state.filterCost && item.cost < maxCost;
+    //   });
     let indexPage = [];
     for (let index = 1; index <= this.props.items.length / 6; index += 6) {
       console.log(index);
@@ -153,7 +173,7 @@ class UnconnectedItems extends Component {
           <div className="FilterArea">
             <div className="secondWrapper">
               {" "}
-              <div className="UserDisplay">hi {" " + this.props.email}</div>
+              {/* <div className="UserDisplay">hi {" " + this.props.email}</div> */}
               <button className="FilterButton" onClick={this.displayFilters}>
                 {this.state.displayFilters ? "less filters" : "more filters"}
               </button>
@@ -182,7 +202,7 @@ class UnconnectedItems extends Component {
                   className="InStockCheckBox"
                   type="checkbox"
                   onChange={this.inStockOnChange}
-                  value={this.state.filterInStock}
+                  checked={this.state.filterInStock}
                 />
               </div>
             </div>
@@ -228,41 +248,42 @@ class UnconnectedItems extends Component {
               </div>
             );
           })}
-        </div>
-        {/* pagination */}
-        <div className="PaginationDiv">
-          <button
-            className="Pagination"
-            className="PagePrevious"
-            onClick={this.GoBackToPreviousPage}
-            style={{ display: this.state.page > 0 ? "block" : "none" }}
-          >
-            previous
-          </button>
-          {indexPage.map(i => {
-            return (
-              <button
-                className="PageNumber"
-                onClick={() => this.GoToPage(i)}
-                /*style={{ display: this.state.page > 0 ? "block" : "none" }}*/
-              >
-                {i}
-              </button>
-            );
-          })}
-          {/* other numbers coming */}
-          <button
-            className="PageNext"
-            onClick={this.GoToNextPage}
-            style={{
-              display:
-                this.state.page < Math.floor(this.props.items.length / 6)
-                  ? "block"
-                  : "none"
-            }}
-          >
-            next
-          </button>
+          {/* pagination */}
+
+          <div className="PaginationDiv">
+            <button
+              className="Pagination"
+              className="PagePrevious"
+              onClick={this.goBackToPreviousPage}
+              style={{ display: this.state.page > 0 ? "block" : "none" }}
+            >
+              previous
+            </button>
+            {indexPage.map(i => {
+              return (
+                <button
+                  className="PageNumber"
+                  onClick={() => this.goToPage(i)}
+                  /*style={{ display: this.state.page > 0 ? "block" : "none" }}*/
+                >
+                  {i}
+                </button>
+              );
+            })}
+            {/* other numbers coming */}
+            <button
+              className="PageNext"
+              onClick={this.goToNextPage}
+              style={{
+                display:
+                  this.state.page < Math.floor(this.props.items.length / 6)
+                    ? "block"
+                    : "none"
+              }}
+            >
+              next
+            </button>
+          </div>
         </div>
       </div>
     );

@@ -79,8 +79,12 @@ em {
 }
 
 nav {
+<<<<<<< HEAD
   position: absolute;
   top: 5px;
+=======
+  position: fixed;
+>>>>>>> 4fcdcc375212e54a7cc19515304d1bd3664a7861
   left: 0;
   background: #101010;
   z-index: 99;
@@ -157,6 +161,11 @@ button.hvr-bounce-to-right {
   -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
   transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
 }
+.FiltersArea {
+  font-weight: 500;
+  display: inline-flex;
+  text-align-last: center;
+}
 .filterArea {
   display: flex;
   justify-content: center;
@@ -164,15 +173,20 @@ button.hvr-bounce-to-right {
   top: 65px;
 }
 .UserDisplay {
-  display: flex;
+  top: -40px;
+  border: none;
   justify-content: center;
-
   position: relative;
-  flex-wrap: wrap;
+  color: black;
+  padding: 5px;
 }
 .FilterButton {
+  border: none;
+  background: black;
   justify-content: center;
   position: relative;
+  color: white;
+  padding: 5px;
 }
 .SearchBar {
   position: relative;
@@ -267,7 +281,7 @@ input {
 .ItemsFields {
   position: relative;
   padding: 20px;
-  font-size: 30px;
+  font-size: 20px;
   text-align: center;
   min-width: 33%;
   z-index: 104;
@@ -285,6 +299,7 @@ input {
 }
 .ItemQuantities {
   color: red;
+  font-size: 28px;
   transform: rotate(20deg);
   display: block;
   position: absolute;
@@ -309,6 +324,7 @@ input {
   color: white;
 }
 .PaginationDiv {
+  inline-size: -webkit-fill-available;
   display: flex;
   justify-content: center;
 }
