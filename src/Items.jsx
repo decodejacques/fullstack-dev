@@ -107,9 +107,9 @@ class UnconnectedItems extends Component {
       });
     }
     let maxCost = parseInt(this.state.filterMaxCost);
-    // displayedItems = displayedItems.filter(item => {
-    //   return item.cost > this.state.filterCost && item.cost < maxCost;
-    // });
+    displayedItems = displayedItems.filter(item => {
+      return item.cost > this.state.filterCost && item.cost < maxCost;
+    });
     if (this.state.filterInStock) {
       displayedItems = displayedItems
         .slice(this.state.page * 6, this.state.page * 6 + 6)
@@ -127,11 +127,12 @@ class UnconnectedItems extends Component {
           return item.cost > this.state.filterCost && item.cost < maxCost;
         });
     }
-    displayedItems = displayedItems
-      .slice(this.state.page * 6, this.state.page * 6 + 6)
-      .filter(item => {
-        return item.cost > this.state.filterCost && item.cost < maxCost;
-      });
+
+    // displayedItems = displayedItems
+    //   .slice(this.state.page * 6, this.state.page * 6 + 6)
+    //   .filter(item => {
+    //     return item.cost > this.state.filterCost && item.cost < maxCost;
+    //   });
     let indexPage = [];
     for (let index = 1; index <= this.props.items.length / 6; index += 6) {
       console.log(index);
