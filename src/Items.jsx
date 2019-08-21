@@ -249,6 +249,7 @@ class UnconnectedItems extends Component {
             );
           })}
           {/* pagination */}
+
           <div className="PaginationDiv">
             <button
               className="Pagination"
