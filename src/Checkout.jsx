@@ -22,6 +22,7 @@ class UnconnectedCheckout extends Component {
       });
     });
   };
+
   render = () => {
     return (
       <div>
@@ -58,7 +59,7 @@ class UnconnectedCheckout extends Component {
           </div>
           <div>
             Phone
-            <input type="text" placeholder="000-000-0000" />
+            <input type="text" placeholder="..." />
           </div>
         </form>
 
