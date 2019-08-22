@@ -61,6 +61,8 @@ class newItemForm extends Component {
         this.props.getItemId(itemId);
         // receives the itemID from the backend
       });
+
+    this.props.history.push("/all-items");
   };
 
   render() {
