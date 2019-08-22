@@ -24,32 +24,32 @@ class UnconnectedItems extends Component {
       page: 0
     };
   }
-  // componentDidMount = async () => {
-  //   // let updateItems = async () => {
-  //   // get all items from the server
+  componentDidMount = () => {
+    let updateItems = async () => {
+      // get all items from the server
+      let response = await fetch("/items");
+      let responseBody = await response.text();
+      //   console.log("responseBody", responseBody);
+      let parsed = JSON.parse(responseBody);
+      console.log("parsed", parsed);
+      this.props.dispatch({ type: "set-items", items: parsed });
+    };
+    setInterval(updateItems, 500);
+  };
+  // componentDidMount = () => {
+  //   this.reload();
+  // };
+  // componentDidUpdate = (prevProps, prevState) => {
+  //   if (prevState.items !== this.state.items) {
+  //     this.reload();
+  //   }
+  // };
+  // reload = async () => {
   //   let response = await fetch("/items");
   //   let responseBody = await response.text();
-  //   //   console.log("responseBody", responseBody);
   //   let parsed = JSON.parse(responseBody);
-  //   console.log("parsed", parsed);
   //   this.props.dispatch({ type: "set-items", items: parsed });
-  //   // };
-  //   // setInterval(updateItems, 500);
   // };
-  componentDidMount = () => {
-    this.reload();
-  };
-  componentDidUpdate = (prevProps, prevState) => {
-    if (prevState.items !== this.state.items) {
-      this.reload();
-    }
-  };
-  reload = async () => {
-    let response = await fetch("/items");
-    let responseBody = await response.text();
-    let parsed = JSON.parse(responseBody);
-    this.props.dispatch({ type: "set-items", items: parsed });
-  };
   gotoCart = () => {
     this.props.history.push("/cart");
   };
