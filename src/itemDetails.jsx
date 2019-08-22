@@ -214,9 +214,10 @@ class UnconnectedItemDetails extends Component {
                     </div>
                   </div>
                 </div>
-
+                <br />
                 {console.log("item.review", item.review)}
                 <div className="reviewBox">
+                  <br />
                   <div>Reviews</div> <br />
                   {item.review
                     ? item.review.map(UniqueReview => {
