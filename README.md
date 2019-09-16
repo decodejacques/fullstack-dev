@@ -1,5 +1,14 @@
-To start the server, run `nodemon server.js`
+**Marketplace - Web App – team project**
 
-Modify the `server.js` file to add endpoints
+*Alibay is an online marketplace that makes available the following functionalities:*
 
-The frontend code goes in the `/src` directory
+- signup / login
+- selling new item form
+- browsing items / filtering by cost and stock availability
+- purchasing items / processing payments through Stripe
+
+- **Front-end :** JavaScript, React, Redux, CSS
+- **Back-end :** Node.js, Express, MongoDB
+- **Other tools:** Git, Github, Postman
+
+  *Project video available:* https://bit.ly/2kCBtFN
