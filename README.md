@@ -25,7 +25,7 @@
    <img src="./images/alibay-item-details.png" height="350px" width="600px">
    
    - purchasing items / processing payments through Stripe
-   <img src="./images/alibay-cart1.png" height="300px" width="600px">
-   <img src="./images/alibay-cart2.png" height="300px" width="600px">
+   <img src="./images/alibay-cart1.png" height="320px" width="600px">
+   <img src="./images/alibay-cart2.png" height="320px" width="600px">
    <img src="./images/alibay-shipping-details.png" height="300px" width="600px">
    <img src="./images/alibay-payment.png" height="300px" width="600px">
